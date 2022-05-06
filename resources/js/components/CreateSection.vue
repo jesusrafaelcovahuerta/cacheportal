@@ -1,0 +1,250 @@
+<template>
+    <div>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <h1 class="h3 mb-2 text-gray-800">
+                Crear Sección
+            </h1>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6 class="m-0 text-danger float-right">* Campos Obligatorios</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div v-if="loading">
+                            <center>
+                                <clip-loader :color="color"></clip-loader>
+                            </center>
+                        </div>
+                        <div v-else>
+                            <form @submit.prevent="onSubmit" ref="createBill" enctype="multipart/form-data">
+                                <div v-if="errors.length" class="alert alert-danger" role="alert">
+                                    <b>Por favor, corrija los siguientes errores:</b>
+                                    <ul>
+                                        <li v-for="error in errors">{{ error }}</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.title" 
+                                        class="form-control"
+                                        placeholder="Ingresa el título"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Color <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <div class="form-group row">
+                                            <div class="col-sm-2">
+                                                <v-input-colorpicker v-model="color" @change="handleChange" />
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input
+                                                type="text" 
+                                                v-model="form.color" 
+                                                class="form-control"
+                                                placeholder="Ingresa el color"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Posición <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="number" 
+                                        v-model="form.position" 
+                                        min="0"
+                                        class="form-control"
+                                        placeholder="Ingresa la posición"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Tipo de Icono <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.icon_type_id"
+                                        >
+                                            <option :value="2">Ionic Icon</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Ionic Icon - <a href="https://ionicframework.com/docs/v3/ionicons/" target= "_blank">Ver iconos</a></label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.fai" 
+                                            class="form-control"
+                                            placeholder="Ingresa el icono"
+                                        >
+                                    </div>
+                                </div>
+                                <button 
+                                type="submit"
+                                class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    <span class="text">Guardar</span>
+                                </button>
+                                <router-link to="/section" class="btn btn-danger btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                    <span class="text">Cancelar</span>
+                                </router-link>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</template>
+
+<script>
+    import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
+    import InputColorPicker from 'vue-native-color-picker';
+
+    export default {
+        components: {
+            ClipLoader,
+            "v-input-colorpicker": InputColorPicker
+        },
+        created() {
+            this.storeAudit();
+        },
+        data: function() {
+            return {
+                errors: [],
+                color: '#0A2787',
+                loading: false,
+                color: "#0f4c81",
+                noFile: false,
+                form: {
+                    title: '',
+                    color: '',
+                    icon: '',
+                    position: '',
+                    icon_type_id: 2,
+                    fai: ''
+                }
+            }
+        },
+        methods: {
+            storeAudit() {
+                let formData = new FormData();
+                formData.append('page', 'CreateSection');
+               
+                axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            handleChange() {
+                this.form.color = this.color;
+            },
+            onFileChange(e){
+                this.file = e.target.files[0];
+                this.noFile = e.target.files.length;
+            },
+            onSubmit(e) {
+                this.loading = true; //the loading begin
+                e.preventDefault();
+                let currentObj = this;
+    
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                }
+
+                if(this.form.title != ''
+                    && this.form.title.length <= 28
+                    && this.form.color != ''
+                    && this.form.icon_type_id != null
+                    && (this.file != null || this.form.fai != '')
+                    && this.form.position != ''
+                ) {
+                    let formData = new FormData();
+                    formData.append('title', this.form.title);
+                    formData.append('color', this.form.color);
+                    formData.append('icon_type_id', this.form.icon_type_id);
+                    if(this.form.icon_type_id == 1) {
+                        formData.append('file', this.file);
+                    } else {
+                        formData.append('icon', this.form.fai);
+                    }
+                    formData.append('position', this.form.position);
+
+                    axios.post('/api/section/store?api_token='+App.apiToken, formData, config)
+                    .then(function (response) {
+                        currentObj.success = response.data.success;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.$awn.success("El registro ha sido agregado", {labels: {success: "Éxito"}});
+                        this.$router.push('/section');
+                    });
+                } else {
+                    this.loading = false;
+                    this.errors = [];
+                    
+                    if (this.form.title == '') {
+                        this.errors.push('El título es obligatorio.');
+                    }
+                    if (this.form.title.length > 28) {
+                        this.errors.push('El nombre debe tener menos de 28 caracteres.');
+                    }
+                    if (this.form.color == '') {
+                        this.errors.push('El color es obligatorio.');
+                    }
+                    if (this.form.icon_type_id == null) {
+                        this.errors.push('El tipo de icono es obligatorio.');
+                    }
+                    if (this.form.icon_type_id == 1 && this.file == null) {
+                        this.errors.push('El icono es obligatorio.');
+                    }
+                    if (this.form.icon_type_id == 2 && this.form.fai == '') {
+                        this.errors.push('El icono es obligatorio.');
+                    } 
+                    if (this.form.icon_type_id == 1 && (this.file.size > 1024 * 1024)) {
+                        this.errors.push('La imagen es muy pesada.');
+                    }
+                    if (this.form.position == '') {
+                        this.errors.push('La posición es obligatoria.');
+                    }
+
+                    $('html,body').scrollTop(0);
+
+                    e.preventDefault();
+                }
+            },
+
+        },
+        computed: {
+            isDisabled() {
+                return true;
+            }
+        }
+    }
+</script>
+<style lang="scss">
+    @import '~vue-awesome-notifications/dist/styles/style.scss';
+</style>
