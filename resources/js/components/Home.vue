@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-32">
+    <div class="container pt-32">111
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
