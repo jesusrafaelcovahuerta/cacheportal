@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/frontendapp.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/css/ionicons.min.css') }}">
