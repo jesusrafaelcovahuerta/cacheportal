@@ -121,6 +121,38 @@ class SectionController extends ApiResponseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function move(Request $request)
+    {
+        $id = $request->segment(4);
+        $position = $request->segment(5) + 1; 2
+
+        $another_section = Section::where('position', $position)->first();  2
+        $section = Section::find($id); 3
+
+        if($section->position > $another_section->position) {
+            $section->position = $position;
+
+            $another_section->position = $another_section->position + 1;
+        } else {
+            $section->position = $position;
+
+            $another_section->position = $another_section->position - 1;
+        }
+        
+        $another_section->save();
+        $section->save();
+
+
+
+        return $this->errorResponse($section);
+    }
+
+    /**
+     * Update the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         if($request->icon_type_id == 1) {

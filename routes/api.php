@@ -74,3 +74,4 @@ Route::post('audit/store', 'api\AuditController@store');
 Route::get('poll/show/{id}', 'api\PollController@show');
 Route::post('poll/answer', 'api\PollController@answer');
 Route::get('audit', 'api\AuditController@index');
+Route::get('section/move/{id}/{position}', 'api\SectionController@move');
