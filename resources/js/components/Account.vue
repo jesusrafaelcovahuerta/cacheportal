@@ -11,7 +11,7 @@
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-md-6 offset-md-3 pt-lg-5">
-                <img src="backend/img/gigant_logo.png" height="40px" id="logo">
+                <img src="backend/img/gigant_logo.png" height="100px" id="logo">
             </div>
 
         </div>

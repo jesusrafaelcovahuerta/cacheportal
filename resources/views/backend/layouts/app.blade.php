@@ -20,7 +20,6 @@
   
 
   <!-- Custom styles for this template-->
-  <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
   <script>

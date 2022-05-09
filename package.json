@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@vimeo/player": "^2.16.4",
+        "laravel-mix-postcss-config": "^1.4.0",
         "moment": "^2.24.0",
         "tailwindcss": "^1.5.2",
         "v-mask": "^2.3.0",

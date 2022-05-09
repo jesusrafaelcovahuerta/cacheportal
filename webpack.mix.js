@@ -16,5 +16,9 @@ require('laravel-mix-purgecss');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/frontendapp.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css')
-    .sass('resources/sass/custom.scss', 'public/css'); 
-      mix.version();
+    .sass('resources/sass/custom.scss', 'public/css')
+    .sass('resources/sass/backendapp.scss', 'public/css')
+    .sass('resources/sass/backendcustom.scss', 'public/css')
+    .sass('resources/sass/sb-admin-2.scss', 'public/css');
+
+mix.version();

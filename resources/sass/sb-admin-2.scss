@@ -2773,9 +2773,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   transition: transform .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-switch .custom-control-label: :after {
-  transition: none;
-}
+
 }.custom-switch .custom-control-input:checked~.custom-control-label::after {
   background-color: #fff;
   transform: translateX(.75rem);
@@ -2934,10 +2932,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-webkit-slider-thumb {
-  -webkit-transition: none;
-  transition: none;
-}
 }.custom-range::-webkit-slider-thumb:active {
   background-color: #e5ebfa;
 }
@@ -2962,10 +2956,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-moz-range-thumb {
-  -moz-transition: none;
-  transition: none;
-}
 }.custom-range::-moz-range-thumb:active {
   background-color: #e5ebfa;
 }
@@ -2992,10 +2982,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   appearance: none;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-range: :-ms-thumb {
-  -ms-transition: none;
-  transition: none;
-}
+
 }.custom-range::-ms-thumb:active {
   background-color: #e5ebfa;
 }
@@ -3036,9 +3023,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 @media (prefers-reduced-motion:reduce) {
-  .custom-control-label: :before, .custom-file-label, .custom-select {
-  transition: none;
-}
 }.nav {
   display: flex;
   flex-wrap: wrap;
@@ -7550,7 +7534,7 @@ a.text-dark:focus, a.text-dark:hover {
   visibility: hidden!important;
 }
 @media print {
-  *, : :after, ::before {
+  *, ::after, ::before {
   text-shadow: none!important;
   box-shadow: none!important;
 }

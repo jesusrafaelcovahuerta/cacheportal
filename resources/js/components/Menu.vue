@@ -57,14 +57,14 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item" v-if="rol_id == 1">
             <router-link class="nav-link" to="/metric">
-            <i class="fas fa-fw fa-poll"></i>
+            <i class="fas fa-fw fa-database"></i>
             <span>Metricas</span></router-link>
         </li>
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item" v-if="rol_id == 1">
             <router-link class="nav-link" to="/audit">
-            <i class="fas fa-fw fa-poll"></i>
+            <i class="fas fa-fw fa-thumbs-up"></i>
             <span>Auditoría</span></router-link>
         </li>
 
