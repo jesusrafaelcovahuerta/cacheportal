@@ -142,8 +142,6 @@ class SectionController extends ApiResponseController
         $another_section->save();
         $section->save();
 
-
-
         return $this->errorResponse($section);
     }
 

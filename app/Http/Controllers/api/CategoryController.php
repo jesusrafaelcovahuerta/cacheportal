@@ -28,10 +28,40 @@ class CategoryController extends ApiResponseController
                         ->selectRaw('c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'c.alliance_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
-                        ->orderBy('c.section_id', 'ASC')
+                        ->orderBy('c.position', 'ASC')
                         ->paginate(10);
         
         return $this->successResponse($categories);
+    }
+
+        /**
+     * Update the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function move(Request $request)
+    {
+        $id = $request->segment(4);
+        $position = $request->segment(5) + 1;
+
+        $another_category = Category::where('position', $position)->first();
+        $category = Category::find($id);
+
+        if($category->position > $another_category->position) {
+            $category->position = $position;
+
+            $another_category->position = $another_category->position + 1;
+        } else {
+            $category->position = $position;
+
+            $another_category->position = $another_category->position - 1;
+        }
+        
+        $another_category->save();
+        $category->save();
+
+        return $this->errorResponse($category);
     }
 
     /**
