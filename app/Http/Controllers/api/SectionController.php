@@ -124,10 +124,10 @@ class SectionController extends ApiResponseController
     public function move(Request $request)
     {
         $id = $request->segment(4);
-        $position = $request->segment(5) + 1; 2
+        $position = $request->segment(5) + 1;
 
-        $another_section = Section::where('position', $position)->first();  2
-        $section = Section::find($id); 3
+        $another_section = Section::where('position', $position)->first();
+        $section = Section::find($id);
 
         if($section->position > $another_section->position) {
             $section->position = $position;
