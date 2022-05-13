@@ -78,7 +78,7 @@
                                         <label for="exampleInputEmail1">Teléfono</label>
                                         <input
                                         type="text" 
-                                        v-mask="'(+51)#########'"
+                                        v-mask="'(+56)#########'"
                                         v-model="form.phone" 
                                         class="form-control"
                                         placeholder="Ingresa el teléfono"

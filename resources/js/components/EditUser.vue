@@ -77,10 +77,22 @@
                                     <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Teléfono</label>
                                         <input
-                                        type="number" 
+                                        type="text" 
+                                        v-mask="'(+56)#########'"
                                         v-model="form.phone" 
                                         class="form-control"
                                         placeholder="Ingresa el teléfono"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Contraseña</label>
+                                        <input
+                                        type="password" 
+                                        v-model="form.password" 
+                                        class="form-control"
+                                        placeholder="Ingresa la contraseña"
                                         >
                                     </div>
                                 </div>
@@ -193,6 +205,7 @@
                     formData.append('alliance_id', this.form.alliance_id);
                     formData.append('email', this.form.email);
                     formData.append('phone', this.form.phone);
+                    formData.append('password', this.form.password);
 
                     axios.post('/api/user/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {

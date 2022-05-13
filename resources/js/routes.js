@@ -27,6 +27,7 @@ import EditUser from './components/EditUser';
 import ShowContent from './components/ShowContent';
 import EditContent from './components/EditContent';
 import Audit from './components/Audit';
+import Metric from './components/Metric';
 
 export default{
     mode: 'history',
@@ -173,6 +174,11 @@ export default{
           path: '/audit',
           name: 'audit',
           component: Audit
+        },
+        {
+          path: '/metric',
+          name: 'metric',
+          component: Metric
         }
     ]
 }

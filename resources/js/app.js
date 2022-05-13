@@ -7,12 +7,14 @@ import routes from './routes';
 import VueAWN from "vue-awesome-notifications"
 import VueMask from 'v-mask';
 import vueVimeoPlayer from 'vue-vimeo-player';
+import excel from 'vue-excel-export'
 
 Vue.component(
     'menu-component',
     require('./components/Menu.vue').default
 );
 
+Vue.use(excel)
 Vue.use(vueVimeoPlayer)
 Vue.use(VueAWN);
 Vue.use(VueRouter);

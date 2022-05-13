@@ -50,6 +50,23 @@ class UserController extends ApiResponseController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rut(Request $request)
+    {
+        $users = User::from('users as c')
+                        ->selectRaw('c.rut as rut')
+                        ->leftJoin('members', 'members.user_id', '=', 'c.rut')
+                        ->leftJoin('alliances', 'alliances.rut', '=', 'members.alliance_id')
+                        ->where('c.api_token', $request->api_token)
+                        ->first();
+        
+        return $this->successResponse($users);
+    }
+
+    /**
      * Store the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -167,6 +184,9 @@ class UserController extends ApiResponseController
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        if($request->password != '') {
+            $user->password = md5($request->password);
+        }
         if($user->save()) {
             $member = Member::where('user_id', $old_rut)->first();
             $member->user_id = $request->rut;

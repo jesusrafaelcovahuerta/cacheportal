@@ -54,7 +54,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <router-link :to="`/user/edit/${post.rut}`"  class="btn btn-primary btn-circle btn-sm">
+                                                <router-link :to="`/user/edit/${post.rut}`" v-if="post.rol_id != 1 || rut == post.rut"  class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </router-link>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.rut, index)" class="btn btn-danger btn-circle btn-sm">
@@ -115,6 +115,7 @@
             this.getPosts();
             this.getRol();
             this.storeAudit();
+            this.getUser();
         },
         methods: {
             storeAudit() {
@@ -153,8 +154,14 @@
                     return '';
                 }
             },
+            getUser() {
+                axios.get('/api/user/rut?api_token='+App.apiToken)
+                .then(response => {
+                    this.rut = response.data.data.rut;
+                });
+            },
             getRol() {
-                axios.get('/api/user?api_token='+App.apiToken)
+                axios.get('/api/user/rol?api_token='+App.apiToken)
                 .then(response => {
                     this.rol_id = response.data.data.rol_id;
                 });
@@ -217,6 +224,7 @@
                 branch_office_posts: [],
                 supervisor_posts: [],
                 rol_id: this.rol_id,
+                rut: this.rut,
                 postsSelected: "",
                 posts: [],
                 currentPage: 1,

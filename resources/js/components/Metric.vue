@@ -20,46 +20,29 @@
                             </center>
                         </div>
                         <div v-else>
-                            <div v-if="rowsQuantity > 0">
-                                <table v-if="total > 0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Metricas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(post, index) in posts" v-bind:index="index">
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <router-link :to="`/alliance/edit/${post.rut}`"  class="btn btn-primary btn-circle btn-sm">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Metricas</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Generales</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-circle btn-sm">
+                                                <export-excel
+                                                        :data="json_data">
                                                     <i class="fas fa-arrow-down"></i>
-                                                </router-link>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div v-else>
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Resultado</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Resultado</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">No hay resultados</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                                </export-excel>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -100,12 +83,9 @@
             getPosts() {
                 this.loading = true;
 
-                axios.get('/api/audit?page='+this.currentPage+'&api_token='+App.apiToken)
+                axios.get('/api/metric?page='+this.currentPage+'&api_token='+App.apiToken)
                 .then(response => {
-                    this.posts = response.data.data.data;
-                    this.total = response.data.data.last_page;
-                    this.currentPage = response.data.data.current_page;
-                    this.rowsQuantity = response.data.data.total;
+                    this.json_data = response.data.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -203,6 +183,7 @@
                 rol_id: this.rol_id,
                 postsSelected: "",
                 posts: [],
+                json_data: [],
                 currentPage: 1,
                 total: 0,
                 rowsQuantity: '',
