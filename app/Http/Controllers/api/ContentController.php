@@ -236,4 +236,19 @@ echo \Storage::url($content->image);
 
         return $this->successResponse($content);
     }
+
+    /**
+     * Destroy the specified resource.
+     *
+     * @param  int  $id
+     * @return \App\Http\Controllers\ApiResponseController
+     */
+    public function stop($id)
+    {
+        $content = Content::find($id);
+        $content->status_id = 2;
+        $content->save();
+
+        return $this->successResponse($content);
+    }
 }

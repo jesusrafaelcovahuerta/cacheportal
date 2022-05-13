@@ -68,6 +68,9 @@
                                                 <router-link v-if="post.status == 2 && rol_id == 1" :to="`/content/edit/${post.content_id}`"  class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </router-link>
+                                                <button v-if="post.status == 1" v-on:click="stopPost(post.content_id, index)" class="btn btn-warning btn-circle btn-sm">
+                                                    <i class="fas fa-stop"></i>
+                                                </button>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.content_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -184,6 +187,33 @@
 
                     let formData = new FormData();
                     formData.append('page', 'DeleteContent - '+id);
+                
+                    axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                    .then(function (response) {
+                        currentObj.success = response.data.success;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            stopPost(id, index) {
+                if(confirm("¿Realmente usted quiere detener la publicación?")) {
+                    this.loading = true; //the loading begin
+                    axios.get('/api/content/stop/'+id+'?api_token='+App.apiToken).then(response => {
+                        this.posts.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.getPosts();
+                        this.$awn.success("El registro ha sido detenido", {labels: {success: "Éxito"}});
+                    });
+
+                    let formData = new FormData();
+                    formData.append('page', 'StopContent - '+id);
                 
                     axios.post('/api/audit/store?api_token='+App.apiToken, formData)
                     .then(function (response) {

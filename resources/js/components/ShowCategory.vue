@@ -32,8 +32,21 @@
         created() {
             this.getPosts();
             this.catchUser();
+            this.checkDate();
         },
         methods: {
+            checkDate() {
+                let formData = new FormData();
+                formData.append('page', 'Home');
+               
+                axios.post('/api/content/date', formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                        console.log(error);
+                });
+            },
             catchUser() {
                 let formData = new FormData();
                 formData.append('page', 'category_id_'+this.$route.params.id);

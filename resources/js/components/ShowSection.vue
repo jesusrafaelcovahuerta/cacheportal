@@ -68,8 +68,21 @@
             this.getPosts();
             this.catchUser();
             this.getPoll();
+            this.checkDate();
         },
         methods: {
+            checkDate() {
+                let formData = new FormData();
+                formData.append('page', 'Home');
+               
+                axios.post('/api/content/date', formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                        console.log(error);
+                });
+            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
