@@ -246,7 +246,7 @@ echo \Storage::url($content->image);
     public function stop($id)
     {
         $content = Content::find($id);
-        $content->status_id = 2;
+        $content->status = 2;
         $content->save();
 
         return $this->successResponse($content);
