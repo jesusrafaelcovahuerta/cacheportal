@@ -78,3 +78,4 @@ Route::get('audit', 'api\AuditController@index');
 Route::get('section/move/{id}/{position}', 'api\SectionController@move');
 Route::get('category/move/{id}/{position}', 'api\CategoryController@move');
 Route::get('metric', 'api\MetricController@index');
+Route::post('content/date', 'api\ContentController@date');

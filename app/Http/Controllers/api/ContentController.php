@@ -38,6 +38,26 @@ class ContentController extends ApiResponseController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function date()
+    {
+        $contents = Content::all();
+
+        foreach($contents as $content) {
+            if(date('Y-m-d') == $content->end_date) {
+                $update_content = Conten::find($content->content_id);
+                $update_content->status = 2;
+                $update_content->save();
+            }
+        }
+        
+        return $this->successResponse($contents);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
