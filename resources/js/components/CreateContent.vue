@@ -53,6 +53,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.title" 
+                                        maxlength="15"
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >

@@ -26,8 +26,8 @@
                             </center>
                         </div>
                         <div v-else>
-                            <div v-if="rowsQuantity > 0">
-                                <table v-if="total > 0" class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
+                            <div v-if="rowsQuantity > 0" class="table-responsive">
+                                <table v-if="total > 0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Título</th>
