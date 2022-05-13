@@ -25,7 +25,10 @@ class PollController extends ApiResponseController
      */
     public function index(Request $request)
     {
-        $polls = Poll::orderBy('poll_id', 'DESC')
+        $polls = Poll::from('polls as c')
+                        ->selectRaw('c.title as title, c.poll_id as poll_id, sections.section as section')
+                        ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
+                        ->orderBy('c.created_at', 'DESC')
                         ->paginate(10);
         
         return $this->successResponse($polls);

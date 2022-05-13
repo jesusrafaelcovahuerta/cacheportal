@@ -31,6 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>Título</th>
+                                            <th>Sección</th>
                                             <th>Estatus</th>
                                             <th></th>
                                         </tr>
@@ -38,6 +39,7 @@
                                     <tbody>
                                         <tr v-for="(post, index) in posts" v-bind:index="index">
                                             <td>{{ post.title }}</td>
+                                            <td>{{ post.section }}</td>
                                             <td>
                                                 <span class="badge badge-danger" v-if="post.status == 0">
                                                     Desactivado
@@ -47,7 +49,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <button class="btn btn-danger btn-circle btn-sm">
+                                                <button class="btn btn-primary btn-circle btn-sm">
                                                     <export-excel
                                                             :data="json_data">
                                                         <i class="fas fa-arrow-down"></i>
