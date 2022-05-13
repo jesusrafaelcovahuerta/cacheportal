@@ -321,7 +321,7 @@
             },
             charactersLeft() {
                 var char = this.form.title,
-                    limit = 15;
+                limit = 15;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
             }
