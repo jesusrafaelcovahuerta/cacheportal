@@ -33,7 +33,20 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <label for="exampleInputEmail1">Nombre <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.name" 
+                                        maxlength="15"
+                                        class="form-control"
+                                        placeholder="Ingresa el nombre"
+                                        >
+                                    </div>
+                                    <span class="col-sm-12">{{charactersLeft}}</span>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Alianza <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.alliance_id"
@@ -42,7 +55,7 @@
                                             <option v-for="alliance_post in alliance_posts" :key="alliance_post.rut" :value="alliance_post.rut">{{ alliance_post.name }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Sección <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.section_id"
@@ -51,18 +64,7 @@
                                             <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-5">
-                                        <label for="exampleInputEmail1">Nombre <h6 class="m-0 text-danger float-right">*</h6></label>
-                                        <input
-                                        type="text" 
-                                        v-model="form.name" 
-                                        class="form-control"
-                                        placeholder="Ingresa el nombre"
-                                        >
-                                    </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Color <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <div class="form-group row">
                                             <div class="col-sm-2">
@@ -78,6 +80,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-sm-2">
                                         <label for="exampleInputEmail1">Posición <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
@@ -87,9 +91,7 @@
                                         placeholder="Ingresa la posición"
                                         >
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Tipo de Icono <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
@@ -315,6 +317,12 @@
         computed: {
             isDisabled() {
                 return true;
+            },
+            charactersLeft() {
+                var char = this.form.name,
+                    limit = 15;
+
+                return (limit - char) + " / " + limit + " caracteres disponibles";
             }
         }
     }

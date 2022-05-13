@@ -47,6 +47,12 @@
                                                 </span>
                                             </td>
                                             <td>
+                                                <button class="btn btn-danger btn-circle btn-sm">
+                                                    <export-excel
+                                                            :data="json_data">
+                                                        <i class="fas fa-arrow-down"></i>
+                                                    </export-excel>
+                                                </button>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.poll_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -107,6 +113,20 @@
             this.storeAudit();
         },
         methods: {
+            getExcel(id) {
+                this.loading = true;
+
+                axios.get('/api/poll/excel/'+id+'?page='+this.currentPage+'&api_token='+App.apiToken)
+                .then(response => {
+                    this.json_data = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
             storeAudit() {
                 let formData = new FormData();
                 formData.append('page', 'Poll');

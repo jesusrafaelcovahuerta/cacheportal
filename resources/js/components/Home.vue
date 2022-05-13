@@ -2,9 +2,12 @@
     <div class="container pt-32">
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
-                <router-link class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
+                <router-link v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
                     <i v-bind:class="post.icon"></i><br> {{ post.section_title }}
                 </router-link>
+                <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url)" >
+                    <i v-bind:class="post.icon"></i><br> {{ post.section_title }}
+                </button>
 		    </div>
         </div>
     </div>
@@ -16,7 +19,10 @@
             this.catchUser();
         },
         methods: {
-           catchUser() {
+            goWeb(url) {
+                window.location.href = url;
+            },
+            catchUser() {
                 let formData = new FormData();
                 formData.append('page', 'Home');
                

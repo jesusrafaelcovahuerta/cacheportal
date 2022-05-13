@@ -64,6 +64,8 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->status = 1;
         $section->position = $request->position;
+        $section->link_question_id = $request->link_question_id;
+        $section->url = $request->url;
 
         $move_position_sections = Section::where('position', '>=', $request->position)->get();
         $position = $request->position;
@@ -167,6 +169,8 @@ class SectionController extends ApiResponseController
         $old_icon_type = $section->icon_type_id;
         $old_icon_name = $section->icon;
         $section->icon_type_id = $request->icon_type_id;
+        $section->link_question_id = $request->link_question_id;
+        $section->url = $request->url;
         if(isset($fileName)) {
             if($fileName != '' && $fileName != null) {
                 $section->icon = 'icon ion-'.$fileName.' home_icon_size2';

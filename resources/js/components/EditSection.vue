@@ -37,11 +37,13 @@
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
+                                        maxlength="15"
                                         v-model="form.title" 
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
                                     </div>
+                                    <span class="col-sm-12">{{charactersLeft}}</span>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
@@ -87,6 +89,26 @@
                                             v-model="form.fai" 
                                             class="form-control"
                                             placeholder="Ingresa el icono"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un enlace a una página externa? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.link_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.link_question_id == 1">
+                                        <label for="exampleInputEmail1">Url o enlace</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.url" 
+                                            class="form-control"
+                                            placeholder="Ingresa la url o enlace"
                                         >
                                     </div>
                                 </div>
@@ -141,7 +163,9 @@
                     icon: '',
                     position: '',
                     icon_type_id: 2,
-                    fai: ''
+                    fai: '',
+                    link_question_id: 2,
+                    url: ''
                 }
             }
         },
@@ -176,6 +200,8 @@
                         this.$set(this.form, 'fai', icon);
                     }
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
+                    this.$set(this.form, 'link_question_id', this.post.link_question_id);
+                    this.$set(this.form, 'url', this.post.url);
                 });
             },
             handleChange() {
@@ -210,6 +236,8 @@
                         formData.append('icon', this.form.fai);
                     }
                     formData.append('position', this.form.position);
+                    formData.append('link_question_id', this.form.link_question_id);
+                    formData.append('url', this.form.url);
 
                     axios.post('/api/section/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -261,6 +289,12 @@
         computed: {
             isDisabled() {
                 return true;
+            },
+            charactersLeft() {
+                var char = this.form.title.length,
+                    limit = 15;
+
+                return (limit - char) + " / " + limit + " caracteres disponibles";
             }
         }
     }

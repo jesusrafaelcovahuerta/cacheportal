@@ -56,6 +56,7 @@
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
                                     <div class="col-sm-6">
                                         <div v-if="form.type_id == 1">
@@ -379,6 +380,12 @@
         computed: {
             isDisabled() {
                 return true;
+            },
+            charactersLeft() {
+                var char = this.form.title,
+                    limit = 15;
+
+                return (limit - char) + " / " + limit + " caracteres disponibles";
             }
         }
     }
