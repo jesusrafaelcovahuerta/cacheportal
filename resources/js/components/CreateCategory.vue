@@ -319,7 +319,7 @@
                 return true;
             },
             charactersLeft() {
-                var char = this.form.name,
+                var char = this.form.name.length,
                     limit = 15;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
