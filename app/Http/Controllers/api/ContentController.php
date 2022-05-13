@@ -48,7 +48,7 @@ class ContentController extends ApiResponseController
 
         foreach($contents as $content) {
             if(date('Y-m-d') <= $content->end_date) {
-                $update_content = Conten::find($content->content_id);
+                $update_content = Content::find($content->content_id);
                 $update_content->status = 2;
                 $update_content->save();
             }
