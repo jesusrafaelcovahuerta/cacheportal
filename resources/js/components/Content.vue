@@ -27,7 +27,7 @@
                         </div>
                         <div v-else>
                             <div v-if="rowsQuantity > 0">
-                                <table v-if="total > 0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table v-if="total > 0" class="table table-bordered table-responsive" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Título</th>
@@ -69,7 +69,7 @@
                                                     <i class="fas fa-eye"></i>
                                                 </router-link>
                                                 <button v-if="post.status == 1" v-on:click="stopPost(post.content_id, index)" class="btn btn-warning btn-circle btn-sm">
-                                                    <i class="fas fa-stop"></i>
+                                                    <i class="fas fa-pause"></i>
                                                 </button>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.content_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
