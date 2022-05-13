@@ -251,6 +251,11 @@
                     })
                     .catch(function (error) {
                         console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.$awn.success("El registro ha sido aceptado", {labels: {success: "Éxito"}});
+                        this.$router.push('/content');
                     });
                 }
             },
