@@ -12,7 +12,74 @@
                 </router-link>
             </h1>
             <hr>
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Default Card Example -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        Buscar
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent="onSubmit" ref="searchDte">
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Título</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" 
+                                            v-model="form.title"
+                                            placeholder="Ingresa el título">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Alianza</label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.alliance_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option v-for="alliance_post in alliance_posts" :key="alliance_post.rut" :value="alliance_post.rut">{{ alliance_post.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Sección</label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.section_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Categoría</label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.category_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option v-for="category_post in category_posts" :key="category_post.category_id" :value="category_post.category_id">{{ category_post.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                type="submit" class="btn btn-primary btn-icon-split text-right">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <span class="text">Buscar</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -26,7 +93,7 @@
                             </center>
                         </div>
                         <div v-else>
-                            <div v-if="rowsQuantity > 0" class="table-responsive">
+                            <div v-if="rowsQuantity > 0">
                                 <table v-if="total > 0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -126,8 +193,54 @@
             this.getPosts();
             this.getRol();
             this.storeAudit();
+            this.getAlliaceList();
+            this.getSectionList();
+            this.getCategoryList();
         },
         methods: {
+            getCategoryList() {
+                axios.get('/api/category/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.category_posts = response.data.data;
+                });
+            },
+            getSectionList() {
+                axios.get('/api/section/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.section_posts = response.data.data;
+                });
+            },
+            onSubmit() {
+                this.loading = true; //the loading begin
+                if(this.form.title == '') {
+                    this.form.title = null;
+                }
+
+                if(this.form.alliance_id == '') {
+                    this.form.alliance_id = null;
+                }
+
+                axios.post('/api/content/search/'+ this.form.title +'/'+ this.form.alliance_id +'/'+ this.form.section_id +'/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                .then(response => {
+                    this.posts = response.data.data.data;
+                    this.total = response.data.data.last_page;
+                    this.currentPage = response.data.data.current_page;
+                    this.quantity = response.data.data.total;
+                    this.rowsQuantity = response.data.data.total;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
+            getAlliaceList() {
+                axios.get('/api/alliance/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.alliance_posts = response.data.data;
+                });
+            },
             storeAudit() {
                 let formData = new FormData();
                 formData.append('page', 'Content');
@@ -149,20 +262,56 @@
             },
             getPosts() {
                 this.loading = true;
+                if(this.form.title == '') {
+                    this.form.title = null;
+                }
 
-                axios.get('/api/content?page='+this.currentPage+'&api_token='+App.apiToken)
-                .then(response => {
-                    this.posts = response.data.data.data;
-                    this.total = response.data.data.last_page;
-                    this.currentPage = response.data.data.current_page;
-                    this.rowsQuantity = response.data.data.total;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
+                if(this.form.alliance_id == '') {
+                    this.form.alliance_id = null;
+                }
+
+                if(this.form.section_id == '') {
+                    this.form.section_id = null;
+                }
+
+                if(this.form.category_id == '') {
+                    this.form.category_id = null;
+                }
+
+                if(this.form.title != null 
+                || this.form.alliance_id != null 
+                || this.form.section_id != null 
+                || this.form.category_id != null 
+                ) {
+                    axios.post('/api/content/search/'+ this.form.title +'/'+ this.form.alliance_id +'/'+ this.form.section_id +'/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.quantity = response.data.data.total;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                } else {
+                    axios.get('/api/content?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                }
             },
             getRol() {
                 axios.get('/api/user/rol?api_token='+App.apiToken)
@@ -260,8 +409,15 @@
             return {
                 color: '#0A2787',
                 loading: false,
+                alliance_posts: [],
+                section_posts: [],
+                category_posts: [],
                 form: {
-                    rol_id: null
+                    rol_id: null,
+                    alliance_id: null,
+                    title: '',
+                    section_id: null,
+                    category_id: null
                 },
                 rol_id: this.rol_id,
                 branch_office_posts: [],

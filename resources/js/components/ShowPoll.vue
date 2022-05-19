@@ -1,18 +1,7 @@
 <template>
     <div class="container pt-32">
-        <div v-if="poll_question_posts == ''" class="row">
-		    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                    <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                </router-link>
-
-                <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                    <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                </router-link>
-		    </div>
-        </div>
-        <div class="row" v-if="poll_question_posts != ''">
-            <div v-if="poll_quantity == 1">
+        <div class="row">
+            <div>
                 <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
                     <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
                         <h2>{{ post.question }}</h2>
@@ -43,13 +32,7 @@
                     </form>
                 </div>
             </div>
-            <div v-if="poll_quantity > 1">
-                <div class="col-md-12" v-for="(post, index) in polls" v-bind:index="index">
-                    <router-link  class="pollboton" :style="{ background: '#572364'}" :to="`/poll/show/${post.poll_id}`"> 
-                        {{ post.title }}
-                    </router-link>
-                </div>
-            </div>
+            
         </div>
         <!-- toolbar bottom -->
         <div class="toolbar">
@@ -74,11 +57,9 @@
 <script>
     export default {
         created() {
-            this.getPollQuantity();
             this.getPosts();
             this.catchUser();
             this.getPollQuestions();
-            this.getPolls();
             this.checkDate();
         },
         methods: {
@@ -104,12 +85,11 @@
                 }
 
                 let formData = new FormData();
-            
                 formData.append('poll_id', this.$route.params.id);
                 formData.append('yes_no_answers', this.form.yes_no_answer);
                 formData.append('text_answers', this.form.text_answer);
 
-                axios.post('/api/poll/answer', formData, config)
+                axios.post('/api/poll/specialanswer', formData, config)
                 .then(function (response) {
                     currentObj.success = response.data.success;
                 })
@@ -122,32 +102,8 @@
                     this.$router.push('/');
                 });
             },
-            getPollQuantity() {
-                axios.get('/api/poll/quantity/'+ this.$route.params.id)
-                .then(response => {
-                    this.poll_quantity = response.data.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-            },
-            getPolls() {
-                axios.get('/api/poll/all/'+ this.$route.params.id)
-                .then(response => {
-                    this.polls = response.data.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-            },
             getPollQuestions() {
-                axios.get('/api/poll/show/'+ this.$route.params.id)
+                axios.get('/api/poll/detail/'+ this.$route.params.id)
                 .then(response => {
                     this.poll_question_posts = response.data.data;
                 })

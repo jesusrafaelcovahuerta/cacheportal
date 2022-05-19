@@ -27,12 +27,60 @@ class ContentController extends ApiResponseController
      */
     public function index(Request $request)
     {
-        $contents = Content::from('contents as c')
+        $title = $request->segment(4);
+        $alliance_id = $request->segment(5);
+        $section_id = $request->segment(6);
+        $category_id = $request->segment(7);
+
+        if(($title == 'null' && $alliance_id == 'null' && $section_id == 'null' && $category_id == 'null')
+        || ($title == '' && $alliance_id == '' && $section_id == '' && $category_id == '')
+        ) {
+            $contents = Content::from('contents as c')
                         ->selectRaw('c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
                         ->orderBy('c.position', 'ASC')
                         ->paginate(10);
+        } else {
+            $query = "";
+
+            if ($title != 'null') {
+                $query .= 'c.title LIKE "%'.$title.'%"';
+            }
+
+            if ($alliance_id != 'null') {
+                if ($title != 'null') {
+                    $query .= ' AND ';
+                }
+
+                $query .= 'alliances.rut = "'.$alliance_id.'"';
+            }
+
+            if ($section_id != 'null') {
+                if ($title != 'null' || $alliance_id != 'null') {
+                    $query .= ' AND ';
+                }
+
+                $query .= 'sections.section_id = "'.$section_id.'"';
+            }
+
+            if ($category_id != 'null') {
+                if ($title != 'null' || $alliance_id != 'null' || $section_id != 'null') {
+                    $query .= ' AND ';
+                }
+
+                $query .= 'categories.category_id = "'.$category_id.'"';
+            }
+
+            $contents = Content::from('contents as c')
+                        ->selectRaw('c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
+                        ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
+                        ->whereRaw($query)
+                        ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
+                        ->leftJoin('alliances', 'alliances.rut', '=', 'categories.alliance_id')
+                        ->orderBy('c.position', 'ASC')
+                        ->paginate(10);
+        }
         
         return $this->successResponse($contents);
     }

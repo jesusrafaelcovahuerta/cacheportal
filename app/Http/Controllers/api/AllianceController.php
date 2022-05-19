@@ -23,8 +23,37 @@ class AllianceController extends ApiResponseController
      */
     public function index(Request $request)
     {
-        $alliances = Alliance::orderBy('rut', 'ASC')
+        $rut = $request->segment(4);
+        $name = $request->segment(5);
+
+        if(($rut == 'null' && $name == 'null')
+        || ($rut == '' && $name == '')
+        ) {
+            $alliances = Alliance::from('alliances as c')
+                        ->selectRaw('c.rut as rut, c.name as name, c.alias as alias, c.status as status, c.contact as contact, c.contact_email as contact_email, c.contact_phone as contact_phone, c.start_date as start_date, c.end_date as end_date')
+                        ->orderBy('c.created_at', 'DESC')
                         ->paginate(10);
+        } else {
+            $query = "";
+
+            if ($rut != 'null') {
+                $query .= 'c.rut LIKE "%'.$rut.'%"';
+            }
+
+            if ($name != 'null') {
+                if ($rut != 'null') {
+                    $query .= ' AND ';
+                }
+
+                $query .= 'c.name LIKE "%'.$name.'%"';
+            }
+
+            $alliances = Alliance::from('alliances as c')
+                        ->selectRaw('c.rut as rut, c.name as name, c.alias as alias, c.status as status, c.contact as contact, c.contact_email as contact_email, c.contact_phone as contact_phone, c.start_date as start_date, c.end_date as end_date')
+                        ->whereRaw($query)
+                        ->orderBy('c.created_at', 'DESC')
+                        ->paginate(10);
+        }
         
         return $this->successResponse($alliances);
     }

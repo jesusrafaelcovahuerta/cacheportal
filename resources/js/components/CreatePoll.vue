@@ -38,9 +38,11 @@
                                         <input
                                         type="text" 
                                         v-model="form.title" 
+                                        maxlength="36"
                                         class="form-control"
                                         placeholder="Ingresa el nombre"
                                         >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Sección <h6 class="m-0 text-danger float-right">*</h6></label>
@@ -228,6 +230,12 @@
         computed: {
             isDisabled() {
                 return true;
+            },
+            charactersLeft() {
+                var char = this.form.title.length,
+                    limit = 36;
+
+                return (limit - char) + " / " + limit + " caracteres disponibles";
             }
         }
     }

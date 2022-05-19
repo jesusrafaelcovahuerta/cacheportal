@@ -28,6 +28,7 @@ import ShowContent from './components/ShowContent';
 import EditContent from './components/EditContent';
 import Audit from './components/Audit';
 import Metric from './components/Metric';
+import ShowPoll from './components/ShowPoll';
 
 export default{
     mode: 'history',
@@ -179,6 +180,11 @@ export default{
           path: '/metric',
           name: 'metric',
           component: Metric
+        },
+        {
+          path: '/poll/show/:id',
+          name: 'showpoll',
+          component: ShowPoll
         }
     ]
 }

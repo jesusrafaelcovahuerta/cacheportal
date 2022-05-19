@@ -24,6 +24,7 @@ Route::get('/content/show/{id}', 'ContentController@show');
 Route::get('/content', 'ContentController@index');
 Route::get('/poll', 'PollController@index');
 Route::get('/poll/create', 'PollController@create');
+Route::get('/poll/show/{id}', 'PollController@show');
 Route::post('/enter', 'LoginController@login');
 Route::get('/', 'HomeController@index');
 Route::get('/login/logout', 'LoginController@logout');

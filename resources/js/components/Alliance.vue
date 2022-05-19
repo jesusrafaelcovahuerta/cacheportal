@@ -12,7 +12,47 @@
                 </router-link>
             </h1>
             <hr>
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Default Card Example -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Buscar
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent="onSubmit" ref="searchDte">
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">RUT</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" 
+                                            v-model="form.rut"
+                                            placeholder="Ingresa el rut">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" 
+                                            v-model="form.name"
+                                            placeholder="Ingresa el nombre">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button
+                                type="submit" class="btn btn-primary btn-icon-split text-right">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <span class="text">Buscar</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -122,14 +162,22 @@
             this.storeAudit();
         },
         methods: {
-            getPosts() {
-                this.loading = true;
+            onSubmit() {
+                this.loading = true; //the loading begin
+                if(this.form.rut == '') {
+                    this.form.rut = null;
+                }
 
-                axios.get('/api/alliance?page='+this.currentPage+'&api_token='+App.apiToken)
+                if(this.form.name == '') {
+                    this.form.name = null;
+                }
+
+                axios.post('/api/alliance/search/'+ this.form.rut +'/'+ this.form.name + '?page='+this.currentPage+'&api_token='+App.apiToken)
                 .then(response => {
                     this.posts = response.data.data.data;
                     this.total = response.data.data.last_page;
                     this.currentPage = response.data.data.current_page;
+                    this.quantity = response.data.data.total;
                     this.rowsQuantity = response.data.data.total;
                 })
                 .catch(function (error) {
@@ -138,6 +186,49 @@
                 .finally(() => {
                     this.loading = false;
                 });
+            },
+            getPosts() {
+                this.loading = true;
+
+                if(this.form.rut == '') {
+                    this.form.rut = null;
+                }
+
+                if(this.form.name == '') {
+                    this.form.name = null;
+                }
+
+                if(this.form.rut != null 
+                || this.form.name != null
+                ) {
+                    axios.get('/api/alliance/search/'+this.form.rut+'/'+this.form.name+'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                } else {
+                    axios.get('/api/alliance?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                }
             },
             formatDate(value) {
                 if(value != '' && value != null && value != '0000-00-00') {
@@ -228,7 +319,9 @@
                 color: '#0A2787',
                 loading: false,
                 form: {
-                    rol_id: null
+                    rol_id: null,
+                    name: '',
+                    rut: ''
                 },
                 branch_office_posts: [],
                 supervisor_posts: [],

@@ -76,6 +76,48 @@ class PollController extends ApiResponseController
     }
 
     /**
+     * Store the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detail(Request $request)
+    {
+        $id = $request->segment(4);
+        $poll = Poll::find($id);
+
+        $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
+
+        return $this->successResponse($poll_questions);
+    }
+
+    /**
+     * Store the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all(Request $request)
+    {
+        $id = $request->segment(4);
+        $polls = Poll::where('section_id', $id)->get();
+
+        return $this->successResponse($polls);
+    }
+
+
+    /**
+     * Store the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function quantity(Request $request)
+    {
+        $id = $request->segment(4);
+        $poll_qty = Poll::where('section_id', $id)->count();
+
+        return $this->successResponse($poll_qty);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -123,6 +165,33 @@ class PollController extends ApiResponseController
         $text_answers = explode(',', $request->text_answers);
 
         $poll = Poll::where('section_id', $request->poll_id)->first();
+
+        $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
+
+        $i = 0;
+
+        foreach($poll_questions as $poll_question) {
+            $poll_question_answer = new PollQuestionAnswer;
+            $poll_question_answer->poll_id = $poll->poll_id;
+            $poll_question_answer->question_id = $poll_question->poll_question_id;
+            if($poll_question->answer_type_id == 1) {
+                $poll_question_answer->answer = $yes_no_asnwers[$i];
+            } else if($poll_question->answer_type_id == 2) {
+                $poll_question_answer->answer = $text_answers[$i];
+            }
+            
+            $i = $i + 1;
+
+            $poll_question_answer->save();
+        }
+    }
+
+    public function specialanswer(Request $request)
+    {
+        $yes_no_asnwers = explode(',', $request->yes_no_answers);
+        $text_answers = explode(',', $request->text_answers);
+
+        $poll = Poll::find($request->poll_id);
 
         $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
 
