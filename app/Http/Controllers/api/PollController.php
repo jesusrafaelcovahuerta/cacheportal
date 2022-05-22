@@ -46,6 +46,8 @@ class PollController extends ApiResponseController
         $poll = new Poll;
         $poll->title = $request->title;
         $poll->section_id = $request->section_id;
+        $poll->category_id = $request->category_id;
+        $poll->content_id = $request->content_id;
         $poll->status = 1;
         $poll->save();
 
@@ -69,6 +71,11 @@ class PollController extends ApiResponseController
     {
         $id = $request->segment(4);
         $poll = Poll::where('section_id', $id)->first();
+        $poll_section_qty = Poll::where('section_id', $id)->count();
+
+        if($poll_section_qty == 0) {
+            $poll = Poll::where('category_id', $id)->first();
+        }
 
         $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
 
@@ -99,6 +106,11 @@ class PollController extends ApiResponseController
     {
         $id = $request->segment(4);
         $polls = Poll::where('section_id', $id)->get();
+        $poll_section_qty = Poll::where('section_id', $id)->count();
+
+        if($poll_section_qty == 0) {
+            $polls = Poll::where('category_id', $id)->get();
+        }
 
         return $this->successResponse($polls);
     }
@@ -114,6 +126,11 @@ class PollController extends ApiResponseController
         $id = $request->segment(4);
         $poll_qty = Poll::where('section_id', $id)->count();
 
+        if($poll_qty == 0) {
+            $poll_qty = Poll::where('category_id', $id)->count();
+        }
+
+
         return $this->successResponse($poll_qty);
     }
 
@@ -127,7 +144,64 @@ class PollController extends ApiResponseController
     {
         $poll = Poll::find($id);
 
-        return $this->successResponse($alliance);
+        return $this->successResponse($poll);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $poll = Poll::find($id);
+        $poll->title = $request->title;
+        $poll->section_id = $request->section_id;
+        $poll->category_id = $request->category_id;
+        $poll->content_id = $request->content_id;
+        $poll->save();
+
+        $poll_questions = PollQuestion::where('poll_id', $id)->get();
+
+        foreach($poll_questions as $poll_question) {
+            $poll_question_delete = PollQuestion::find($poll_question->poll_question_id);
+            $poll_question_delete->delete();
+
+            $poll_question_answers = PollQuestionAnswer::where('question_id', $poll_question->poll_question_id)->get();
+
+            foreach($poll_question_answers as $poll_question_answer) {
+                $poll_question_answer_delete = PollQuestionAnswer::find($poll_question_answer->poll_question_answer_id);
+                $poll_question_answer_delete->delete();
+            }
+        }
+
+        $informations = json_decode($request->informations);
+
+        foreach($informations as $information) {
+            $poll_question = new PollQuestion;
+            $poll_question->poll_id = $poll->poll_id;
+            $poll_question->answer_type_id = $information->answer_type_id;
+            $poll_question->question = $information->question;
+            $poll_question->save();
+        }
+
+        return $this->successResponse($poll);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function question(Request $request)
+    {
+        $id = $request->segment(4);
+
+        $poll_questions = PollQuestion::where('poll_id', $id)->get();
+
+        return $this->successResponse($poll_questions);
     }
 
     /**

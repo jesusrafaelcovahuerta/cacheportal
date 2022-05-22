@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Category;
 use App\Content;
 use App\User;
+use App\Poll;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller\api;
 use Illuminate\Http\Request;
@@ -69,9 +70,29 @@ class CategoryController extends ApiResponseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
+    public function poll(Request $request)
     {
-        $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        $id = $request->segment(4);
+
+        $category= Poll::where('category_id', $id)->where('status', 1)->first();
+        
+        return $this->successResponse($category->content_id);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list(Request $request)
+    {
+        $id = $request->segment(4);
+
+        if($id != '') {
+            $categories = Category::where('section_id', $id)->where('status', 1)->orderBy('name', 'ASC')->get();
+        } else {
+            $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+        }
         
         return $this->successResponse($categories);
     }

@@ -49,6 +49,9 @@
                                                 </span>
                                             </td>
                                             <td>
+                                                <router-link :to="`/poll/edit/${post.poll_id}`"  class="btn btn-warning btn-circle btn-sm">
+                                                    <i class="fas fa-edit"></i>
+                                                </router-link>
                                                 <button class="btn btn-primary btn-circle btn-sm">
                                                     <export-excel
                                                             :data="json_data">

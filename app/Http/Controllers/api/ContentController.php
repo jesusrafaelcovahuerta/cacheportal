@@ -90,6 +90,24 @@ class ContentController extends ApiResponseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function list(Request $request)
+    {
+        $id = $request->segment(4);
+
+        if($id != '') {
+            $contents = Content::where('category_id', $id)->where('status', 1)->orderBy('title', 'ASC')->get();
+        } else {
+            $contents = Content::where('status', 1)->orderBy('title', 'ASC')->get();
+        }
+        
+        return $this->successResponse($contents);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function date()
     {
         $contents = Content::all();

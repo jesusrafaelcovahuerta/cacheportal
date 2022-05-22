@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Section;
 use App\Category;
 use App\User;
+use App\Poll;
 use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller\api;
 use Illuminate\Http\Request;
@@ -115,6 +116,20 @@ class SectionController extends ApiResponseController
         $section = Section::find($id);
 
         return $this->successResponse($section);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function poll(Request $request)
+    {
+        $id = $request->segment(4);
+
+        $section = Poll::where('section_id', $id)->where('status', 1)->first();
+        
+        return $this->successResponse($section->category_id);
     }
 
     /**
