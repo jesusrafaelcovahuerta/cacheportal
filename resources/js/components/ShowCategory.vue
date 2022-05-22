@@ -90,6 +90,34 @@
             this.getPolls();
         },
         methods: {
+            onSubmit(e) {
+                this.loading = true;
+                e.preventDefault();
+                let currentObj = this;
+    
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                }
+
+                let formData = new FormData();
+            
+                formData.append('poll_id', this.$route.params.id);
+                formData.append('yes_no_answers', this.form.yes_no_answer);
+                formData.append('text_answers', this.form.text_answer);
+
+                axios.post('/api/poll/answer', formData, config)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                    this.$awn.success("La encuesta han sido contestada", {labels: {success: "Éxito"}});
+                    this.$router.push('/');
+                });
+            },
             checkDate() {
                 let formData = new FormData();
                 formData.append('page', 'Home');

@@ -47,10 +47,32 @@
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Sección <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
+                                        @change="getCategories"
                                         v-model="form.section_id"
                                         >
                                             <option :value="null">-Seleccionar-</option>
                                             <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Categoría <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        @change="getContents"
+                                        v-model="form.category_id"
+                                        >
+                                            <option :value="null">-No Aplica-</option>
+                                            <option v-for="category_post in category_posts" :key="category_post.category_id" :value="category_post.category_id">{{ category_post.name }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Contenido <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.content_id"
+                                        >
+                                            <option :value="null">-No Aplica-</option>
+                                            <option v-for="content_post in content_posts" :key="content_post.content_id" :value="content_post.content_id">{{ content_post.title }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -132,10 +154,12 @@
             ClipLoader
         },
         created() {
-            this.getSectionList();
             this.storeAudit();
             this.getPost();
             this.getPollQuestions();
+            this.getSectionList();
+            this.getCategoryList();
+            this.getContentList();
         },
         data: function() {
             return {
@@ -151,13 +175,29 @@
                 color: '#0A2787',
                 loading: false,
                 section_posts: [],
+                category_posts: [],
+                content_posts: [],
                 form: {
                     title: '',
-                    section_id: null
+                    section_id: null,
+                    category_id: null,
+                    content_id: null
                 }
             }
         },
         methods: {
+            getCategories() {
+                axios.get('/api/category/list/'+this.form.section_id+'?api_token='+App.apiToken)
+                .then(response => {
+                    this.category_posts = response.data.data;
+                });
+            },
+            getContents() {
+                axios.get('/api/content/list/'+this.form.category_id+'?api_token='+App.apiToken)
+                .then(response => {
+                    this.content_posts = response.data.data;
+                });
+            },
             getPollQuestions() {
                 axios.post('/api/poll/question/'+ this.$route.params.id +'?api_token='+App.apiToken)
                 .then(response => {
@@ -171,6 +211,8 @@
                     
                     this.$set(this.form, 'title', this.post.title);
                     this.$set(this.form, 'section_id', this.post.section_id);
+                    this.$set(this.form, 'category_id', this.post.category_id);
+                    this.$set(this.form, 'content_id', this.post.content_id);
                 });
             },
             storeAudit() {
@@ -199,6 +241,18 @@
                 axios.get('/api/section/list?api_token='+App.apiToken)
                 .then(response => {
                     this.section_posts = response.data.data;
+                });
+            },
+            getCategoryList() {
+                axios.get('/api/category/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.category_posts = response.data.data;
+                });
+            },
+            getContentList() {
+                axios.get('/api/content/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.content_posts = response.data.data;
                 });
             },
             onSubmit(e) {

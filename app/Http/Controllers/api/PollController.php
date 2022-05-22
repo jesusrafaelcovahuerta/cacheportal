@@ -72,12 +72,18 @@ class PollController extends ApiResponseController
         $id = $request->segment(4);
         $poll = Poll::where('section_id', $id)->first();
         $poll_section_qty = Poll::where('section_id', $id)->count();
+        $poll_category_qty = Poll::where('category_id', $id)->count();
+        $poll_content_qty = Poll::where('content_id', $id)->count();
 
-        if($poll_section_qty == 0) {
+        if($poll_category_qty != 0) {
             $poll = Poll::where('category_id', $id)->first();
         }
 
-        if($poll_section_qty > 0) {
+        if($poll_content_qty != 0) {
+            $poll = Poll::where('content_id', $id)->first();
+        }
+
+        if($poll_section_qty > 0 || $poll_category_qty > 0 || $poll_content_qty > 0) {
             $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
 
             return $this->successResponse($poll_questions);
@@ -111,9 +117,15 @@ class PollController extends ApiResponseController
         $id = $request->segment(4);
         $polls = Poll::where('section_id', $id)->get();
         $poll_section_qty = Poll::where('section_id', $id)->count();
+        $poll_category_qty = Poll::where('category_id', $id)->count();
+        $poll_content_qty = Poll::where('content_id', $id)->count();
 
-        if($poll_section_qty == 0) {
+        if($poll_category_qty != 0) {
             $polls = Poll::where('category_id', $id)->get();
+        }
+
+        if($poll_content_qty != 0) {
+            $polls = Poll::where('content_id', $id)->get();
         }
 
         return $this->successResponse($polls);
@@ -132,8 +144,11 @@ class PollController extends ApiResponseController
 
         if($poll_qty == 0) {
             $poll_qty = Poll::where('category_id', $id)->count();
-        }
 
+            if($poll_qty == 0) {
+                $poll_qty = Poll::where('content_id', $id)->count();
+            }
+        }
 
         return $this->successResponse($poll_qty);
     }
@@ -243,6 +258,17 @@ class PollController extends ApiResponseController
         $text_answers = explode(',', $request->text_answers);
 
         $poll = Poll::where('section_id', $request->poll_id)->first();
+        $poll_qty = Poll::where('section_id', $request->poll_id)->count();
+        
+        if($poll_qty == 0) {
+            $poll = Poll::where('category_id', $request->poll_id)->first();
+            $poll_qty = Poll::where('category_id', $request->poll_id)->count();
+
+            if($poll_qty == 0) {
+                $poll = Poll::where('content_id', $request->poll_id)->first();
+                $poll_qty = Poll::where('content_id', $request->poll_id)->count();
+            }
+        }
 
         $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
 

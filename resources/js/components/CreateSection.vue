@@ -107,6 +107,7 @@
                                         <input
                                             type="text" 
                                             v-model="form.url" 
+                                            v-mask="'http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'"
                                             class="form-control"
                                             placeholder="Ingresa la url o enlace"
                                         >
