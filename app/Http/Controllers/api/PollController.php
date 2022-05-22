@@ -77,9 +77,13 @@ class PollController extends ApiResponseController
             $poll = Poll::where('category_id', $id)->first();
         }
 
-        $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
+        if($poll_section_qty > 0) {
+            $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
 
-        return $this->successResponse($poll_questions);
+            return $this->successResponse($poll_questions);
+        } else {
+            return $this->successResponse('');
+        }
     }
 
     /**
