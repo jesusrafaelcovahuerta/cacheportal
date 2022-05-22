@@ -74,9 +74,14 @@ class CategoryController extends ApiResponseController
     {
         $id = $request->segment(4);
 
-        $category= Poll::where('category_id', $id)->where('status', 1)->first();
+        $category = Poll::where('category_id', $id)->where('status', 1)->first();
+        $category_qty = Poll::where('category_id', $id)->where('status', 1)->count();
         
-        return $this->successResponse($category->content_id);
+        if($category_qty > 0) {
+            return $this->successResponse($category->content_id);
+        } else {
+            return $this->successResponse('');
+        }
     }
 
     /**
