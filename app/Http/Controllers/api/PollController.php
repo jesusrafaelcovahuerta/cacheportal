@@ -46,8 +46,16 @@ class PollController extends ApiResponseController
         $poll = new Poll;
         $poll->title = $request->title;
         $poll->section_id = $request->section_id;
-        $poll->category_id = $request->category_id;
-        $poll->content_id = $request->content_id;
+        if($request->category_id == 'null') {
+            $poll->category_id = 0;
+        } else {
+            $poll->category_id = $request->category_id;
+        }
+        if($request->content_id == 'null') {
+            $poll->content_id = 0;
+        } else {
+            $poll->content_id = $request->content_id;
+        }
         $poll->status = 1;
         $poll->save();
 
