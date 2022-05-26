@@ -19,6 +19,18 @@
           Menú
         </div>
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <i class="fas fa-fw fa-file"></i>
+              <span>Informes</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingFirst" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                <router-link class="collapse-item" to="/account">Recaudación</router-link>
+              </div>
+            </div>
+        </li>
+
         <!-- Nav Item - Dashboard -->
         <li class="nav-item" v-if="rol_id == 1">
             <router-link class="nav-link" to="/alliance">

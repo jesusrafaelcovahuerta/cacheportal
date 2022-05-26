@@ -121,7 +121,8 @@
   </div>
   <script type="application/javascript" src="{{ mix('js/app.js') }}"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script href="{{ asset('public/backend/js/sb-admin-2.js') }}"></script>
+  <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script href="{{ asset('backend/js/sb-admin-2.js') }}"></script>
 </body>
 
 </html>
