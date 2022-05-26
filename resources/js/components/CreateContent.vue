@@ -53,7 +53,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.title" 
-                                        maxlength="15"
+                                        maxlength="36"
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
@@ -321,7 +321,7 @@
             },
             charactersLeft() {
                 var char = this.form.title.length,
-                limit = 15;
+                limit = 36;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
             }
