@@ -1,6 +1,6 @@
 <template>
     <div class="container pt-32">
-        <div class="row">
+        <div class="row">2222
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
                     <i v-bind:class="post.icon"></i><br> {{ post.section_title }}
@@ -38,6 +38,14 @@
         methods: {
             modalShow() {
                 this.modalShow = true;
+
+                axios.post('/api/modal/catch')
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             },
             hideModal() {
                 this.modalShow = false;

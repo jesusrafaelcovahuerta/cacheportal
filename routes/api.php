@@ -58,6 +58,7 @@ Route::get('user/activate/{rut}', 'api\UserController@activate');
 Route::get('user/rol', 'api\UserController@rol');
 Route::get('user/rut', 'api\UserController@rut');
 Route::post('user/catch', 'api\UserController@catch');
+Route::post('modal/catch', 'api\ModalController@catch');
 Route::get('section/home', 'api\SectionController@home');
 Route::get('poll', 'api\PollController@index');
 Route::get('poll/{rut}/edit', 'api\PollController@edit');
