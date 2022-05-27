@@ -12,7 +12,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="expires" content="Fri, 18 Jul 2014 1:00:00 GMT" />
 
-  <title>Fundación Conecta Mayor</title>
+  <title>Portal de la Fundación Conecta Mayor - Panel de Control</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('backend/vendor/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
