@@ -25,28 +25,6 @@
                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Título</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1" 
-                                            v-model="form.title"
-                                            placeholder="Ingresa el título">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Alianza</label>
-                                            <select class="form-control" id="exampleFormControlSelect1"
-                                            v-model="form.alliance_id"
-                                            >
-                                                <option :value="null">-Seleccionar-</option>
-                                                <option v-for="alliance_post in alliance_posts" :key="alliance_post.rut" :value="alliance_post.rut">{{ alliance_post.name }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label for="exampleInputEmail1">Sección</label>
                                             <select class="form-control" id="exampleFormControlSelect1"
                                             v-model="form.section_id"

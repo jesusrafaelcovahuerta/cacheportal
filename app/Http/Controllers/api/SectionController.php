@@ -245,6 +245,17 @@ class SectionController extends ApiResponseController
             if(Storage::exists('public/'.$section->icon)) {
                 if(Storage::delete('public/'.$section->icon)) {
                     if($section->delete()) {
+                        $fix_sections = Section::orderBy('position', 'ASC')->get();
+
+                        $i = 1;
+
+                        foreach($fix_sections as $fix_section) {
+                            $section_detail = Section::find($fix_section->section_id);
+                            $section_detail->position = $i;
+                            $section_detail->save();
+                            $i = $i + 1;
+                        }
+
                         return $this->successResponse($section);
                     } else {
                         return $this->errorResponse($section);
@@ -252,6 +263,17 @@ class SectionController extends ApiResponseController
                 }
             } else {
                 if($section->delete()) {
+                    $fix_sections = Section::orderBy('position', 'ASC')->get();
+
+                    $i = 1;
+
+                    foreach($fix_sections as $fix_section) {
+                        $section_detail = Section::find($fix_section->section_id);
+                        $section_detail->position = $i;
+                        $section_detail->save();
+                        $i = $i + 1;
+                    }
+
                     return $this->successResponse($section);
                 } else {
                     return $this->errorResponse($section);
