@@ -12,7 +12,52 @@
                 </router-link>
             </h1>
             <hr>
-            
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Default Card Example -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                        Buscar
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent="onSubmit" ref="searchDte">
+                                <div class="row">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Sección</label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.section_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Categoría</label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.category_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option v-for="category_post in category_posts" :key="category_post.category_id" :value="category_post.category_id">{{ category_post.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                type="submit" class="btn btn-primary btn-icon-split text-right">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <span class="text">Buscar</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -118,6 +163,7 @@
             this.getPosts();
             this.getRol();
             this.storeAudit();
+            this.getCategoryList();
         },
         methods: {
             getPosts() {
