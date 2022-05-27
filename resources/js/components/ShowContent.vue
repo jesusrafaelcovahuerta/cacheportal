@@ -2,11 +2,11 @@
     <div class="container pt-32">
         <div v-if="poll_question_posts == ''" class="row">
 		    <div style="text-align: justify;" class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2">
-                <h1>{{ this.post.title }}</h1>
+                <h1><center>{{ this.post.title }}</center></h1>
                 <hr>
                 <div v-if="url !== null">
                     <center>
-                        <img v-bind:src="image_url">
+                        <img v-bind:src="'http://qaportal.conectamayor.cl/storage/app/public/1653614879_audio_7.jpg'">
                         <br>
                         <audio controls autoplay>
                             <source :src="url" type="audio/mpeg">
@@ -200,7 +200,6 @@
                     this.post = response.data.data;
                     this.url = this.post.src;
                     this.image_url = '/storage/'+this.post.image;
-                    alert(this.image_url);
                     this.videoID = this.post.video_id;
                 })
                 .catch(function (error) {
