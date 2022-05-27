@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-32">
         <div v-if="poll_question_posts == ''" class="row">
-		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2">
+		    <div style="text-align: justify;" class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2">
                 <h1>{{ this.post.title }}</h1>
                 <hr>
                 <div v-if="url !== null">
@@ -26,7 +26,7 @@
                     ></vimeo-player>
                 </div>
                 <hr>	
-                <h2>{{ this.post.description }}</h2>	    
+                <h3>{{ this.post.description }}</h3>	    
             </div>
             <div class="col-12" v-if="this.post.type_id == 3" v-html="this.post.description">	    
             </div>
@@ -200,6 +200,7 @@
                     this.post = response.data.data;
                     this.url = this.post.src;
                     this.image_url = '/storage/'+this.post.image;
+                    alert(this.image_url);
                     this.videoID = this.post.video_id;
                 })
                 .catch(function (error) {
