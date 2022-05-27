@@ -111,7 +111,7 @@
                                     <tbody>
                                         <tr v-for="(post, index) in posts" v-bind:index="index">
                                             <td>{{ post.title }}</td>
-                                            <td>TMil</td>
+                                            <td>{{ post.alliance }}</td>
                                             <td>{{ post.section }}</td>
                                             <td>{{ post.category }}</td>
                                             <td>{{ formatDate(post.start_date) }}</td>

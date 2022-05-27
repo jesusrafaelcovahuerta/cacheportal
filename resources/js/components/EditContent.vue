@@ -81,6 +81,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label for="exampleInputEmail1">Imagen</label>
+                                        <input ref="file" accept="image/jpeg, image/png" type="file" class="form-control" v-on:change="onFileChange">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
@@ -209,6 +215,7 @@
                 color: '#0A2787',
                 loading: false,
                 category_posts: [],
+                noFile: false,
                 form: {
                     category_id: null,
                     type_id: null,
@@ -227,6 +234,10 @@
             }
         },
         methods: {
+            onFileChange(e){
+                this.file = e.target.files[0];
+                this.noFile = e.target.files.length;
+            },
             acceptPost() {
                 if(confirm("¿Realmente usted quiere aceptar el contenido?")) {
                     this.loading = true; //the loading begin
@@ -331,6 +342,7 @@
                     formData.append('start_date', this.form.start_date);
                     formData.append('end_date', this.form.end_date);
                     formData.append('position', this.form.position);
+                    formData.append('file', this.file);
 
                     axios.post('/api/content/update/'+this.$route.params.id+'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {

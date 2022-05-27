@@ -36,9 +36,10 @@ class ContentController extends ApiResponseController
         || ($title == '' && $alliance_id == '' && $section_id == '' && $category_id == '')
         ) {
             $contents = Content::from('contents as c')
-                        ->selectRaw('c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
+                        ->selectRaw('alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
+                        ->leftJoin('alliances', 'alliances.alliance_id', '=', 'categories.alliance_id')
                         ->orderBy('c.position', 'ASC')
                         ->paginate(10);
         } else {
@@ -73,7 +74,7 @@ class ContentController extends ApiResponseController
             }
 
             $contents = Content::from('contents as c')
-                        ->selectRaw('c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
+                        ->selectRaw('alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->whereRaw($query)
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
@@ -200,6 +201,12 @@ class ContentController extends ApiResponseController
      */
     public function update(Request $request, $id)
     {
+        if($request->file != 'undefined') { 
+            $fileName = time().'_'.'audio'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+        } else {
+            $fileName = '';
+        }
+
         $content = Content::find($id);
         $content->category_id = $request->category_id;
         $content->type_id = $request->type_id;
@@ -211,6 +218,7 @@ class ContentController extends ApiResponseController
         $content->end_date = $request->end_date;
         $content->description = $request->description;
         $content->position = $request->position;
+        $content->image = $fileName;
 
         $move_position_contents = Content::where('position', '>=', $request->position)->get();
         $position = $request->position;
@@ -226,8 +234,16 @@ class ContentController extends ApiResponseController
         } else {
             $content->status = 2;
         }
-        
-        $content->save();
+
+        if($content->save()) {
+            if($request->file != 'undefined') { 
+                Storage::disk('local')->putFileAs(
+                    '/public',
+                    $request->file,
+                    $fileName
+                );
+            }
+        }
 
         return $this->successResponse($content);
     }
