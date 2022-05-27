@@ -116,7 +116,7 @@
                                             <td>{{ post.category }}</td>
                                             <td>{{ formatDate(post.start_date) }}</td>
                                             <td>{{ formatDate(post.end_date) }}</td>
-                                            <td>{{ post.position }}</td>
+                                            <td>{{ index+1 }}</td>
                                             <td>
                                                 <span class="badge badge-danger" v-if="post.status == 0">
                                                     Desactivado
@@ -190,7 +190,6 @@
 
     export default {
         created() {
-            this.getPosts();
             this.getRol();
             this.storeAudit();
             this.getAlliaceList();
