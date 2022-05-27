@@ -22,19 +22,7 @@
                         <div class="card-body">
                             <form @submit.prevent="onSubmit" ref="searchDte">
                                 <div class="row">
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Sección</label>
-                                            <select class="form-control" id="exampleFormControlSelect1"
-                                            v-model="form.section_id"
-                                            >
-                                                <option :value="null">-Seleccionar-</option>
-                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Categoría</label>
                                             <select class="form-control" id="exampleFormControlSelect1"
@@ -160,28 +148,49 @@
 
     export default {
         created() {
-            this.getPosts();
             this.getRol();
             this.storeAudit();
             this.getCategoryList();
         },
         methods: {
-            getPosts() {
+            onSubmit() {
                 this.loading = true;
 
-                axios.get('/api/category?page='+this.currentPage+'&api_token='+App.apiToken)
-                .then(response => {
-                    this.posts = response.data.data.data;
-                    this.total = response.data.data.last_page;
-                    this.currentPage = response.data.data.current_page;
-                    this.rowsQuantity = response.data.data.total;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
+                if(this.form.category_id == '') {
+                    this.form.category_id = null;
+                }
+
+                if(this.form.category_id != null 
+                ) {
+                    axios.post('/api/category/search/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.quantity = response.data.data.total;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                } else {
+                    axios.get('/api/category?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                }
             },
             movePost(id, index) {
                 this.loading = true; //the loading begin
@@ -289,7 +298,8 @@
                 color: '#0A2787',
                 loading: false,
                 form: {
-                    rol_id: null
+                    rol_id: null,
+                    category_id: null
                 },
                 branch_office_posts: [],
                 supervisor_posts: [],

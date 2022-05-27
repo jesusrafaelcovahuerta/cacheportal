@@ -25,12 +25,32 @@ class CategoryController extends ApiResponseController
      */
     public function index(Request $request)
     {
-        $categories = Category::from('categories as c')
+        $section_id = $request->segment(4);
+
+        if(($section_id == 'null')
+        || ($section_id == '')
+        ) {
+            $categories = Category::from('categories as c')
                         ->selectRaw('c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'c.alliance_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
                         ->orderBy('c.position', 'ASC')
                         ->paginate(10);
+        } else {
+            $query = "";
+
+            if ($section_id != 'null') {
+                $query .= 'sections.section_id = "'.$section_id.'"';
+            }
+
+            $categories = Category::from('categories as c')
+                        ->selectRaw('c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
+                        ->leftJoin('alliances', 'alliances.rut', '=', 'c.alliance_id')
+                        ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
+                        ->whereRaw($query)
+                        ->orderBy('c.position', 'ASC')
+                        ->paginate(10);
+        }
         
         return $this->successResponse($categories);
     }
