@@ -191,7 +191,6 @@
     export default {
         created() {
             this.getRol();
-            this.storeAudit();
             this.getAlliaceList();
             this.getSectionList();
             this.getCategoryList();
