@@ -6,7 +6,7 @@
                 <hr>
                 <div v-if="url !== null">
                     <center>
-                        <img v-bind:src="'http://qaportal.conectamayor.cl/storage/app/public/1653614879_audio_7.jpg'">
+                        <img v-bind:src="image_url">
                         <br>
                         <audio controls autoplay>
                             <source :src="url" type="audio/mpeg">
