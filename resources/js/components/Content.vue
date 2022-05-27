@@ -3,7 +3,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
-                Contenido
+                Contenido 
                 <router-link to="/content/create" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-check"></i>
@@ -190,7 +190,11 @@
 
     export default {
         created() {
-
+            this.getRol();
+            this.storeAudit();
+            this.getAlliaceList();
+            this.getSectionList();
+            this.getCategoryList();
         },
         methods: {
             getCategoryList() {
@@ -253,6 +257,59 @@
                     return moment(value).format('DD-MM-YYYY');
                 } else {
                     return '';
+                }
+            },
+            getPosts() {
+                this.loading = true;
+                if(this.form.title == '') {
+                    this.form.title = null;
+                }
+
+                if(this.form.alliance_id == '') {
+                    this.form.alliance_id = null;
+                }
+
+                if(this.form.section_id == '') {
+                    this.form.section_id = null;
+                }
+
+                if(this.form.category_id == '') {
+                    this.form.category_id = null;
+                }
+
+                if(this.form.title != null 
+                || this.form.alliance_id != null 
+                || this.form.section_id != null 
+                || this.form.category_id != null 
+                ) {
+                    axios.post('/api/content/search/'+ this.form.title +'/'+ this.form.alliance_id +'/'+ this.form.section_id +'/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.quantity = response.data.data.total;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                } else {
+                    axios.get('/api/content?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
                 }
             },
             getRol() {
