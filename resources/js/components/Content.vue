@@ -209,7 +209,7 @@
                 || this.form.section_id != null 
                 || this.form.category_id != null 
                 ) {
-                    axios.post('/api/content/search/'+ this.form.title +'/'+ this.form.alliance_id +'/'+ this.form.section_id +'/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    axios.post('/api/content/search/'+ this.form.section_id +'/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
                     .then(response => {
                         this.posts = response.data.data.data;
                         this.total = response.data.data.last_page;
