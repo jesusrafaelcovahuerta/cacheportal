@@ -14,7 +14,6 @@
             <p class="my-4 h3 text-justify">
                 Este es el nuevo portal de la Fundación Conecta Mayor.<br><br>
                 Estaremos haciendo algunos cambios para facilitarle nuevo contenido de aprendizaje y entretención.<br><br>
-                Te invitamos a compartir tus comentarios en el botón rojo que dice "Danos tu opinión".<br><br>
                 Esperamos ser un aporte en tu uso del internet.<br><br>
                 <strong>Haz click en el botón verde de "Cerrar" para ver el portal.</strong>
             </p>
