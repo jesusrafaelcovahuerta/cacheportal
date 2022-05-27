@@ -10,6 +10,20 @@
                 </button>
 		    </div>
         </div>
+        <b-modal id="modal-center" v-model="modalShow" centered title="Bienvenidos al nuevo portal">
+            <p class="my-4 h3 text-justify">
+                Este es el nuevo portal de la Fundación Conecta Mayor.<br><br>
+                Estaremos haciendo algunos cambios para facilitarle nuevo contenido de aprendizaje y entretención.<br><br>
+                Te invitamos a compartir tus comentarios enb el botón rojo que dice "Danos tu opinión".<br><br>
+                Esperamos ser un aporte en tu usi del internet.
+            </p>
+            <template #modal-footer="{ ok }">
+                <!-- Emulate built in modal footer ok and cancel button actions -->
+                <b-button size="lg" variant="success" @click="ok()">
+                Cerrar
+                </b-button>
+            </template>
+        </b-modal>
     </div>
 </template>
 <script>
@@ -18,8 +32,15 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
+            this.modalShow();
         },
         methods: {
+            modalShow() {
+                this.modalShow = true;
+            },
+            hideModal() {
+                this.modalShow = false;
+            },
             goWeb(url) {
                 window.location.href = url;
             },
@@ -64,6 +85,7 @@
         },
         data: function() {
             return {
+                modalShow: '',
                 posts: []
             }
         }
