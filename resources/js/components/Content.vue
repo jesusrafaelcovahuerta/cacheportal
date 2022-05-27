@@ -3,7 +3,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
-                Contenido 
+                Contenido 2
                 <router-link to="/content/create" class="btn btn-success btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-check"></i>
