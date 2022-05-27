@@ -66,6 +66,7 @@
                 </div>
             </div>
         </div>
+
         <!-- toolbar bottom -->
         <div class="toolbar">
             <div class="container">
