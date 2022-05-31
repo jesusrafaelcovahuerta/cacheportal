@@ -1,20 +1,18 @@
 <template>
     <div class="container pt-32">
-        <div v-if="check_category_poll == 0">
+        <div v-if="post.video_id != 0" class="row">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/y-5VLHcTDSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div v-if="check_category_poll == 0 && post.video_id == 0">
             <div v-if="poll_question_posts == ''" class="row">
-                <div v-if="post.video_id != 0">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/y-5VLHcTDSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div v-if="post.video_id == 0">
-                    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                        <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
+                <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
+                    <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                    </router-link>
 
-                        <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
-                    </div>
+                    <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                    </router-link>
                 </div>
             </div>
             <div class="row" v-if="poll_question_posts != ''">
@@ -58,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="check_category_poll != 0">
+        <div v-if="check_category_poll != 0 && post.video_id == 0">
             <div class="row">
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
                     <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
@@ -95,6 +93,7 @@
 <script>
     export default {
         created() {
+            this.checkVideo();
             this.checkCategoryPoll();
             this.getPollQuestions();
             this.getPollQuantity();
