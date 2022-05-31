@@ -3,6 +3,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
+import LazyYoutube from "vue-lazytube";
 import routes from './routes';
 import VueAWN from "vue-awesome-notifications"
 import VueMask from 'v-mask';
@@ -16,6 +17,8 @@ Vue.component(
     'menu-component',
     require('./components/Menu.vue').default
 );
+
+Vue.component("LazyYoutube", LazyYoutube);
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

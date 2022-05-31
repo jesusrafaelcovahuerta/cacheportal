@@ -49,6 +49,8 @@ object-assign
     MIT License: http://getify.mit-license.org
 */
 
+/*! Vue Lazytube version 1.1.1 under MIT License copyright 2022 seeratawan01 */
+
 /**
  * @license
  * Lodash <https://lodash.com/>
