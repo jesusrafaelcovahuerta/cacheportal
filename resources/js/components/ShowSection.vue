@@ -1,9 +1,8 @@
 <template>
-    <div class="container pt-32">
+    <div class="container pt-32">2222
         <div v-if="check_category_poll == 0">
             <div v-if="poll_question_posts == ''" class="row">
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                222
                     <div v-if="post.video_id != 0">
                         <LazyYoutube src="https://www.youtube.com/watch?v=TcMBFSGVi1c" />
                     </div>
@@ -100,7 +99,6 @@
             this.getPollQuestions();
             this.getPollQuantity();
             this.getPosts();
-            this.catchUser();
             this.getPolls();
             this.checkDate();
         },
