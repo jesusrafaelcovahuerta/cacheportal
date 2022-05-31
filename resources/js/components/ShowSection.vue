@@ -1,20 +1,16 @@
 <template>
-    <div class="container pt-32">2222
+    <div class="container pt-32">
         <div v-if="check_category_poll == 0">
             <div v-if="poll_question_posts == ''" class="row">
+                <LazyYoutube src="https://www.youtube.com/watch?v=TcMBFSGVi1c" />
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <div v-if="post.video_id != 0">
-                        <LazyYoutube src="https://www.youtube.com/watch?v=TcMBFSGVi1c" />
-                    </div>
-                    <div v-if="post.video_id == 0">
-                        <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
+                    <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                    </router-link>
 
-                        <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
-                    </div>
+                    <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                    </router-link>
                 </div>
             </div>
             <div class="row" v-if="poll_question_posts != ''">
