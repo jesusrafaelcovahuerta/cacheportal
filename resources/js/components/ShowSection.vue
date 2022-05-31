@@ -1,7 +1,8 @@
 <template>
     <div class="container pt-32">
         <div v-if="post.video_id != 0" class="row">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/y-5VLHcTDSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h1><center>Lanzamiento del Programa 60+Digital</center></h1>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Cj6tKJFXX6A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div v-if="check_category_poll == 0 && post.video_id == 0">
             <div v-if="poll_question_posts == ''" class="row">
