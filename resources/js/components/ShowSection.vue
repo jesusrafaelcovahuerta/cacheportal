@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-32">
         <div v-if="check_category_poll == 0">
-            <div v-if="poll_question_posts == ''" class="row">
+            <div v-if="poll_question_posts == ''" class="row">22233
                 <LazyYoutube src="https://www.youtube.com/watch?v=TcMBFSGVi1c" />
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
                     <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
