@@ -33,12 +33,9 @@
                                         <td>1</td>
                                         <td>Generales</td>
                                         <td>
-                                            <button class="btn btn-danger btn-circle btn-sm">
-                                                <export-excel
-                                                        :data="json_data">
-                                                    <i class="fas fa-arrow-down"></i>
-                                                </export-excel>
-                                            </button>
+                                            <router-link :to="`/metric/show/${post.metric_id}`"  class="btn btn-primary btn-circle btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </router-link>
                                         </td>
                                     </tr>
                                 </tbody>

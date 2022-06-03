@@ -35,7 +35,7 @@
         },
         methods: {
             modalShow() {
-                this.modalShow = true;
+                this.modalShow = false;
 
                 axios.post('/api/modal/catch')
                 .then(function (response) {
