@@ -196,15 +196,18 @@ class SectionController extends ApiResponseController
                 $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
             }
         }
+
         $section->position = $request->position;
 
-        $move_position_sections = Section::where('position', '>=', $request->position)->get();
-        $position = $request->position;
-        foreach($move_position_sections as $move_position_section) {
-            $position = $position + 1;
-            $detail_section = Section::find($move_position_section->section_id);
-            $detail_section->position = $position;
-            $detail_section->save();
+        if($section->position != $request->position) {
+            $move_position_sections = Section::where('position', '>=', $request->position)->get();
+            $position = $request->position;
+            foreach($move_position_sections as $move_position_section) {
+                $position = $position + 1;
+                $detail_section = Section::find($move_position_section->section_id);
+                $detail_section->position = $position;
+                $detail_section->save();
+            }
         }
 
         if($section->save()) {
