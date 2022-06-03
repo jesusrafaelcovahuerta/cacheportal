@@ -200,6 +200,7 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
 
         if($section->position != $request->position) {
+            echo 3;
             $move_position_sections = Section::where('position', '>=', $request->position)->get();
             $position = $request->position;
             foreach($move_position_sections as $move_position_section) {
