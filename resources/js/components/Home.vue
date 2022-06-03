@@ -32,7 +32,6 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
-            this.modalShow();
         },
         methods: {
             modalShow() {
