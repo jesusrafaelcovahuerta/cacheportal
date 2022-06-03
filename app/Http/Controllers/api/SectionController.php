@@ -201,7 +201,6 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
 
         if($old_position != $request->position) {
-            echo 3;
             $move_position_sections = Section::where('position', '>=', $request->position)->get();
             $position = $request->position;
             foreach($move_position_sections as $move_position_section) {
@@ -213,7 +212,6 @@ class SectionController extends ApiResponseController
             }
         }
 
-die();
         if($section->save()) {
             if($request->file != 'undefined') {
                 if($request->icon_type_id == 1) {
