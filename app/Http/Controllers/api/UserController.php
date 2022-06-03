@@ -88,8 +88,7 @@ class UserController extends ApiResponseController
         }
 
         $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
-        print_r($ip);
-        die();
+
         if($request->page == 'Home') {
             $request->page = 'Home';
         } else {
