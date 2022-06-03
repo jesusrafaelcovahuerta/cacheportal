@@ -182,7 +182,7 @@ class SectionController extends ApiResponseController
         } else {
             $fileName = $request->icon;
         }
-
+echo $id;
         $section = Section::find($id);
         $section->section_title = $request->title;
         $section->color = $request->color;
