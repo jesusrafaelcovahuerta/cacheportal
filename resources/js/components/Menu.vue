@@ -5,7 +5,7 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <router-link class="nav-link" to="/account">
             <i class="fas fa-fw fa-home"></i>
             <span>Inicio</span></router-link>
