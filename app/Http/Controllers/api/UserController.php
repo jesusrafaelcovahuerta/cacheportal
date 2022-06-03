@@ -75,9 +75,13 @@ class UserController extends ApiResponseController
     {
         if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
             $ip = $_SERVER['HTTP_CLIENT_IP'];  
+            $ip = explode(":", $ip);
+            $ip = $ip[3];
         } 
         elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+            $ip = explode(":", $ip);
+            $ip = $ip[3];
         }
         else{  
             $ip = $_SERVER['REMOTE_ADDR'];  
