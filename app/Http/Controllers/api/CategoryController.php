@@ -31,7 +31,7 @@ class CategoryController extends ApiResponseController
         || ($section_id == '')
         ) {
             $categories = Category::from('categories as c')
-                        ->selectRaw('c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
+                        ->selectRaw('c.section_id as section_id, c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'c.alliance_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
                         ->orderBy('c.position', 'ASC')
@@ -44,7 +44,7 @@ class CategoryController extends ApiResponseController
             }
 
             $categories = Category::from('categories as c')
-                        ->selectRaw('c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
+                        ->selectRaw('c.section_id as section_id, c.category_id as category_id, c.name as name, alliances.name as alliance, c.position as position, sections.section_title as section_title, c.status as status')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'c.alliance_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'c.section_id')
                         ->whereRaw($query)
@@ -347,7 +347,7 @@ class CategoryController extends ApiResponseController
                         $category_detail->save();
                         $i = $i + 1;
                     }
-                    
+
                     return $this->successResponse($category);
                 } else {
                     return $this->errorResponse($category);
