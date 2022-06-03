@@ -34,17 +34,6 @@
             this.checkDate();
         },
         methods: {
-            modalShow() {
-                this.modalShow = false;
-
-                axios.post('/api/modal/catch')
-                .then(function (response) {
-                    currentObj.success = response.data.success;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },
             hideModal() {
                 this.modalShow = false;
             },
