@@ -210,7 +210,8 @@ class SectionController extends ApiResponseController
                 $detail_section->save();
             }
         }
-
+echo 1;
+die();
         if($section->save()) {
             if($request->file != 'undefined') {
                 if($request->icon_type_id == 1) {
