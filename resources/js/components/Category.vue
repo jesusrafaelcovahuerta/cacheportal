@@ -78,7 +78,7 @@
                                             <td>{{ post.name }}</td>
                                             <td>{{ post.alliance }}</td>
                                             <td>{{ post.section_title }}</td>
-                                            <td>{{ index }}</td>
+                                            <td>{{ index+1 }}</td>
                                             <td>
                                                 <span class="badge badge-danger" v-if="post.status == 0">
                                                     Desactivado
@@ -166,7 +166,7 @@
                     this.form.section_id = null;
                 }
 
-                if(this.form.category_id != null 
+                if(this.form.section_id != null 
                 ) {
                     axios.post('/api/category/search/'+ this.form.section_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
                     .then(response => {
