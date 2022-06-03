@@ -157,7 +157,7 @@ class SectionController extends ApiResponseController
             $move_position_sections = Section::where('position', '>=', $position)->get();
             $position = $request->position;
             foreach($move_position_sections as $move_position_section) {
-                $position = $position + 1;
+                $new_position = $move_position_section + 1;
                 $detail_section = Section::find($move_position_section->section_id);
                 $detail_section->position = $position;
                 $detail_section->save();
@@ -168,7 +168,7 @@ class SectionController extends ApiResponseController
             $move_position_sections = Section::where('position', '<=', $position)->get();
             $position = $request->position;
             foreach($move_position_sections as $move_position_section) {
-                $position = $position - 1;
+                $new_position = $move_position_section - 1;
                 $detail_section = Section::find($move_position_section->section_id);
                 $detail_section->position = $position;
                 $detail_section->save();
