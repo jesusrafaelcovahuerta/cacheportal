@@ -159,21 +159,6 @@
                     this.section_posts = response.data.data;
                 });
             },
-            getPosts() {
-                axios.get('/api/category?page='+this.currentPage+'&api_token='+App.apiToken)
-                .then(response => {
-                    this.posts = response.data.data.data;
-                    this.total = response.data.data.last_page;
-                    this.currentPage = response.data.data.current_page;
-                    this.rowsQuantity = response.data.data.total;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-            },
             onSubmit() {
                 this.loading = true;
 
@@ -223,7 +208,7 @@
                 })
                 .finally(() => {
                     this.loading = false;
-                    this.getPosts();
+                    this.onSubmit();
                 });
 
                 let formData = new FormData();
