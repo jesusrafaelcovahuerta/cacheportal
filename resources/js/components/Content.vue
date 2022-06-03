@@ -28,6 +28,7 @@
                                             <label for="exampleInputEmail1">Sección</label>
                                             <select class="form-control" id="exampleFormControlSelect1"
                                             v-model="form.section_id"
+                                            @change="getCategoryList"
                                             >
                                                 <option :value="null">-Seleccionar-</option>
                                                 <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
@@ -171,11 +172,10 @@
             this.getRol();
             this.getAlliaceList();
             this.getSectionList();
-            this.getCategoryList();
         },
         methods: {
             getCategoryList() {
-                axios.get('/api/category/list?api_token='+App.apiToken)
+                axios.get('/api/category/list/'+this.form.section_id+'?api_token='+App.apiToken)
                 .then(response => {
                     this.category_posts = response.data.data;
                 });

@@ -251,7 +251,7 @@
                     })
                     .finally(() => {
                         this.loading = false;
-                        this.getPosts();
+                        this.onSubmit();
                         this.$awn.success("El registro ha sido borrado", {labels: {success: "Éxito"}});
                     });
 
