@@ -216,8 +216,10 @@
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'video_id', this.post.video_id);
 
-                    if(this.post.video_id != null || this.post.video_id != '' || this.post.video_id != 0) {
+                    if(this.post.video_id != 0) {
                         this.$set(this.form, 'youtube_question_id', 1);
+                    } else {
+                        this.$set(this.form, 'youtube_question_id', 2);
                     }
 
                     if(this.post.icon_type_id == 2) {
