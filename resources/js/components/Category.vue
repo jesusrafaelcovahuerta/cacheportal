@@ -24,12 +24,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Categoría</label>
+                                            <label for="exampleInputEmail1">Sección</label>
                                             <select class="form-control" id="exampleFormControlSelect1"
-                                            v-model="form.category_id"
+                                            v-model="form.section_id"
                                             >
                                                 <option :value="null">-Seleccionar-</option>
-                                                <option v-for="category_post in category_posts" :key="category_post.category_id" :value="category_post.category_id">{{ category_post.name }}</option>
+                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -150,19 +150,25 @@
         created() {
             this.getRol();
             this.storeAudit();
-            this.getCategoryList();
+            this.getSectionList();
         },
         methods: {
+            getSectionList() {
+                axios.get('/api/section/list?api_token='+App.apiToken)
+                .then(response => {
+                    this.section_posts = response.data.data;
+                });
+            },
             onSubmit() {
                 this.loading = true;
 
-                if(this.form.category_id == '') {
-                    this.form.category_id = null;
+                if(this.form.section_id == '') {
+                    this.form.section_id = null;
                 }
 
                 if(this.form.category_id != null 
                 ) {
-                    axios.post('/api/category/search/'+ this.form.category_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    axios.post('/api/category/search/'+ this.form.section_id +'?page='+this.currentPage+'&api_token='+App.apiToken)
                     .then(response => {
                         this.posts = response.data.data.data;
                         this.total = response.data.data.last_page;
@@ -299,10 +305,11 @@
                 loading: false,
                 form: {
                     rol_id: null,
-                    category_id: null
+                    section_id: null
                 },
                 branch_office_posts: [],
                 supervisor_posts: [],
+                section_posts: [],
                 rol_id: this.rol_id,
                 postsSelected: "",
                 posts: [],
