@@ -29,7 +29,7 @@
                                             v-model="form.section_id"
                                             >
                                                 <option :value="null">-Seleccionar-</option>
-                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section }}</option>
+                                                <option v-for="section_post in section_posts" :key="section_post.section_id" :value="section_post.section_id">{{ section_post.section_title }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                             <td>{{ post.name }}</td>
                                             <td>{{ post.alliance }}</td>
                                             <td>{{ post.section_title }}</td>
-                                            <td>{{ post.position }}</td>
+                                            <td>{{ index }}</td>
                                             <td>
                                                 <span class="badge badge-danger" v-if="post.status == 0">
                                                     Desactivado
