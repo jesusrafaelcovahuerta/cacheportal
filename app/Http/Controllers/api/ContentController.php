@@ -131,7 +131,7 @@ class ContentController extends ApiResponseController
         $content->description = $request->description;
         $content->position = $request->position;
 
-        $move_position_contents = Content::where('position', '>=', $request->position)->get();
+        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->get();
         $position = $request->position;
         foreach($move_position_contents as $move_position_content) {
             $position = $position + 1;
@@ -202,7 +202,7 @@ class ContentController extends ApiResponseController
         $content->position = $request->position;
         $content->image = $fileName;
 
-        $move_position_contents = Content::where('position', '>=', $request->position)->get();
+        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->get();
         $position = $request->position;
         foreach($move_position_contents as $move_position_content) {
             $position = $position + 1;
@@ -286,6 +286,48 @@ echo \Storage::url($content->image);
         return $this->successResponse($content);
     }
 
+        /**
+     * Update the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function move(Request $request)
+    {
+        $id = $request->segment(4);
+        $position = $request->segment(5) + 1;
+        $category_id = $request->segment(6);
+
+        $fix_contents = Content::where('category_id', $category_id)->orderBy('position', 'ASC')->get();
+
+        $i = 1;
+
+        foreach($fix_contents as $fix_content) {
+            $content_detail = Content::find($fix_content->content_id);
+            $content_detail->position = $i;
+            $content_detail->save();
+            $i = $i + 1;
+        }
+
+        $another_content = Content::where('category_id', $category_id)->where('position', $position)->first();
+        $content = Content::find($id);
+
+        if($content->position > $another_content->position) {
+            $content->position = $position;
+
+            $another_content->position = $another_content->position + 1;
+        } else {
+            $content->position = $position;
+
+            $another_content->position = $another_content->position - 1;
+        }
+        
+        $another_content->save();
+        $content->save();
+
+        return $this->errorResponse($content);
+    }
+
     /**
      * Destroy the specified resource.
      *
@@ -296,7 +338,19 @@ echo \Storage::url($content->image);
     {
         $content = Content::find($id);
 
-        $content->delete();
+        if($content->delete()) {
+            $fix_contents = Content::where('category_id', $content->category_id)->orderBy('position', 'ASC')->get();
+
+            $i = 1;
+
+            foreach($fix_contents as $fix_content) {
+                $content_detail = Content::find($fix_content->content_id);
+                $content_detail->position = $i;
+                $content_detail->save();
+                $i = $i + 1;
+            }
+
+        }
 
         return $this->successResponse($content);
     }

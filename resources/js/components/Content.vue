@@ -120,6 +120,12 @@
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.content_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
+                                                <button v-if="index != (rowsQuantity-1)" v-on:click="movePost(post.content_id, index+1, post.category_id)" class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-arrow-down"></i>
+                                                </button>
+                                                <button v-if="index != 0" v-on:click="movePost(post.content_id, index-1, post.category_id)" class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-arrow-up"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -174,6 +180,30 @@
             this.getSectionList();
         },
         methods: {
+            movePost(id, index, category_id) {
+                this.loading = true; //the loading begin
+                axios.get('/api/content/move/'+id+'/'+index+'/'+category_id+'?api_token='+App.apiToken).then(response => {
+                    
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                    this.onSubmit();
+                });
+
+                let formData = new FormData();
+                formData.append('page', 'MoveContent - '+id);
+                
+                axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
             getCategoryList() {
                 axios.get('/api/category/list/'+this.form.section_id+'?api_token='+App.apiToken)
                 .then(response => {

@@ -98,3 +98,4 @@ Route::post('alliance/search/{rut}/{name}', 'api\AllianceController@index');
 Route::get('section/poll/{id}', 'api\SectionController@poll');
 Route::get('category/poll/{id}', 'api\CategoryController@poll');
 Route::get('content/poll/{id}', 'api\ContentController@poll');
+Route::get('content/move/{id}/{position}/{section_id}', 'api\ContentController@move');
