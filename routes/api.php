@@ -85,7 +85,7 @@ Route::post('poll/specialanswer', 'api\PollController@specialanswer');
 Route::post('poll/update/{id}', 'api\PollController@update');
 Route::get('audit', 'api\AuditController@index');
 Route::get('section/move/{id}/{position}', 'api\SectionController@move');
-Route::get('category/move/{id}/{position}', 'api\CategoryController@move');
+Route::get('category/move/{id}/{position}/{section_id}', 'api\CategoryController@move');
 Route::get('metric', 'api\MetricController@index');
 Route::post('content/date', 'api\ContentController@date');
 Route::get('content/stop/{id}', 'api\ContentController@stop');

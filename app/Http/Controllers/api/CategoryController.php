@@ -65,8 +65,9 @@ class CategoryController extends ApiResponseController
     {
         $id = $request->segment(4);
         $position = $request->segment(5) + 1;
+        $section_id = $request->segment(6);
 
-        $fix_categories = Category::orderBy('position', 'ASC')->get();
+        $fix_categories = Category::where('section_id', $section_id)->orderBy('position', 'ASC')->get();
 
         $i = 1;
 
@@ -77,7 +78,7 @@ class CategoryController extends ApiResponseController
             $i = $i + 1;
         }
 
-        $another_category = Category::where('position', $position)->first();
+        $another_category = Category::where('section_id', $section_id)->where('position', $position)->first();
         $category = Category::find($id);
 
         if($category->position > $another_category->position) {
@@ -231,7 +232,7 @@ class CategoryController extends ApiResponseController
         $category->position = $request->position;
         
         if($old_position != $request->position) {
-            $move_position_categories = Category::where('position', '>=', $request->position)->get();
+            $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->get();
             $position = $request->position;
             foreach($move_position_categories as $move_position_category) {
                 $position = $position + 1;
@@ -318,6 +319,17 @@ class CategoryController extends ApiResponseController
             if(Storage::exists('public/'.$category->icon)) {
                 if(Storage::delete('public/'.$category->icon)) {
                     if($category->delete()) {
+                        $fix_categories = Category::where('section_id', $category->section_id)->orderBy('position', 'ASC')->get();
+
+                        $i = 1;
+
+                        foreach($fix_categories as $fix_category) {
+                            $category_detail = Category::find($fix_category->category_id);
+                            $category_detail->position = $i;
+                            $category_detail->save();
+                            $i = $i + 1;
+                        }
+
                         return $this->successResponse($category);
                     } else {
                         return $this->errorResponse($category);
@@ -325,6 +337,17 @@ class CategoryController extends ApiResponseController
                 }
             } else {
                 if($category->delete()) {
+                    $fix_categories = Category::where('section_id', $category->section_id)->orderBy('position', 'ASC')->get();
+
+                    $i = 1;
+
+                    foreach($fix_categories as $fix_category) {
+                        $category_detail = Category::find($fix_category->category_id);
+                        $category_detail->position = $i;
+                        $category_detail->save();
+                        $i = $i + 1;
+                    }
+                    
                     return $this->successResponse($category);
                 } else {
                     return $this->errorResponse($category);

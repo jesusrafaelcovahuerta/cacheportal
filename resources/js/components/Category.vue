@@ -94,10 +94,10 @@
                                                 <button v-on:click="deletePost(post.category_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
-                                                <button v-if="index != (rowsQuantity-1)" v-on:click="movePost(post.category_id, index+1)" class="btn btn-success btn-circle btn-sm">
+                                                <button v-if="index != (rowsQuantity-1)" v-on:click="movePost(post.category_id, index+1, post.section_id)" class="btn btn-success btn-circle btn-sm">
                                                     <i class="fas fa-arrow-down"></i>
                                                 </button>
-                                                <button v-if="index != 0" v-on:click="movePost(post.category_id, index-1)" class="btn btn-success btn-circle btn-sm">
+                                                <button v-if="index != 0" v-on:click="movePost(post.category_id, index-1, post.section_id)" class="btn btn-success btn-circle btn-sm">
                                                     <i class="fas fa-arrow-up"></i>
                                                 </button>
                                             </td>
@@ -198,9 +198,9 @@
                     });
                 }
             },
-            movePost(id, index) {
+            movePost(id, index, section_id) {
                 this.loading = true; //the loading begin
-                axios.get('/api/category/move/'+id+'/'+index+'?api_token='+App.apiToken).then(response => {
+                axios.get('/api/category/move/'+id+'/'+index+'/'+section_id+'?api_token='+App.apiToken).then(response => {
                     
                 })
                 .catch(function (error) {
