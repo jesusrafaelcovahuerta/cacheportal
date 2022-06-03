@@ -78,7 +78,7 @@
                                             <td>{{ post.name }}</td>
                                             <td>{{ post.alliance }}</td>
                                             <td>{{ post.section_title }}</td>
-                                            <td>{{ index+1 }}</td>
+                                            <td>{{ post.postion }}</td>
                                             <td>
                                                 <span class="badge badge-danger" v-if="post.status == 0">
                                                     Desactivado
