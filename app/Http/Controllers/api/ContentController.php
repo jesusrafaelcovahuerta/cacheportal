@@ -34,7 +34,7 @@ class ContentController extends ApiResponseController
         || ($section_id == '' && $category_id == '')
         ) {
             $contents = Content::from('contents as c')
-                        ->selectRaw('alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
+                        ->selectRaw('c.category_id as category_id, alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'categories.alliance_id')
@@ -56,7 +56,7 @@ class ContentController extends ApiResponseController
             }
 
             $contents = Content::from('contents as c')
-                        ->selectRaw('alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
+                        ->selectRaw('c.category_id as category_id, alliances.name as alliance, c.content_id as content_id, CONCAT(c.title) as title, categories.name as category, sections.section_title as section, c.start_date as start_date, c.end_date as end_date, c.status as status, c.position as position')
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->whereRaw($query)
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.section_id')
