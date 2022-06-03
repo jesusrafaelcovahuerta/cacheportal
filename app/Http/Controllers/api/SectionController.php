@@ -99,7 +99,7 @@ class SectionController extends ApiResponseController
      */
     public function list(Request $request)
     {
-        $sections = Section::orderBy('section_id', 'ASC')
+        $sections = Section::where('status', 1)->orderBy('section_title', 'ASC')
                         ->get();
         
         return $this->successResponse($sections);
