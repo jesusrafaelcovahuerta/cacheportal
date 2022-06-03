@@ -91,7 +91,7 @@
         },
         methods: {
             closeSession() {
-                window.location = `http://qaportal.conectamayor.cl/login/logout`;
+                window.location = `http://app.conectamayor.cl/login/logout`;
             },
             getRol() {
                 axios.get('/api/user/rol?api_token='+App.apiToken)
