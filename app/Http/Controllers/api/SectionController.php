@@ -182,7 +182,7 @@ class SectionController extends ApiResponseController
         } else {
             $fileName = $request->icon;
         }
-echo $id;
+
         $section = Section::find($id);
         $section->section_title = $request->title;
         $section->color = $request->color;
@@ -197,10 +197,10 @@ echo $id;
             }
         }
 
+        $old_position = $section->position;
         $section->position = $request->position;
-echo $section->position;
-echo $request->position;
-        if($section->position != $request->position) {
+
+        if($old_position != $request->position) {
             echo 3;
             $move_position_sections = Section::where('position', '>=', $request->position)->get();
             $position = $request->position;
