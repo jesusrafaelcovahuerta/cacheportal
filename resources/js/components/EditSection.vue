@@ -188,7 +188,7 @@
                     link_question_id: 2,
                     url: '',
                     video_id: '',
-                    youtube_question_id: null
+                    youtube_question_id: 2
                 }
             }
         },
