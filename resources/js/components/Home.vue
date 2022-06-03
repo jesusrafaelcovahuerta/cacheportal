@@ -10,20 +10,6 @@
                 </button>
 		    </div>
         </div>
-        <b-modal id="modal-center" v-model="modalShow" centered title="Bienvenidos al nuevo portal">
-            <p class="my-4 h3 text-justify">
-                Este es el nuevo portal de la Fundación Conecta Mayor.<br><br>
-                Estaremos haciendo algunos cambios para facilitarle nuevo contenido de aprendizaje y entretención.<br><br>
-                Esperamos ser un aporte en tu uso del internet.<br><br>
-                <strong>Haz click en el botón verde de "Cerrar" para ver el portal.</strong>
-            </p>
-            <template #modal-footer="{ ok }">
-                <!-- Emulate built in modal footer ok and cancel button actions -->
-                <b-button size="lg" variant="success" @click="ok()">
-                Cerrar
-                </b-button>
-            </template>
-        </b-modal>
     </div>
 </template>
 <script>
