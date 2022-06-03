@@ -66,14 +66,14 @@ class CategoryController extends ApiResponseController
         $id = $request->segment(4);
         $position = $request->segment(5) + 1;
 
-        $fix_sections = Section::orderBy('position', 'ASC')->get();
+        $fix_categories = Category::orderBy('position', 'ASC')->get();
 
         $i = 1;
 
-        foreach($fix_sections as $fix_section) {
-            $section_detail = Section::find($fix_section->section_id);
-            $section_detail->position = $i;
-            $section_detail->save();
+        foreach($fix_categories as $fix_category) {
+            $category_detail = Category::find($fix_category->category_id);
+            $category_detail->position = $i;
+            $category_detail->save();
             $i = $i + 1;
         }
 
