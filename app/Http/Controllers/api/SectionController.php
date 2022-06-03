@@ -67,8 +67,13 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-        $section->video_id = $request->video_id;
 
+        if($request->video_id == 'undefined' || $request->video_id == '' || $request->video_id == 0 || $request->video_id == 'null') {
+            $section->video_id = 0;
+        } else {
+            $section->video_id = $request->video_id;
+        }
+        
         $move_position_sections = Section::where('position', '>=', $request->position)->get();
         $position = $request->position;
         foreach($move_position_sections as $move_position_section) {
@@ -204,7 +209,11 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-        $section->video_id = $request->video_id;
+        if($request->video_id == 'undefined' || $request->video_id == '' || $request->video_id == 0 || $request->video_id == 'null') {
+            $section->video_id = 0;
+        } else {
+            $section->video_id = $request->video_id;
+        }
         if(isset($fileName)) {
             if($fileName != '' && $fileName != null) {
                 $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
