@@ -123,7 +123,7 @@
                                             <option :value="2">No</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6" v-if="form.link_question_id == 1">
+                                    <div class="col-sm-6" v-if="form.youtube_question_id == 1">
                                         <label for="exampleInputEmail1">Id del Video</label>
                                         <input
                                             type="text" 

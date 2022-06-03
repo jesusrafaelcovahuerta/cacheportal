@@ -123,7 +123,7 @@
                                             <option :value="2">No</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6" v-if="form.link_question_id == 1">
+                                    <div class="col-sm-6" v-if="form.youtube_question_id == 1">
                                         <label for="exampleInputEmail1">Id del Video</label>
                                         <input
                                             type="text" 
@@ -214,6 +214,11 @@
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'video_id', this.post.video_id);
+
+                    if(this.post.video_id != null || this.post.video_id != '') {
+                        this.$set(this.form, 'youtube_question_id', 1);
+                    }
+
                     if(this.post.icon_type_id == 2) {
                         var icon = this.post.icon;
                         var icon_detail = icon.split(' ');
