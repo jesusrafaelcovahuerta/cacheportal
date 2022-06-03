@@ -67,6 +67,7 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
+        $section->video_id = $request->video_id;
 
         $move_position_sections = Section::where('position', '>=', $request->position)->get();
         $position = $request->position;
@@ -203,6 +204,7 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
+        $section->video_id = $request->video_id;
         if(isset($fileName)) {
             if($fileName != '' && $fileName != null) {
                 $section->icon = 'icon ion-'.$fileName.' home_icon_size2';

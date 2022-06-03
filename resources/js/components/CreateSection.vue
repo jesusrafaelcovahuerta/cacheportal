@@ -113,6 +113,26 @@
                                         >
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un video de Youtube? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.youtube_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.link_question_id == 1">
+                                        <label for="exampleInputEmail1">Id del Video</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.video_id"
+                                            class="form-control"
+                                            placeholder="Ingresa el Id del Video"
+                                        >
+                                    </div>
+                                </div>
                                 <button 
                                 type="submit"
                                 class="btn btn-success btn-icon-split">
@@ -163,7 +183,8 @@
                     position: '',
                     icon_type_id: 2,
                     fai: '',
-                    link_question_id: 2
+                    link_question_id: 2,
+                    video_id: ''
                 }
             }
         },
@@ -215,6 +236,7 @@
                     formData.append('position', this.form.position);
                     formData.append('link_question_id', this.form.link_question_id);
                     formData.append('url', this.form.url);
+                    formData.append('video_id', this.form.video_id);
 
                     axios.post('/api/section/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
