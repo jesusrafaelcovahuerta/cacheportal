@@ -66,6 +66,17 @@ class CategoryController extends ApiResponseController
         $id = $request->segment(4);
         $position = $request->segment(5) + 1;
 
+        $fix_sections = Section::orderBy('position', 'ASC')->get();
+
+        $i = 1;
+
+        foreach($fix_sections as $fix_section) {
+            $section_detail = Section::find($fix_section->section_id);
+            $section_detail->position = $i;
+            $section_detail->save();
+            $i = $i + 1;
+        }
+
         $another_category = Category::where('position', $position)->first();
         $category = Category::find($id);
 
@@ -216,15 +227,18 @@ class CategoryController extends ApiResponseController
         $category->section_id = $request->section_id;
         $category->name = $request->name;
         $category->color = $request->color;
+        $old_position = $category->position;
         $category->position = $request->position;
-
-        $move_position_categories = Category::where('position', '>=', $request->position)->get();
-        $position = $request->position;
-        foreach($move_position_categories as $move_position_category) {
-            $position = $position + 1;
-            $detail_category = Category::find($move_position_category->category_id);
-            $detail_category->position = $position;
-            $detail_category->save();
+        
+        if($old_position != $request->position) {
+            $move_position_categories = Category::where('position', '>=', $request->position)->get();
+            $position = $request->position;
+            foreach($move_position_categories as $move_position_category) {
+                $position = $position + 1;
+                $detail_category = Category::find($move_position_category->category_id);
+                $detail_category->position = $position;
+                $detail_category->save();
+            }
         }
 
         $category->highlight_id = $request->highlight_id;
