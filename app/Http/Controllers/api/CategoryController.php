@@ -163,7 +163,7 @@ class CategoryController extends ApiResponseController
         $category->color = $request->color;
         $category->position = $request->position;
 
-        $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->get();
+        $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_categories as $move_position_category) {
             $position = $position + 1;
@@ -234,7 +234,7 @@ class CategoryController extends ApiResponseController
         $category->position = $request->position;
         
         if($old_position != $request->position) {
-            $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->get();
+            $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
             $position = $request->position;
             foreach($move_position_categories as $move_position_category) {
                 $position = $position + 1;

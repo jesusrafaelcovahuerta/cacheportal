@@ -131,7 +131,7 @@ class ContentController extends ApiResponseController
         $content->description = $request->description;
         $content->position = $request->position;
 
-        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->get();
+        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_contents as $move_position_content) {
             $position = $position + 1;
@@ -202,7 +202,7 @@ class ContentController extends ApiResponseController
         $content->position = $request->position;
         $content->image = $fileName;
 
-        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->get();
+        $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_contents as $move_position_content) {
             $position = $position + 1;
