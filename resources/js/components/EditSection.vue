@@ -124,7 +124,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6" v-if="form.youtube_question_id == 1">
-                                        <label for="exampleInputEmail1">Id del Video</label>
+                                        <label for="exampleInputEmail1">URL del Video</label>
                                         <input
                                             type="text" 
                                             v-model="form.video_id"
@@ -214,7 +214,7 @@
                     this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
-                    this.$set(this.form, 'video_id', this.post.video_id);
+                    this.$set(this.form, 'video_id', "https://www.youtube.com/watch?v="+this.post.video_id);
 
                     if(this.post.video_id != 0) {
                         this.$set(this.form, 'youtube_question_id', 1);

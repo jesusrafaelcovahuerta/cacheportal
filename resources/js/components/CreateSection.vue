@@ -124,7 +124,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6" v-if="form.youtube_question_id == 1">
-                                        <label for="exampleInputEmail1">Id del Video</label>
+                                        <label for="exampleInputEmail1">URL del Video</label>
                                         <input
                                             type="text" 
                                             v-model="form.video_id"

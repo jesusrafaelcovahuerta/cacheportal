@@ -21,6 +21,7 @@
                     <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
                         <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
                             <h2>{{ post.question }}</h2>
+                            <h4>Selecciona la respuesta marcando en el circulo</h4>
                             <hr>
                             <div class="form-group" v-if="post.answer_type_id == 1">
                                 <label class="question_poll_yes_no" style="font-size: 20px;" for="yes">Si</label>   <input style="font-size: 30px !important;" type="radio" sty v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="Si" required>

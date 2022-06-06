@@ -67,14 +67,10 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-
-        if($request->video_id == 'undefined' || $request->video_id == '' || $request->video_id == 0 || $request->video_id == 'null') {
-            $section->video_id = 0;
-        } else {
-            $section->video_id = $request->video_id;
-        }
+        $video = explode("=", $request->video_id);
+        $section->video_id = $video[1];
         
-        $move_position_sections = Section::where('position', '>=', $request->position)->get();
+        $move_position_sections = Section::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_sections as $move_position_section) {
             $position = $position + 1;
@@ -209,11 +205,8 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-        if($request->video_id == 'undefined' || $request->video_id == '' || $request->video_id == 0 || $request->video_id == 'null') {
-            $section->video_id = 0;
-        } else {
-            $section->video_id = $request->video_id;
-        }
+        $video = explode("=", $request->video_id);
+        $section->video_id = $video[1];
         if(isset($fileName)) {
             if($fileName != '' && $fileName != null) {
                 $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
@@ -224,7 +217,7 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
 
         if($old_position != $request->position) {
-            $move_position_sections = Section::where('position', '>=', $request->position)->get();
+            $move_position_sections = Section::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
             $position = $request->position;
             foreach($move_position_sections as $move_position_section) {
                 $position = $position + 1;
