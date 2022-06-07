@@ -37,7 +37,7 @@
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
-                                        maxlength="36"
+                                        maxlength="24"
                                         v-model="form.title" 
                                         class="form-control"
                                         placeholder="Ingresa el título"
@@ -323,7 +323,7 @@
             },
             charactersLeft() {
                 var char = this.form.title.length,
-                    limit = 36;
+                    limit = 24;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
             }
