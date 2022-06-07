@@ -252,7 +252,6 @@
                 }
 
                 if(this.form.title != ''
-                    && this.form.title.length <= 28
                     && this.form.color != ''
                     && this.form.icon_type_id != null
                     && this.form.position != ''
