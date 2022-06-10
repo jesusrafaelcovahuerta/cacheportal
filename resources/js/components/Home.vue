@@ -19,6 +19,9 @@
             this.catchUser();
             this.checkDate();
         },
+        mounted() {
+            this.$ga.page('/Home');
+        },
         methods: {
             hideModal() {
                 this.modalShow = false;

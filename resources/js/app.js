@@ -12,6 +12,8 @@ import excel from 'vue-excel-export'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueAnalytics from 'vue-analytics';
+
 
 Vue.component(
     'menu-component',
@@ -27,6 +29,9 @@ Vue.use(vueVimeoPlayer)
 Vue.use(VueAWN);
 Vue.use(VueRouter);
 Vue.use(VueMask);
+Vue.use(VueAnalytics, {
+    id: '293704399'
+});
 
 const app = new Vue({
     el: '#app',
