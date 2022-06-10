@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Nombre <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -42,8 +42,17 @@
                                         class="form-control"
                                         placeholder="Ingresa el nombre"
                                         >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
-                                    <span class="col-sm-12">{{charactersLeft}}</span>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.google_tag" 
+                                        class="form-control"
+                                        placeholder="Ingresa el nombre"
+                                        >
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-4">
@@ -175,6 +184,7 @@
                     color: '',
                     position: '',
                     icon_type_id: 2,
+                    google_tag: '',
                     fai: '',
                     highlight_id: 0
                 }
@@ -234,6 +244,7 @@
                 if(this.form.alliance_id != null
                     && this.form.section_id != null
                     && this.form.name != ''
+                    && this.form.google_tag != ''
                     && this.form.name.length <= 28
                     && this.form.color != ''
                     && this.form.position != ''
@@ -254,6 +265,7 @@
                         formData.append('icon', this.form.fai);
                     }
                     formData.append('highlight_id', this.form.highlight_id);
+                    formData.append('google_tag', this.form.google_tag);
 
                     axios.post('/api/category/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -279,6 +291,9 @@
                     }
                     if (this.form.name == '') {
                         this.errors.push('El nombre es obligatorio.');
+                    }
+                    if (this.form.google_tag == '') {
+                        this.errors.push('La etiqueta de Google es obligatoria.');
                     }
                     if (this.form.name.length > 28) {
                         this.errors.push('El nombre debe tener menos de 28 caracteres.');
