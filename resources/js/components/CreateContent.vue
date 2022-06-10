@@ -93,7 +93,7 @@
                                         type="text" 
                                         v-model="form.google_tag" 
                                         class="form-control"
-                                        placeholder="Ingresa el nombre"
+                                        placeholder="Ingresa el google tag"
                                         >
                                     </div>
                                     <div class="col-sm-3">
@@ -292,8 +292,8 @@
                         this.errors.push('El título es obligatorio.');
                     }
 
-                    if (this.form.google_tags == '') {
-                        this.errors.push('Los tags son obligatorios.');
+                    if (this.form.google_tag == '') {
+                        this.errors.push('Las etiqueta de Google es obligatoria.');
                     }
 
                     if (this.form.description == '') {

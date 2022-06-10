@@ -91,9 +91,9 @@
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
-                                        v-model="form.google_tags" 
+                                        v-model="form.google_tag" 
                                         class="form-control"
-                                        placeholder="Ingresa el nombre"
+                                        placeholder="Ingresa el google tag"
                                         >
                                     </div>
                                     <div class="col-sm-3">
@@ -222,7 +222,7 @@
                     title: '',
                     icon_type_id: 2,
                     video_id: '',
-                    google_tags: '',
+                    google_tag: '',
                     icon: '',
                     fai: '',
                     image: '',
@@ -292,7 +292,7 @@
                     this.$set(this.form, 'type_id', this.post.type_id);
                     this.$set(this.form, 'video_id', this.post.video_id);
                     this.$set(this.form, 'title', this.post.title);
-                    this.$set(this.form, 'google_tags', this.post.google_tags);
+                    this.$set(this.form, 'google_tag', this.post.google_tag);
                     var icon = this.post.icon;
                     var icon_detail = icon.split(' ');
                     var icon_detail = icon_detail[1];
@@ -324,7 +324,7 @@
                 if(this.form.category_id != null
                     && this.form.type_id != null
                     && this.form.title != ''
-                    && this.form.google_tags != ''
+                    && this.form.google_tag != ''
                     && this.form.fai != ''
                     && this.form.description != ''
                     && this.form.start_date != ''
@@ -335,7 +335,7 @@
                     formData.append('type_id', this.form.type_id);
                     formData.append('video_id', this.form.video_id);
                     formData.append('title', this.form.title);
-                    formData.append('google_tags', this.form.google_tags);
+                    formData.append('google_tag', this.form.google_tag);
                     formData.append('icon', this.form.icon);
                     formData.append('fai', this.form.fai);
                     formData.append('description', this.form.description);
@@ -372,8 +372,8 @@
                         this.errors.push('El título es obligatorio.');
                     }
 
-                    if (this.form.google_tags == '') {
-                        this.errors.push('Los tags son obligatorios.');
+                    if (this.form.google_tag == '') {
+                        this.errors.push('La etiqueta de Google es obligatoria.');
                     }
 
                     if (this.form.description == '') {

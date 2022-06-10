@@ -50,7 +50,7 @@
                                         type="text" 
                                         v-model="form.google_tag" 
                                         class="form-control"
-                                        placeholder="Ingresa el nombre"
+                                        placeholder="Ingresa el google tag"
                                         >
                                     </div>
                                 </div>
