@@ -30,7 +30,7 @@ Vue.use(VueAWN);
 Vue.use(VueRouter);
 Vue.use(VueMask);
 Vue.use(VueAnalytics, {
-    id: '293704399'
+    id: 'G-XQ3YXJRQ8'
 });
 
 const app = new Vue({
