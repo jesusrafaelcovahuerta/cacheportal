@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Nombre <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
