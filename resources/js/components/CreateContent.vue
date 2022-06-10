@@ -91,7 +91,7 @@
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
-                                        v-model="form.google_tags" 
+                                        v-model="form.google_tag" 
                                         class="form-control"
                                         placeholder="Ingresa el nombre"
                                         >
@@ -206,7 +206,7 @@
                     title: '',
                     icon_type_id: 2,
                     video_id: '',
-                    google_tags: '',
+                    google_tag: '',
                     icon: '',
                     fai: '',
                     image: '',
@@ -243,7 +243,7 @@
                 if(this.form.category_id != null
                     && this.form.type_id != null
                     && this.form.title != ''
-                    && this.form.google_tags != ''
+                    && this.form.google_tag != ''
                     && this.form.fai != ''
                     && this.form.description != ''
                     && this.form.start_date != ''
@@ -254,7 +254,7 @@
                     formData.append('type_id', this.form.type_id);
                     formData.append('video_id', this.form.video_id);
                     formData.append('title', this.form.title);
-                    formData.append('google_tags', this.form.google_tags);
+                    formData.append('google_tag', this.form.google_tag);
                     formData.append('icon', this.form.icon);
                     formData.append('fai', this.form.fai);
                     formData.append('description', this.form.description);

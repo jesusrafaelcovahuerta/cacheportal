@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -42,8 +42,17 @@
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
-                                    <span class="col-sm-12">{{charactersLeft}}</span>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.google_tag" 
+                                        class="form-control"
+                                        placeholder="Ingresa el nombre"
+                                        >
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
@@ -185,7 +194,8 @@
                     fai: '',
                     link_question_id: 2,
                     video_id: '',
-                    youtube_question_id: 2
+                    youtube_question_id: 2,
+                    google_tag: ''
                 }
             }
         },
@@ -220,6 +230,7 @@
 
                 if(this.form.title != ''
                     && this.form.color != ''
+                    && this.form.google_tag != ''
                     && this.form.icon_type_id != null
                     && (this.file != null || this.form.fai != '')
                     && this.form.position != ''
@@ -256,6 +267,9 @@
                     
                     if (this.form.title == '') {
                         this.errors.push('El título es obligatorio.');
+                    }
+                    if (this.form.google_tag == '') {
+                        this.errors.push('La etiqueta de Google es obligatoria.');
                     }
                     if (this.form.title.length > 28) {
                         this.errors.push('El nombre debe tener menos de 28 caracteres.');

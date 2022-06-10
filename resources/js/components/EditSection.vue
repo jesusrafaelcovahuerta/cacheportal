@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -42,8 +42,17 @@
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
-                                    <span class="col-sm-12">{{charactersLeft}}</span>
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.google_tag" 
+                                        class="form-control"
+                                        placeholder="Ingresa el nombre"
+                                        >
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
@@ -185,6 +194,7 @@
                     position: '',
                     icon_type_id: 2,
                     fai: '',
+                    google_tag: '',
                     link_question_id: 2,
                     url: '',
                     video_id: '',
@@ -214,6 +224,7 @@
                     this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
+                    this.$set(this.form, 'google_tag', this.post.google_tag);
                     this.$set(this.form, 'video_id', "https://www.youtube.com/watch?v="+this.post.video_id);
 
                     if(this.post.video_id != 0) {
@@ -252,6 +263,7 @@
                 }
 
                 if(this.form.title != ''
+                    && this.form.google_tag != ''
                     && this.form.color != ''
                     && this.form.icon_type_id != null
                     && this.form.position != ''
@@ -269,6 +281,7 @@
                     formData.append('link_question_id', this.form.link_question_id);
                     formData.append('url', this.form.url);
                     formData.append('video_id', this.form.video_id);
+                    formData.append('google_tag', this.form.google_tag);
 
                     axios.post('/api/section/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -288,6 +301,9 @@
                     
                     if (this.form.title == '') {
                         this.errors.push('El título es obligatorio.');
+                    }
+                    if (this.form.google_tag == '') {
+                        this.errors.push('La etiqueta de Google es obligatoria.');
                     }
                     if (this.form.title.length > 28) {
                         this.errors.push('El nombre debe tener menos de 28 caracteres.');

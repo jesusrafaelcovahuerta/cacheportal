@@ -65,6 +65,7 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->status = 1;
         $section->position = $request->position;
+        $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
         $video = explode("=", $request->video_id);
@@ -204,6 +205,7 @@ class SectionController extends ApiResponseController
         $old_icon_type = $section->icon_type_id;
         $old_icon_name = $section->icon;
         $section->icon_type_id = $request->icon_type_id;
+        $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
         $video = explode("=", $request->video_id);

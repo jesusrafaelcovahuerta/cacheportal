@@ -124,7 +124,7 @@ class ContentController extends ApiResponseController
         $content->type_id = $request->type_id;
         $content->video_id = $request->video_id;
         $content->title = $request->title;
-        $content->google_tags = $request->google_tags;
+        $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
         $content->icon = 'icon ion-'.$request->fai.' home_icon_size2';
         $content->end_date = $request->end_date;
@@ -194,7 +194,7 @@ class ContentController extends ApiResponseController
         $content->type_id = $request->type_id;
         $content->video_id = $request->video_id;
         $content->title = $request->title;
-        $content->google_tags = $request->google_tags;
+        $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
         $content->icon = 'icon ion-'.$request->fai.' home_icon_size2';
         $content->end_date = $request->end_date;
