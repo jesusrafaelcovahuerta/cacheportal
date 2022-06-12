@@ -30,7 +30,8 @@ Vue.use(VueAWN);
 Vue.use(VueRouter);
 Vue.use(VueMask);
 Vue.use(VueAnalytics, {
-    id: 'G-XQ3YXJRQ8'
+    id: 'G-XQ3YXJRQ8',
+    router: new VueRouter(routes)
 });
 
 const app = new Vue({
