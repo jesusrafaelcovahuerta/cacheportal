@@ -18,8 +18,12 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
+            this.Track();
         },
         methods: {
+            Track () {
+                this.$gtag.pageview('/home');
+            },
             hideModal() {
                 this.modalShow = false;
             },
