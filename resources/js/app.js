@@ -12,8 +12,7 @@ import excel from 'vue-excel-export'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueAnalytics from 'vue-analytics';
-
+import VueGtag from "vue-gtag";
 
 Vue.component(
     'menu-component',
@@ -29,10 +28,10 @@ Vue.use(vueVimeoPlayer)
 Vue.use(VueAWN);
 Vue.use(VueRouter);
 Vue.use(VueMask);
-Vue.use(VueAnalytics, {
-    id: 'G-XQ3YXJRQ8',
-    router: new VueRouter(routes)
-});
+Vue.use(VueGtag, {
+    config: { id: "G-XQ3YXJJRQ8" }
+}, routes);
+
 
 const app = new Vue({
     el: '#app',
