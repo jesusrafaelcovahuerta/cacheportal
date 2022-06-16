@@ -3,7 +3,7 @@
         <div v-if="check_category_poll == 0">
             <div v-if="poll_question_posts == ''" class="row">
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <router-link class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
+                    <router-link @click="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
                         <i v-bind:class="post.icon"></i><br> {{ post.title }}
                     </router-link>
                 </div>
@@ -90,6 +90,11 @@
             this.getPolls();
         },
         methods: {
+            Track(google_tag) {
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
+                });
+            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
