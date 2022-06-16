@@ -18,7 +18,6 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
-            this.Track();
         },
         methods: {
             Track(google_tag) {
