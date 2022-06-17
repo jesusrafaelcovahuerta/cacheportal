@@ -21,7 +21,6 @@
         },
         methods: {
             Track(google_tag) {
-                console.log(1);
                 this.$gtag.event('page_view', {
                     page_title: google_tag
                 });

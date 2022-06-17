@@ -7,11 +7,11 @@
         <div v-if="check_category_poll == 0 && post.video_id == 0">
             <div v-if="poll_question_posts == ''" class="row">
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <router-link @click="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                    <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
                         <i v-bind:class="post.icon"></i><br> {{ post.name }}
                     </router-link>
 
-                    <router-link @click="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                    <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
                         <i v-bind:class="post.icon"></i><br> {{ post.name }}
                     </router-link>
                 </div>
@@ -95,7 +95,6 @@
 <script>
     export default {
         created() {
-            this.Track();
             this.checkVideo();
             this.checkCategoryPoll();
             this.getPollQuestions();
@@ -105,15 +104,10 @@
             this.checkDate();
         },
         methods: {
-            Track() {
-                axios.get('/api/section/'+ this.$route.params.id +'/edit?api_token='+App.apiToken)
-                .then(response => {
-                    this.post = response.data.data;
-
-                    console.log(this.post.google_tag);
+            Track(google_tag) {
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
                 });
-
-                
             },
             checkDate() {
                 let formData = new FormData();
