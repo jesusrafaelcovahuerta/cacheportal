@@ -101,13 +101,17 @@
             this.getPollQuantity();
             this.getPosts();
             this.getPolls();
+            this.Track();
             this.checkDate();
         },
         methods: {
-            Track(google_tag) {
-                this.$gtag.event('page_view', {
-                    page_title: google_tag
+            Track() {
+                axios.get('/api/section/'+ this.$route.params.id +'/edit?api_token='+App.apiToken)
+                .then(response => {
+                    this.post = response.data.data;
                 });
+
+                console.log(this.post.google_tag);
             },
             checkDate() {
                 let formData = new FormData();
