@@ -2,7 +2,7 @@
     <div class="container pt-32">
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
-                <router-link v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
+                <router-link @click.native="Track(post.google_tag) v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
                     <font class="section_title">{{ post.section_title }}</font><br><i v-bind:class="post.icon"></i>
                 </router-link>
                 <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
@@ -20,6 +20,12 @@
             this.checkDate();
         },
         methods: {
+            Track(google_tag) {
+                console.log(1);
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
+                });
+            },
             hideModal() {
                 this.modalShow = false;
             },
