@@ -115,6 +115,7 @@
         created() {
             this.getPosts();
             this.getRol();
+            this.getExcel();
             this.storeAudit();
         },
         methods: {
