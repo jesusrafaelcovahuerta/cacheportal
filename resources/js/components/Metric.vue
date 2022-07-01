@@ -34,7 +34,7 @@
                                         <td>Generales</td>
                                         <td>
                                             <router-link :to="`/metric/show/1`"  class="btn btn-primary btn-circle btn-sm">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="fas fa-eye"></i>
                                             </router-link>
                                         </td>
                                     </tr>
@@ -44,13 +44,6 @@
                     </div>
                 </div>
             </div>
-
-            <v-pagination v-model="currentPage" 
-                            :page-count="total"
-                            @input='getPosts'
-                            :classes="bootstrapPaginationClasses"
-                            :labels="paginationAnchorTexts"
-                            ></v-pagination>
 
         </div>
         
@@ -65,7 +58,6 @@
 
     export default {
         created() {
-            this.getPosts();
             this.getRol();
             this.storeAudit();
         },
