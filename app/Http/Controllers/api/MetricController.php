@@ -31,13 +31,13 @@ class MetricController extends ApiResponseController
                         ->get();
 
         $data[0][0] = "Ciudad";
-        $data[1][0] = "Valores";
+        $data[0][1] = "Valores";
 
         $i = 1;
 
         foreach($catch_data as $catch_datum) {
-            $data[0][$i] = $catch_datum->city;
-            $data[1][$i] = $catch_datum->total;
+            $data[$i][0] = $catch_datum->city;
+            $data[$i][1] = $catch_datum->total;
 
             $i = $i + 1;
         }

@@ -16,7 +16,7 @@
                     <GChart
                     type="PieChart"
                     :options="options"
-                    :data="data"
+                    :data="city_result"
                     /> 
                 </div>
             </div>
@@ -85,6 +85,7 @@
                 rol_id: this.rol_id,
                 postsSelected: "",
                 posts: [],
+                city_result: [],
                 data: [
                     ['Daily Routine', 'Hours per Day'],
                     ['Work',     14],
