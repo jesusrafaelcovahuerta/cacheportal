@@ -85,29 +85,14 @@
                 rol_id: this.rol_id,
                 postsSelected: "",
                 posts: [],
-                json_data: [],
+                data: [],
+                options: {
+                    width: 500,
+                    height: 400
+                },
                 currentPage: 1,
                 total: 0,
-                rowsQuantity: '',
-                bootstrapPaginationClasses: {
-                    ul: 'pagination',
-                    li: 'page-item',
-                    liActive: 'active',
-                    liDisable: 'disabled',
-                    button: 'page-link'  
-                },
-                paginationAnchorTexts: {
-                    first: '',
-                    prev: '&laquo;',
-                    next: '&raquo;',
-                    last: ''
-                },
-                mobilepaginationAnchorTexts: {
-                    first: '',
-                    prev: '',
-                    next: '',
-                    last: ''
-                }
+                rowsQuantity: ''
             }
         }
     }
