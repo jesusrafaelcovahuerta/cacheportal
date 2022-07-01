@@ -10,14 +10,20 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Listado</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Usuarios por Ciudad</h6>
                 </div>
                 <div class="card-body">
-                    <GChart
-                    type="PieChart"
-                    :options="options"
-                    :data="city_result"
-                    /> 
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <GChart
+                            type="PieChart"
+                            :options="options"
+                            :data="city_result"
+                            /> 
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
                 </div>
             </div>
 
@@ -95,8 +101,8 @@
                     ['Sleep',    5]
                 ],
                 options: {
-                    width: 500,
-                    height: 400
+                    width: 800,
+                    height: 500
                 },
                 currentPage: 1,
                 total: 0,
