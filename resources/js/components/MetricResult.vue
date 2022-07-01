@@ -4,13 +4,6 @@
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
                 Resultado de Metricas
-
-                <button class="btn btn-primary">
-                    <export-excel
-                        :data="json_data">
-                        Descargar
-                    </export-excel>
-                </button>
             </h1>
             <hr>
             
@@ -81,7 +74,6 @@
 <script>
     import vPagination from 'vue-plain-pagination';
     import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
-    import moment from 'moment'
     import { GChart } from 'vue-google-charts/legacy'
 
     export default {

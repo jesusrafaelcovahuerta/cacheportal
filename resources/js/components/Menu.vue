@@ -7,11 +7,6 @@
             <span>Inicio</span></router-link>
         </li>
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-          Menú
-        </div>
-
         <!-- Nav Item - Dashboard -->
         <li class="nav-item" v-if="rol_id == 1">
             <router-link class="nav-link" to="/alliance">
