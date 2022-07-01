@@ -4,6 +4,13 @@
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
                 Resultado de Metricas
+
+                <button class="btn btn-primary">
+                    <export-excel
+                        :data="json_data">
+                        Descargar
+                    </export-excel>
+                </button>
             </h1>
             <hr>
             
@@ -80,12 +87,27 @@
     export default {
         created() {
             this.getRol();
+            this.getPosts();
             this.getCityGraphic();
             this.getRegionGraphic();
             this.getPageGraphic();
             this.storeAudit();
         },
         methods: {
+            getPosts() {
+                this.loading = true;
+
+                axios.get('/api/metric?page='+this.currentPage+'&api_token='+App.apiToken)
+                .then(response => {
+                    this.json_data = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
             getCityGraphic() {
                 axios.get('/api/metric/city?api_token='+App.apiToken)
                 .then(response => {
@@ -150,6 +172,7 @@
                 postsSelected: "",
                 posts: [],
                 city_result: [],
+                json_data: [],
                 region_result: [],
                 page_result: [],
                 data: [

@@ -18,6 +18,13 @@ class MetricController extends ApiResponseController
         $this->user = User::where('api_token', $request->api_token)->first();
     }
 
+    public function index()
+    {
+        $catch_data = CatchData::all();
+
+        return $this->errorResponse($catch_data);
+    }
+
     /**
      * Store the form for creating a new resource.
      *
@@ -80,6 +87,7 @@ class MetricController extends ApiResponseController
     public function page()
     {
         $catch_data = CatchData::from('catch_data as c')
+                        ->selectRaw('c.page as page, COUNT(c.page) as total')
                         ->selectRaw('c.page as page, COUNT(c.page) as total')
                         ->groupBy('c.page')
                         ->get();
