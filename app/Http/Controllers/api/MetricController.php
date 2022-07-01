@@ -26,7 +26,7 @@ class MetricController extends ApiResponseController
     public function city()
     {
         $catch_data = CatchData::from('catch_data as c')
-                        ->selectRaw('c.city as city, COUNT(*) as total')
+                        ->selectRaw('c.city as city, COUNT(c.city) as total')
                         ->groupBy('c.city')
                         ->get();
 
