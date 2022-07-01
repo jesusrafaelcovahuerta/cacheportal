@@ -30,8 +30,8 @@ class MetricController extends ApiResponseController
                         ->groupBy('c.city')
                         ->get();
 
-        $data[0][0] = "title";
-        $data[1][0] = "value";
+        $data[0][0] = "Ciudad";
+        $data[1][0] = "Valores";
 
         $i = 1;
 
