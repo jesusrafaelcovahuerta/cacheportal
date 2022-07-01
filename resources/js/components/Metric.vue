@@ -33,7 +33,7 @@
                                         <td>1</td>
                                         <td>Generales</td>
                                         <td>
-                                            <router-link :to="`/metric/show/1`"  class="btn btn-primary btn-circle btn-sm">
+                                            <router-link :to="`/metric/result/1`"  class="btn btn-primary btn-circle btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </router-link>
                                         </td>

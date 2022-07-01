@@ -30,6 +30,7 @@ import Audit from './components/Audit';
 import Metric from './components/Metric';
 import ShowPoll from './components/ShowPoll';
 import EditPoll from './components/EditPoll';
+import MetricResult from './components/MetricResult';
 
 export default{
     mode: 'history',
@@ -191,6 +192,11 @@ export default{
           path: '/poll/edit/:id',
           name: 'editpoll',
           component: EditPoll
+        },
+        {
+          path: '/metric/result/:id',
+          name: 'metricresult',
+          component: MetricResult
         }
     ]
 }

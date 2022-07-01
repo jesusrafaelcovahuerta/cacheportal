@@ -52,7 +52,7 @@
                                                 <router-link :to="`/poll/edit/${post.poll_id}`"  class="btn btn-warning btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </router-link>
-                                                <router-link :to="`/poll/result/${post.poll_id}`"  class="btn btn-warning btn-circle btn-sm">
+                                                <router-link :to="`/poll/result/${post.poll_id}`"  class="btn btn-info btn-circle btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </router-link>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.poll_id, index)" class="btn btn-danger btn-circle btn-sm">
