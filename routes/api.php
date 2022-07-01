@@ -100,3 +100,5 @@ Route::get('category/poll/{id}', 'api\CategoryController@poll');
 Route::get('content/poll/{id}', 'api\ContentController@poll');
 Route::get('content/move/{id}/{position}/{section_id}', 'api\ContentController@move');
 Route::get('metric/city', 'api\MetricController@city');
+Route::get('metric/region', 'api\MetricController@region');
+Route::get('metric/page', 'api\MetricController@page');

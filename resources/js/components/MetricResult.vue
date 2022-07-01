@@ -27,6 +27,44 @@
                 </div>
             </div>
 
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Usuarios por Región</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <GChart
+                            type="PieChart"
+                            :options="options"
+                            :data="region_result"
+                            /> 
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Cantidad de Páginas más Visitadas</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <GChart
+                            type="PieChart"
+                            :options="options"
+                            :data="page_result"
+                            /> 
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         
     </div>
@@ -43,6 +81,8 @@
         created() {
             this.getRol();
             this.getCityGraphic();
+            this.getRegionGraphic();
+            this.getPageGraphic();
             this.storeAudit();
         },
         methods: {
@@ -50,6 +90,24 @@
                 axios.get('/api/metric/city?api_token='+App.apiToken)
                 .then(response => {
                     this.city_result = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            getRegionGraphic() {
+                axios.get('/api/metric/region?api_token='+App.apiToken)
+                .then(response => {
+                    this.region_result = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            getPageGraphic() {
+                axios.get('/api/metric/page?api_token='+App.apiToken)
+                .then(response => {
+                    this.page_result = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -92,6 +150,8 @@
                 postsSelected: "",
                 posts: [],
                 city_result: [],
+                region_result: [],
+                page_result: [],
                 data: [
                     ['Daily Routine', 'Hours per Day'],
                     ['Work',     14],
