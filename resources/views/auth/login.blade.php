@@ -32,6 +32,7 @@
                             {{ __('Ingresar') }}
                         </button>
                         <br>
+                        <center><a href="/recover">¿Olvidastes tu contraseña?</a></center>
                     </form>
                   <hr>
                 </div>
