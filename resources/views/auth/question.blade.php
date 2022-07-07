@@ -20,9 +20,6 @@
                         <br>
                         <br>
                     </div>
-                    <div class="alert alert-danger" role="alert">
-                        El RUT no se encuentra registrado en el sistema
-                    </div>
                     <form class="user" method="POST" action="{{ url('question/verify') }}">
                         @csrf
                         <div class="form-group">
