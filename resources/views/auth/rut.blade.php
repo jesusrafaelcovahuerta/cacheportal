@@ -20,9 +20,11 @@
                         <br>
                         <br>
                     </div>
-                    <div class="alert alert-danger" role="alert">
-                        El RUT no se encuentra registrado en el sistema
-                    </div>
+                    @if(Request::segment(2) == 'error')
+                      <div class="alert alert-danger" role="alert">
+                          El RUT no se encuentra registrado en el sistema
+                      </div>
+                    @endif
                     <form class="user" method="POST" action="{{ url('rut/verify') }}">
                         @csrf
                         <div class="form-group">
