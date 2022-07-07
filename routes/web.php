@@ -28,6 +28,7 @@ Route::get('/poll/show/{id}', 'PollController@show');
 Route::post('/enter', 'LoginController@login');
 Route::get('/', 'HomeController@index');
 Route::get('/login/logout', 'LoginController@logout');
+Route::get('/rut', 'RutController@index');
 
 /*
 Route::get('/{any}', function () {
