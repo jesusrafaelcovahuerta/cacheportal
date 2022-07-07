@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class RutController extends Controller
+class QuestionController extends Controller
 {
     public function index()
     {
-        return view('auth.rut');
+        return view('auth.question');
     }
 
     public function verify(Request $request)

@@ -20,19 +20,25 @@
                         <br>
                         <br>
                     </div>
-                    <form class="user" method="POST" action="{{ url('enter') }}">
+                    <form class="user" method="POST" action="{{ url('question/verify') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="RUT" id="rut" name="rut">
+                            <select class="form-control" id="exampleFormControlSelect1" name="question">
+                                <option :value="null">-Seleccionar-</option>
+                                <option value="1">¿Donde nacistes?</option>
+                                <option value="2">¿Cuál es el nombre de tu mamá?</option>
+                                <option value="3">¿Cuál es el nombre de tu papá?</option>
+                                <option value="4">¿Cuál es el nombre de tu mascota?</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Contraseña">
+                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Respuesta" id="rut" name="rut">
                         </div>
+                        
                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                            {{ __('Ingresar') }}
+                            {{ __('Verificar') }}
                         </button>
                         <br>
-                        <center><a href="/rut">¿Olvidastes tu contraseña?</a></center>
                     </form>
                   <hr>
                 </div>
