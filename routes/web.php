@@ -30,6 +30,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/login/logout', 'LoginController@logout');
 Route::get('/rut', 'RutController@index');
 Route::get('/rut/error', 'RutController@index');
+Route::get('/rut/verify', 'RutController@verify');
 Route::get('/question', 'QuestionController@index');
 
 /*
