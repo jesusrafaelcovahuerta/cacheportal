@@ -3,7 +3,7 @@
         <div class="flex flex-wrap max-w-xl">
             <div class="p-2 text-2xl text-gray-800 font-semibold"><h1>¿Olvidastes la contraseña?</h1></div>
             <div class="p-2 w-full">
-                <label for="email">Correo</label>
+                <label for="email">¿Cuál es tu RUT?</label>
                 <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2" placeholder="RUT" type="email" v-model="form.email">
             </div>
             <div class="p-2 w-full mt-4">

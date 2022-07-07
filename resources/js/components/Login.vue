@@ -29,13 +29,6 @@ export default {
         }
     },
     methods:{
-         loginUser(){
-             axios.post('/api/login', this.form).then(() =>{
-                this.$router.push('/account');
-             }).catch((error) =>{
-                this.errors = error.response.data.errors;
-            })
-         }
     }
 }
 </script>

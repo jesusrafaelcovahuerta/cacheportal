@@ -197,6 +197,11 @@ export default{
           path: '/metric/result/:id',
           name: 'metricresult',
           component: MetricResult
+        },
+        {
+          path: '/recover',
+          name: 'recover',
+          component: Recover
         }
     ]
 }
