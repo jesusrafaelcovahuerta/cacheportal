@@ -33,6 +33,7 @@
                                             <th>Rut</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
+                                            <th>Rol</th>
                                             <th>Alianza</th>
                                             <th>Correo</th>
                                             <th></th>
@@ -43,6 +44,17 @@
                                             <td>{{ post.rut }}</td>
                                             <td>{{ post.name }}</td>
                                             <td>{{ post.lastname }}</td>
+                                            <td>
+                                                <span class="badge badge-danger" v-if="post.status == 0">
+                                                    {{ post.rol }}
+                                                </span>
+                                                <span class="badge badge-warning" v-if="post.status == 1">
+                                                    {{ post.rol }}
+                                                </span>
+                                                <span class="badge badge-info" v-if="post.status == 2">
+                                                    {{ post.rol }}
+                                                </span>
+                                            </td>
                                             <td>{{ post.alliance }}</td>
                                             <td>{{ post.email }}</td>
                                             <td>
