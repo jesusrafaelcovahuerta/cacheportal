@@ -19,7 +19,7 @@ class RutController extends Controller
         $user_qty = User::from('users as c')
                         ->selectRaw('c.*, members.rol_id as rol_id')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
-                        ->where('rut', $rut)
+                        ->where('rut', $request->rut)
                         ->count();
 
         if($user_qty > 0) {
