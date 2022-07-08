@@ -133,6 +133,8 @@ class UserController extends ApiResponseController
         $user->phone = $request->phone;
         $user->password = md5($request->password);
         $user->api_token = md5($request->email.$user->phone);
+        $user->question_id = $request->question_id;
+        $user->answer = $request->answer;
         if($user->save()) {
             $member = new Member();
             $member->user_id = $request->rut;

@@ -110,9 +110,32 @@
                                         v-model="form.rol_id"
                                         >
                                             <option :value="null">-Seleccionar-</option>
-                                            <option :value="1">Administrador</option>
+                                            <option v-if="rol_id == 3" :value="1">Administrador</option>
                                             <option :value="2">Alianza</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Pregunta de seguridad</label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.question_id"
+                                        >
+                                            <option :value="null">-Seleccionar-</option>
+                                            <option :value="1">¿Dónde nacistes?</option>
+                                            <option :value="2">¿Cuál es el nombre de tu mamá?</option>
+                                            <option :value="3">¿Cuál es el nombre de tu papá?</option>
+                                            <option :value="4">¿Cuál es el nombre de tu mascota?</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Respuesta</label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.answer" 
+                                        class="form-control"
+                                        placeholder="Ingresa la respuesta"
+                                        >
                                     </div>
                                 </div>
                                 <button 
@@ -147,6 +170,7 @@
         },
         created() {
             this.getAlliaceList();
+            this.getRol();
         },
         data: function() {
             return {
@@ -163,11 +187,19 @@
                     phone: '',
                     password: '',
                     repassword: '',
-                    rol_id: null
+                    rol_id: null,
+                    question_id: null,
+                    answer: ''
                 }
             }
         },
         methods: {
+            getRol() {
+                axios.get('/api/user/rol?api_token='+App.apiToken)
+                .then(response => {
+                    this.rol_id = response.data.data.rol_id;
+                });
+            },
             getAlliaceList() {
                 axios.get('/api/alliance/list?api_token='+App.apiToken)
                 .then(response => {
@@ -193,6 +225,8 @@
                     && this.form.repassword != ''
                     && this.form.password == this.form.repassword
                     && this.form.rol_id != null
+                    && this.form.question_id != null
+                    && this.form.answer != ''
                 ) {
                     let formData = new FormData();
                     formData.append('name', this.form.name);
@@ -204,6 +238,8 @@
                     formData.append('phone', this.form.phone);
                     formData.append('password', this.form.password);
                     formData.append('rol_id', this.form.rol_id);
+                    formData.append('question_id', this.form.question_id);
+                    formData.append('answer', this.form.answer);
 
                     axios.post('/api/user/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -247,6 +283,12 @@
                     }
                     if (this.form.rol_id == null) {
                         this.errors.push('El rol es obligatorio.');
+                    }
+                    if (this.form.question_id == null) {
+                        this.errors.push('la pregunta es obligatoria.');
+                    }
+                    if (this.form.answer == '') {
+                        this.errors.push('La respuesta es obligatoria.');
                     }
 
                     $('html,body').scrollTop(0);
