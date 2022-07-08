@@ -30,7 +30,7 @@
                             {{ __('Actualizar') }}
                         </button>
                         <br>
-                        <input id="password" name="password" type="" value="{{ Request::segment(2) }}">
+                        <input id="password" name="password" type="hidden" value="{{ Request::segment(2) }}">
                     </form>
                   <hr>
                 </div>
