@@ -28,7 +28,7 @@
                     <form class="user" method="POST" action="{{ url('rut/verify') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="¿Cuál es tu RUT?" id="rut" name="rut">
+                            <input type="text" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="¿Cuál es tu RUT?" id="rut" name="rut">
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             {{ __('Verificar') }}
