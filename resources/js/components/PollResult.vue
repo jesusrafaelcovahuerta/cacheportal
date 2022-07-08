@@ -26,43 +26,22 @@
                             </center>
                         </div>
                         <div v-else>
-                            <div v-if="rowsQuantity > 0">
-                                <table v-if="total > 0" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Pregunta</th>
-                                            <th>Si</th>
-                                            <th>No</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(post, index) in posts" v-bind:index="index">
-                                            <td>{{ posts[index].question }}</td>
-                                            <td>{{ posts[index].yes_answer }}</td>
-                                            <td>{{ posts[index].no_answer }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div v-else>
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Resultado</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Resultado</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">No hay resultados</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Pregunta</th>
+                                        <th>Si</th>
+                                        <th>No</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(post, index) in posts" v-bind:index="index">
+                                        <td>{{ posts[index].question }}</td>
+                                        <td>{{ posts[index].yes_answer }}</td>
+                                        <td>{{ posts[index].no_answer }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
