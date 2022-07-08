@@ -160,7 +160,7 @@ class UserController extends ApiResponseController
     public function edit($id)
     {
         $user = User::from('users as c')
-                        ->selectRaw('c.rut as rut, c.name as name, c.lastname as lastname, members.alliance_id as alliance_id, c.email as email, members.status as status, c.phone as phone')
+                        ->selectRaw('c.question_id as question_id, c.answer as answer, c.rut as rut, c.name as name, c.lastname as lastname, members.alliance_id as alliance_id, c.email as email, members.status as status, c.phone as phone')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'members.alliance_id')
                         ->where('c.rut', $id)
