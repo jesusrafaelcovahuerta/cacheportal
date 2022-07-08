@@ -96,6 +96,29 @@
                                         >
                                     </div>
                                 </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Pregunta de seguridad</label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.question_id"
+                                        >
+                                            <option :value="null">-Seleccionar-</option>
+                                            <option :value="1">¿Dónde nacistes?</option>
+                                            <option :value="2">¿Cuál es el nombre de tu mamá?</option>
+                                            <option :value="3">¿Cuál es el nombre de tu papá?</option>
+                                            <option :value="4">¿Cuál es el nombre de tu mascota?</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Respuesta</label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.answer" 
+                                        class="form-control"
+                                        placeholder="Ingresa la respuesta"
+                                        >
+                                    </div>
+                                </div>
                                 <button 
                                 type="submit"
                                 class="btn btn-success btn-icon-split">
@@ -146,7 +169,9 @@
                     phone: '',
                     password: '',
                     repassword: '',
-                    rol_id: null
+                    rol_id: null,
+                    question_id: null,
+                    answer: ''
                 }
             }
         },
@@ -174,6 +199,8 @@
                     this.$set(this.form, 'alliance_id', this.post.alliance_id);
                     this.$set(this.form, 'email', this.post.email);
                     this.$set(this.form, 'phone', this.post.phone);
+                    this.$set(this.form, 'question_id', this.post.question_id);
+                    this.$set(this.form, 'answer', this.post.answer);
                 });
             },
             getAlliaceList() {
@@ -197,6 +224,8 @@
                     && this.form.alliance_id != null
                     && this.form.email != ''
                     && this.form.phone != ''
+                    && this.form.question_id != null
+                    && this.form.answer != ''
                 ) {
                     let formData = new FormData();
                     formData.append('rut', this.form.rut);
@@ -206,6 +235,8 @@
                     formData.append('email', this.form.email);
                     formData.append('phone', this.form.phone);
                     formData.append('password', this.form.password);
+                    formData.append('question_id', this.form.question_id);
+                    formData.append('answer', this.form.answer);
 
                     axios.post('/api/user/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -240,6 +271,12 @@
                     }
                     if (this.form.phone == null) {
                         this.errors.push('El teléfono es obligatorio.');
+                    }
+                    if (this.form.question_id == null) {
+                        this.errors.push('la pregunta es obligatoria.');
+                    }
+                    if (this.form.answer == '') {
+                        this.errors.push('La respuesta es obligatoria.');
                     }
 
                     $('html,body').scrollTop(0);
