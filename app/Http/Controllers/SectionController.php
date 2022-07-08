@@ -18,6 +18,17 @@ class SectionController extends ApiResponseController
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('backend.index');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
