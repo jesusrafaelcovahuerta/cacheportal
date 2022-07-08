@@ -31,6 +31,8 @@ class PasswordController extends Controller
 
             $user->password = md5($request->password);
             $user->save();
+
+            return redirect('login/success');
         } else {
             return redirect('password/error');
         }

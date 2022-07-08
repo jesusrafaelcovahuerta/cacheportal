@@ -20,6 +20,11 @@
                         <br>
                         <br>
                     </div>
+                    @if(Request::segment(2) == 'success')
+                      <div class="alert alert-success" role="alert">
+                          La contraseña ha sido actualizada con éxito. Por favor ingrese nuevamente
+                      </div>
+                    @endif
                     <form class="user" method="POST" action="{{ url('enter') }}">
                         @csrf
                         <div class="form-group">
