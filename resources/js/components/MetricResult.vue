@@ -99,6 +99,7 @@
     export default {
         created() {
             this.getRol();
+            this.getTopVisit();
             this.getPosts();
             this.getCityGraphic();
             this.getRegionGraphic();
