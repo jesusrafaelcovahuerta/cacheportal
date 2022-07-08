@@ -39,6 +39,7 @@
 
     <script>
       $(document).ready(function(){
+        alert(1);
         $('#rut').mask('00/00/0000');
       });
     </script>
