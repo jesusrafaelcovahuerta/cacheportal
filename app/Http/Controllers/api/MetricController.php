@@ -34,6 +34,7 @@ class MetricController extends ApiResponseController
     {
         $catch_data = CatchData::from('catch_data as c')
                         ->selectRaw('c.page as page, COUNT(c.page) as total')
+                        ->where('page', '<>', 'Home')
                         ->groupBy('c.page')
                         ->take(10)
                         ->orderBy('total', 'DESC')
