@@ -125,7 +125,7 @@ class PollController extends ApiResponseController
         $id = $request->segment(4);
 
         $poll_questions = PollQuestion::from('poll_questions as c')
-                        ->selectRaw('c.question as question')
+                        ->selectRaw('c.poll_question_id as poll_question_id')
                         ->where('poll_id', $id)
                         ->get();
 
