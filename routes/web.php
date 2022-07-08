@@ -33,7 +33,7 @@ Route::get('/rut/error', 'RutController@index');
 Route::post('/rut/verify', 'RutController@verify');
 Route::get('/question', 'QuestionController@index');
 Route::get('/question/error', 'QuestionController@index');
-Route::get('/question/verify', 'QuestionController@verify');
+Route::post('/question/verify', 'QuestionController@verify');
 Route::get('/password', 'PasswordController@index');
 
 /*
