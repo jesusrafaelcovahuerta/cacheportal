@@ -88,10 +88,15 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
                                         >
+                                            <option :value="1">Personalizado</option>
                                             <option :value="2">Ionic Icon</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 1">
+                                        <label for="exampleInputEmail1">Icono</label>
+                                        <input ref="file" accept="image/png" type="file" class="form-control" v-on:change="onFileChange">
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 2">
                                         <label for="exampleInputEmail1">Ionic Icon - <a href="https://ionicframework.com/docs/v3/ionicons/" target= "_blank">Ver iconos</a></label>
                                         <input
                                             type="text" 
