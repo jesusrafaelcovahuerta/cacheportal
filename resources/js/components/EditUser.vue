@@ -245,7 +245,7 @@
                     })
                     .finally(() => {
                         this.loading = false;
-                        this.$awn.success("El registro ha sido agregado", {labels: {success: "Éxito"}});
+                        this.$awn.success("El registro ha sido actualizado", {labels: {success: "Éxito"}});
                         this.$router.push('/user');
                     });
                 } else {

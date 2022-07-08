@@ -201,6 +201,8 @@ class UserController extends ApiResponseController
         $user->lastname = $request->lastname;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->question_id = $request->question_id;
+        $user->answer = $request->answer;
         if($request->password != '') {
             $user->password = md5($request->password);
         }
