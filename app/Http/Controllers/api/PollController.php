@@ -133,24 +133,24 @@ class PollController extends ApiResponseController
 
         foreach($poll_questions as $poll_question) {
             $poll_positive_answer_question = PollQuestion::from('poll_questions as c')
-                        ->selectRaw('c.question as question, COUNT(poll_question_answers.answer) as yes_answer')
+                        ->selectRaw('c.question as question, COUNT(*) as yes_answer')
                         ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
                         ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
                         ->where('poll_question_answers.answer', 'Si')
                         ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
                         ->where('poll_question_answers.poll_id', $id)
                         ->groupBy('poll_question_answers.answer')
-                        ->get();
+                        ->first();
 
             $poll_negative_answer_question = PollQuestion::from('poll_questions as c')
-                        ->selectRaw('c.question as question, COUNT(poll_question_answers.answer) as no_answer')
+                        ->selectRaw('c.question as question, COUNT(*) as no_answer')
                         ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
                         ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
                         ->where('poll_question_answers.answer', 'No')
                         ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
                         ->where('poll_question_answers.poll_id', $id)
                         ->groupBy('poll_question_answers.answer')
-                        ->get();
+                        ->first();
 
             $data[$i]['question'] = $poll_question->question;
             $data[$i]['yes_answer'] = $poll_positive_answer_question->yes_answer;
