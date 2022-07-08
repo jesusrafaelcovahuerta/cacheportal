@@ -11,7 +11,7 @@ class RutController extends Controller
 {
     public function index()
     {
-        return view('auth.password');
+        return view('auth.rut');
     }
 
     public function verify(Request $request)
