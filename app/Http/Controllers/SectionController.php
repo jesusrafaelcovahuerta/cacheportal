@@ -29,6 +29,16 @@ class SectionController extends ApiResponseController
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.index');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
