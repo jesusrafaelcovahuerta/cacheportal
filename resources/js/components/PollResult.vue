@@ -4,10 +4,13 @@
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
                 Resultado de Encuestas 
-                <export-excel
-                    :data="json_data">
-                    Descargar
-                </export-excel>
+                <button class="btn btn-primary">
+                    <export-excel
+                        :data="json_data">
+                        Descargar
+                        <i class="fas fa-arrow-down"></i>
+                    </export-excel>
+                </button>
             </h1>
             <hr>
             
