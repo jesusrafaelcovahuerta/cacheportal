@@ -88,6 +88,7 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
                                         >
+                                            <option :value="null">Seleccionar</option>
                                             <option :value="1">Personalizado</option>
                                             <option :value="2">Ionic Icon</option>
                                         </select>
@@ -195,7 +196,7 @@
                     color: '',
                     icon: '',
                     position: '',
-                    icon_type_id: 2,
+                    icon_type_id: null,
                     fai: '',
                     link_question_id: 2,
                     video_id: '',
