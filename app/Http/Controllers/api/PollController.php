@@ -132,9 +132,9 @@ class PollController extends ApiResponseController
         $i = 0;
 
         foreach($poll_questions as $poll_question) {
-            $poll_answer_question_qty = PollQuestion::from('poll_questions as c')
-                        ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
-                        ->where('poll_question_answers.poll_id', $id)
+            $poll_answer_question_qty = PollQuestionAnswer::from('poll_question_answers as c')
+                        ->where('c.question_id', $poll_question->poll_question_id)
+                        ->where('c.poll_id', $id)
                         ->count();
 
             $poll_positive_answer_question = PollQuestion::from('poll_questions as c')
