@@ -31,6 +31,7 @@ import Metric from './components/Metric';
 import ShowPoll from './components/ShowPoll';
 import EditPoll from './components/EditPoll';
 import MetricResult from './components/MetricResult';
+import PollResult from './components/PollResult';
 
 export default{
     mode: 'history',
@@ -197,6 +198,11 @@ export default{
           path: '/metric/result/:id',
           name: 'metricresult',
           component: MetricResult
+        },
+        {
+          path: '/poll/result/:id',
+          name: 'pollresult',
+          component: PollResult
         }
     ]
 }

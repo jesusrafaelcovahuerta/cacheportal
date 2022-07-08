@@ -120,6 +120,51 @@ class PollController extends ApiResponseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function result(Request $request)
+    {
+        $id = $request->segment(4);
+
+        $poll_questions = PollQuestion::from('poll_questions as c')
+                        ->selectRaw('c.question as question')
+                        ->where('poll_id', $id)
+                        ->get();
+
+        $i = 0;
+
+        foreach($poll_questions as $poll_question) {
+            $poll_positive_answer_question = PollQuestion::from('poll_questions as c')
+                        ->selectRaw('c.question as question, COUNT(*) as yes_answer')
+                        ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
+                        ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
+                        ->where('answer', 'Si')
+                        ->where('question_id', $poll_question->poll_question_id)
+                        ->where('poll_id', $id)
+                        ->first();
+
+            $poll_negative_answer_question = PollQuestion::from('poll_questions as c')
+                        ->selectRaw('c.question as question, COUNT(*) as no_answer')
+                        ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
+                        ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
+                        ->where('answer', 'No')
+                        ->where('question_id', $poll_question->poll_question_id)
+                        ->where('poll_id', $id)
+                        ->first();
+
+            $data[$i]['question'] = $poll_question->question;
+            $data[$i]['yes_answer'] = $poll_positive_answer_question->yes_answer;
+            $data[$i]['no_answer'] = $poll_negative_answer_question->no_answer;
+
+            $i = $i + 1;
+        }
+        
+        return $data;
+    }
+
+    /**
+     * Store the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function all(Request $request)
     {
         $id = $request->segment(4);
