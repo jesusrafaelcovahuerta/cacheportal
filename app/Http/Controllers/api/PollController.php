@@ -140,7 +140,7 @@ class PollController extends ApiResponseController
                         ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
                         ->where('poll_question_answers.poll_id', $id)
                         ->groupBy('poll_question_answers.answer')
-                        ->first();
+                        ->get();
 
             $poll_negative_answer_question = PollQuestion::from('poll_questions as c')
                         ->selectRaw('c.question as question, COUNT(poll_question_answers.answer) as no_answer')
@@ -150,7 +150,7 @@ class PollController extends ApiResponseController
                         ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
                         ->where('poll_question_answers.poll_id', $id)
                         ->groupBy('poll_question_answers.answer')
-                        ->first();
+                        ->get();
 
             $data[$i]['question'] = $poll_question->question;
             $data[$i]['yes_answer'] = $poll_positive_answer_question->yes_answer;
