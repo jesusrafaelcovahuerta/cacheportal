@@ -40,7 +40,7 @@ class MetricController extends ApiResponseController
 
         $data[0][0] = "Pagina";
         $data[0][1] = "Valores";
-        $data[0][2] = "{ role: 'style' }";
+        $data[0][2]['role'] = "style";
 
         $i = 1;
 
