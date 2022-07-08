@@ -14,9 +14,7 @@ class SectionController extends ApiResponseController
      */
     public function index()
     {
-        $sections = Section::paginate(100);
-
-        return $this->successResponse($sections);
+        return view('backend.index');
     }
 
     /**
