@@ -23,7 +23,7 @@ class UserController extends ApiResponseController
     public function index(Request $request)
     {
         $users = User::from('users as c')
-                        ->selectRaw('c.rut as rut, c.name as name, c.lastname as lastname, alliances.name as alliance, c.email as email, members.status as status, members.rol_id as rol_id')
+                        ->selectRaw('rols.rol as rol, c.rut as rut, c.name as name, c.lastname as lastname, alliances.name as alliance, c.email as email, members.status as status, members.rol_id as rol_id')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
                         ->leftJoin('rols', 'rols.rol_id', '=', 'members.rol_id')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'members.alliance_id')
