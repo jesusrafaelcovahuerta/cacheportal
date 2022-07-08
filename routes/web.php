@@ -21,6 +21,7 @@ Route::get('/alliance/create', 'AllianceController@create');
 Route::get('/alliance/edit/{id}', 'AllianceController@edit');
 Route::get('/category', 'CategoryController@index');
 Route::get('/category/show/{id}', 'CategoryController@show');
+Route::get('/section/edit/{id}', 'SectionController@edit');
 Route::get('/section/show/{id}', 'SectionController@show');
 Route::get('/content/show/{id}', 'ContentController@show');
 Route::get('/content', 'ContentController@index');
