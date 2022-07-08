@@ -132,6 +132,11 @@ class PollController extends ApiResponseController
         $i = 0;
 
         foreach($poll_questions as $poll_question) {
+            $poll_answer_question_qty = PollQuestion::from('poll_questions as c')
+                        ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
+                        ->where('poll_question_answers.poll_id', $id)
+                        ->count();
+
             $poll_positive_answer_question = PollQuestion::from('poll_questions as c')
                         ->selectRaw('COUNT(*) as yes_answer')
                         ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
@@ -153,8 +158,8 @@ class PollController extends ApiResponseController
                         ->first();
 
             $data[$i]['question'] = $poll_question->question;
-            $data[$i]['yes_answer'] = $poll_positive_answer_question->yes_answer;
-            $data[$i]['no_answer'] = $poll_negative_answer_question->no_answer;
+            $data[$i]['yes_answer'] = round(($poll_positive_answer_question->yes_answer*100)/$poll_answer_question_qty);
+            $data[$i]['no_answer'] = round(($poll_negative_answer_question->no_answer*100)/$poll_answer_question_qty);
 
             $i = $i + 1;
         }
