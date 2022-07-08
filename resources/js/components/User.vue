@@ -69,7 +69,7 @@
                                                 <router-link :to="`/user/edit/${post.rut}`" v-if="post.rol_id != 1 || rut == post.rut || rol_id == 3"  class="btn btn-primary btn-circle btn-sm">
                                                     <i class="fas fa-edit"></i>
                                                 </router-link>
-                                                <button v-if="post.status == 1 && post.rol_id == 3" v-on:click="deletePost(post.rut, index)" class="btn btn-danger btn-circle btn-sm">
+                                                <button v-if="post.status == 1 && rol_id == 3" v-on:click="deletePost(post.rut, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                                 <button v-if="post.status == 0" v-on:click="activatePost(post.rut, index)" class="btn btn-success btn-circle btn-sm">

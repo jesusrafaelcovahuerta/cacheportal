@@ -6,6 +6,26 @@
                 Resultado de Metricas
             </h1>
             <hr>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Páginas más visitadas</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <GChart
+                            type="ColumnChart"
+                            :options="options"
+                            :data="top_visit_result"
+                            /> 
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
             
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
@@ -100,6 +120,15 @@
                     this.loading = false;
                 });
             },
+            getTopVisit() {
+                axios.get('/api/metric/top_visit?api_token='+App.apiToken)
+                .then(response => {
+                    this.top_visit_result = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
             getCityGraphic() {
                 axios.get('/api/metric/city?api_token='+App.apiToken)
                 .then(response => {
@@ -163,6 +192,7 @@
                 rol_id: this.rol_id,
                 postsSelected: "",
                 posts: [],
+                top_visit_result: [],
                 city_result: [],
                 json_data: [],
                 region_result: [],

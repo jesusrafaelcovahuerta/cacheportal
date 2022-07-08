@@ -102,3 +102,4 @@ Route::get('content/move/{id}/{position}/{section_id}', 'api\ContentController@m
 Route::get('metric/city', 'api\MetricController@city');
 Route::get('metric/region', 'api\MetricController@region');
 Route::get('metric/page', 'api\MetricController@page');
+Route::get('metric/top_visit', 'api\MetricController@top_visit');
