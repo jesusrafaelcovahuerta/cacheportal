@@ -140,49 +140,6 @@
                 .then(response => {
                     this.rol_id = response.data.data.rol_id;
                 });
-            },
-            deletePost(id, index) {
-                if(confirm("¿Realmente usted quiere desactivar el registro?")) {
-                    this.loading = true; //the loading begin
-                    axios.get('/api/poll/destroy/'+id+'?api_token='+App.apiToken).then(response => {
-                        this.posts.splice(index, 1);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .finally(() => {
-                        this.loading = false;
-                        this.getPosts();
-                        this.$awn.success("El registro ha sido borrado", {labels: {success: "Éxito"}});
-                    });
-
-                    let formData = new FormData();
-                    formData.append('page', 'DeletePoll - '+id);
-                
-                    axios.post('/api/audit/store?api_token='+App.apiToken, formData)
-                    .then(function (response) {
-                        currentObj.success = response.data.success;
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                }
-            },
-            activatePost(id, index) {
-                if(confirm("¿Realmente usted quiere activar el registro?")) {
-                    this.loading = true; //the loading begin
-                    axios.get('/api/alliance/activate/'+id+'?api_token='+App.apiToken).then(response => {
-                        this.posts.splice(index, 1);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    .finally(() => {
-                        this.loading = false;
-                        this.getPosts();
-                        this.$awn.success("El registro ha sido activado", {labels: {success: "Éxito"}});
-                    });
-                }
             }
         },
         components: { 
