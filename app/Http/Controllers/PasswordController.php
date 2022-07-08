@@ -19,7 +19,7 @@ class PasswordController extends Controller
         $user_qty = User::from('users as c')
                         ->selectRaw('c.*')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
-                        ->where('passwod', $request->hidden_password)
+                        ->where('password', $request->hidden_password)
                         ->count();
         
         if($user_qty > 0) {
