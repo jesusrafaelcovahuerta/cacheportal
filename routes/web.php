@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/account', 'AccountController@index');
 Route::get('/section', 'SectionController@index');
 Route::get('/alliance', 'AllianceController@index');
+Route::get('/alliance/create', 'AllianceController@create');
 Route::get('/category', 'CategoryController@index');
 Route::get('/category/show/{id}', 'CategoryController@show');
 Route::get('/section/show/{id}', 'SectionController@show');
