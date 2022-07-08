@@ -4,12 +4,10 @@
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">
                 Resultado de Encuestas 
-                <router-link to="/poll/create" class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-check"></i>
-                    </span>
-                    <span class="text">Crear</span>
-                </router-link>
+                <export-excel
+                    :data="json_data">
+                    Descargar
+                </export-excel>
             </h1>
             <hr>
             
@@ -37,8 +35,8 @@
                                 <tbody>
                                     <tr v-for="(post, index) in posts" v-bind:index="index">
                                         <td>{{ posts[index].question }}</td>
-                                        <td>{{ posts[index].yes_answer }}</td>
-                                        <td>{{ posts[index].no_answer }}</td>
+                                        <td>{{ posts[index].yes_answer }} %</td>
+                                        <td>{{ posts[index].no_answer }} %</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -70,7 +68,7 @@
             getExcel(id) {
                 this.loading = true;
 
-                axios.get('/api/poll/excel/'+id+'?page='+this.currentPage+'&api_token='+App.apiToken)
+                axios.get('/api/poll/excel/'+id+'?api_token='+App.apiToken)
                 .then(response => {
                     this.json_data = response.data.data;
                 })

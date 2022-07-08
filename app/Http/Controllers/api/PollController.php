@@ -137,29 +137,21 @@ class PollController extends ApiResponseController
                         ->where('c.poll_id', $id)
                         ->count();
 
-            $poll_positive_answer_question = PollQuestion::from('poll_questions as c')
-                        ->selectRaw('COUNT(*) as yes_answer')
-                        ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
-                        ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
-                        ->where('poll_question_answers.answer', 'Si')
-                        ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
-                        ->where('poll_question_answers.poll_id', $id)
-                        ->groupBy('poll_question_answers.answer')
-                        ->first();
+            $yes_poll_answer_question_qty = PollQuestionAnswer::from('poll_question_answers as c')
+                        ->where('c.question_id', $poll_question->poll_question_id)
+                        ->where('c.poll_id', $id)
+                        ->where('c.answer', 'Si')
+                        ->count();
 
-            $poll_negative_answer_question = PollQuestion::from('poll_questions as c')
-                        ->selectRaw('COUNT(*) as no_answer')
-                        ->leftJoin('polls', 'polls.poll_id', '=', 'c.poll_id')
-                        ->leftJoin('poll_question_answers', 'poll_question_answers.poll_id', '=', 'c.poll_id')
-                        ->where('poll_question_answers.answer', 'No')
-                        ->where('poll_question_answers.question_id', $poll_question->poll_question_id)
-                        ->where('poll_question_answers.poll_id', $id)
-                        ->groupBy('poll_question_answers.answer')
-                        ->first();
+            $no_poll_answer_question_qty = PollQuestionAnswer::from('poll_question_answers as c')
+                        ->where('c.question_id', $poll_question->poll_question_id)
+                        ->where('c.poll_id', $id)
+                        ->where('c.answer', 'No')
+                        ->count();
 
             $data[$i]['question'] = $poll_question->question;
-            $data[$i]['yes_answer'] = round(($poll_positive_answer_question->yes_answer*100)/$poll_answer_question_qty);
-            $data[$i]['no_answer'] = round(($poll_negative_answer_question->no_answer*100)/$poll_answer_question_qty);
+            $data[$i]['yes_answer'] = round(($yes_poll_answer_question_qty*100)/$poll_answer_question_qty);
+            $data[$i]['no_answer'] = round(($no_poll_answer_question_qty*100)/$poll_answer_question_qty);
 
             $i = $i + 1;
         }
