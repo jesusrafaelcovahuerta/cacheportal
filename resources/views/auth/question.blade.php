@@ -20,6 +20,11 @@
                         <br>
                         <br>
                     </div>
+                    @if(Request::segment(2) == 'error')
+                      <div class="alert alert-danger" role="alert">
+                          La pregunta o respuesta son incorrectas
+                      </div>
+                    @endif
                     <form class="user" method="POST" action="{{ url('question/verify') }}">
                         @csrf
                         <div class="form-group">

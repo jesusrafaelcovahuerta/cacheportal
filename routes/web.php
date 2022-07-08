@@ -32,6 +32,8 @@ Route::get('/rut', 'RutController@index');
 Route::get('/rut/error', 'RutController@index');
 Route::post('/rut/verify', 'RutController@verify');
 Route::get('/question', 'QuestionController@index');
+Route::get('/question/error', 'QuestionController@index');
+Route::get('/password', 'PasswordController@index');
 
 /*
 Route::get('/{any}', function () {

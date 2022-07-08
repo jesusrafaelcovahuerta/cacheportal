@@ -7,33 +7,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class QuestionController extends Controller
+class PasswordController extends Controller
 {
     public function index()
     {
-        return view('auth.question');
+        return view('auth.password');
     }
 
-    public function verify(Request $request)
+    public function update(Request $request)
     {
         $user_qty = User::from('users as c')
                         ->selectRaw('c.*')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
-                        ->where('question_id', $request->question_id)
-                        ->where('answer', $request->answer)
+                        ->where('password', $request->hidden_password)
                         ->count();
         
-        $user = User::from('users as c')
+        if($user_qty > 0) {
+            $user = User::from('users as c')
                         ->selectRaw('c.*')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
-                        ->where('question_id', $request->question_id)
-                        ->where('answer', $request->answer)
+                        ->where('password', $request->hidden_password)
                         ->first();
 
-        if($user_qty > 0) {
-            return redirect('password/'.$user->password);
+            $user->password = md5($request->password);
+            $user->save();
         } else {
-            return redirect('question/error');
+            return redirect('password/error');
         }
     }
 }
