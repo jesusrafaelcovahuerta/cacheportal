@@ -9,6 +9,11 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    public function index()
+    {
+        return view('auth.login');
+    }
+
     public function login(Request $request)
     {
         $rut = $request->rut;
@@ -36,6 +41,7 @@ class LoginController extends Controller
             return redirect('login');
         }
     }
+
     public function logout()
     {
         Auth::logout();
