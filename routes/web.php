@@ -38,6 +38,7 @@ Route::post('/question/verify', 'QuestionController@verify');
 Route::get('/password', 'PasswordController@index');
 Route::get('/password/{code}', 'PasswordController@index');
 Route::post('/password/update', 'PasswordController@update');
+Route::get('/user', 'UserController@index');
 
 /*
 Route::get('/{any}', function () {
