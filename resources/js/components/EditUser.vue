@@ -95,8 +95,6 @@
                                         placeholder="Ingresa la contraseña"
                                         >
                                     </div>
-                                </div>
-                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Pregunta de seguridad</label>
                                         <select class="form-control" id="exampleFormControlSelect1"
