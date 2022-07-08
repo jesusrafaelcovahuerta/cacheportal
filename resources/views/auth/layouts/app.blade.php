@@ -39,7 +39,7 @@
 
     <script>
       $(document).ready(function(){
-        $('#rut').inputmask();
+        $(':input').inputmask();
       });
     </script>
 </body>
