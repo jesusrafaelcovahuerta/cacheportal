@@ -28,7 +28,7 @@
                     <form class="user" method="POST" action="{{ url('question/verify') }}">
                         @csrf
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="question">
+                            <select class="form-control" id="exampleFormControlSelect1" name="question_id">
                                 <option :value="null">-Seleccionar-</option>
                                 <option value="1">¿Donde nacistes?</option>
                                 <option value="2">¿Cuál es el nombre de tu mamá?</option>
@@ -37,7 +37,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Respuesta" id="rut" name="rut">
+                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Respuesta" id="rut" name="answer">
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-user btn-block">

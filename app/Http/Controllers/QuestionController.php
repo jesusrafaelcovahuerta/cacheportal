@@ -19,7 +19,7 @@ class QuestionController extends Controller
         $user_qty = User::from('users as c')
                         ->selectRaw('c.*')
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
-                        ->where('quesion_id', $request->question_id)
+                        ->where('question_id', $request->question_id)
                         ->where('answer', $request->answer)
                         ->count();
         
