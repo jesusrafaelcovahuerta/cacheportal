@@ -28,7 +28,7 @@
                     <form class="user" method="POST" action="{{ url('enter') }}">
                         @csrf
                         <div class="form-group">
-                            <input data-inputmask = " 'mask' : 'xx-xxxxxxx'" type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="RUT" id="rut" name="rut">
+                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="RUT" id="rut" name="rut">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Contraseña">

@@ -39,7 +39,7 @@
 
     <script>
       $(document).ready(function(){
-        $(':input').inputmask();
+        $(':input').inputmask("xx-xxxxxxxx");
       });
     </script>
 </body>
