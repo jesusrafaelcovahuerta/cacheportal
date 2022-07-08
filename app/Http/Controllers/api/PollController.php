@@ -148,7 +148,9 @@ class PollController extends ApiResponseController
                         ->where('c.poll_id', $id)
                         ->where('c.answer', 'No')
                         ->count();
-
+echo $poll_answer_question_qty;
+echo '<br>';
+echo $yes_poll_answer_question_qty;
             $data[$i]['question'] = $poll_question->question;
             $data[$i]['yes_answer'] = round(($yes_poll_answer_question_qty*100)/$poll_answer_question_qty);
             $data[$i]['no_answer'] = round(($no_poll_answer_question_qty*100)/$poll_answer_question_qty);
