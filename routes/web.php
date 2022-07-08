@@ -28,6 +28,8 @@ Route::get('/section/edit/{id}', 'SectionController@edit');
 Route::get('/section/show/{id}', 'SectionController@show');
 Route::get('/content/show/{id}', 'ContentController@show');
 Route::get('/content', 'ContentController@index');
+Route::get('/content/create', 'ContentController@create');
+Route::get('/content/edit/{id}', 'ContentController@edit');
 Route::get('/poll', 'PollController@index');
 Route::get('/poll/create', 'PollController@create');
 Route::get('/poll/show/{id}', 'PollController@show');
