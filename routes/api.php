@@ -104,3 +104,4 @@ Route::get('metric/region', 'api\MetricController@region');
 Route::get('metric/page', 'api\MetricController@page');
 Route::get('metric/top_visit', 'api\MetricController@top_visit');
 Route::get('poll/result/{id}', 'api\PollController@result');
+Route::get('poll/excel/{id}', 'api\PollController@excel');

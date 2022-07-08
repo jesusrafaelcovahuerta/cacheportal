@@ -120,6 +120,22 @@ class PollController extends ApiResponseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function excel(Request $request)
+    {
+        $id = $request->segment(4);
+
+        $poll_question_answers = PollQuestionAnswer::from('poll_question_answers as c')
+                        ->where('c.poll_id', $id)
+                        ->get();
+
+        return $this->successResponse($poll_question_answers);
+    }
+
+    /**
+     * Store the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function result(Request $request)
     {
         $id = $request->segment(4);
