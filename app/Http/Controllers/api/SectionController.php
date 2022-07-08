@@ -68,9 +68,11 @@ class SectionController extends ApiResponseController
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-        $video = explode("=", $request->video_id);
-        $video = explode("&", $video[1]);
-        $section->video_id = $video[0];
+        if($request->video_id != 'undefined') {
+            $video = explode("=", $request->video_id);
+            $video = explode("&", $video[1]);
+            $section->video_id = $video[0];
+        }
         
         $move_position_sections = Section::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
