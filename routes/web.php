@@ -49,6 +49,7 @@ Route::get('/password', 'PasswordController@index');
 Route::get('/password/{code}', 'PasswordController@index');
 Route::post('/password/update', 'PasswordController@update');
 Route::get('/user', 'UserController@index');
+Route::get('/metric', 'MetricController@index');
 
 /*
 Route::get('/{any}', function () {
