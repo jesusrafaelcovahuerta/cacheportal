@@ -71,7 +71,7 @@
             getExcel(id) {
                 this.loading = true;
 
-                axios.get('/api/poll/excel/'+id+'?api_token='+App.apiToken)
+                axios.get('/api/poll/excel/'+ this.$route.params.id +'?api_token='+App.apiToken)
                 .then(response => {
                     this.json_data = response.data.data;
                 })
