@@ -36,7 +36,7 @@ class MetricController extends ApiResponseController
                         ->selectRaw('c.page as page, COUNT(c.page) as total')
                         ->groupBy('c.page')
                         ->take(10)
-                        ->orderBy('COUNT(c.page)', 'DESC')
+                        ->orderBy('total', 'DESC')
                         ->get();
 
         $data[0][0] = "Pagina";
