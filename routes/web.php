@@ -33,6 +33,7 @@ Route::get('/content/edit/{id}', 'ContentController@edit');
 Route::get('/poll', 'PollController@index');
 Route::get('/poll/create', 'PollController@create');
 Route::get('/poll/edit/{id}', 'PollController@edit');
+Route::get('/poll/result/{id}', 'PollController@result');
 Route::get('/poll/show/{id}', 'PollController@show');
 Route::post('/enter', 'LoginController@login');
 Route::get('/', 'HomeController@index');
