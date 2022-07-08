@@ -20,6 +20,8 @@ Route::get('/alliance', 'AllianceController@index');
 Route::get('/alliance/create', 'AllianceController@create');
 Route::get('/alliance/edit/{id}', 'AllianceController@edit');
 Route::get('/category', 'CategoryController@index');
+Route::get('/category/create', 'CategoryController@create');
+Route::get('/category/edit/{id}', 'CategoryController@edit');
 Route::get('/category/show/{id}', 'CategoryController@show');
 Route::get('/section/create', 'SectionController@create');
 Route::get('/section/edit/{id}', 'SectionController@edit');
