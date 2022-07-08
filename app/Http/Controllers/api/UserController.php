@@ -27,6 +27,7 @@ class UserController extends ApiResponseController
                         ->leftJoin('members', 'members.user_id', '=', 'c.rut')
                         ->leftJoin('rols', 'rols.rol_id', '=', 'members.rol_id')
                         ->leftJoin('alliances', 'alliances.rut', '=', 'members.alliance_id')
+                        ->where('rols.rol_id', '<>', 3)
                         ->orderBy('c.rut', 'ASC')
                         ->paginate(10);
         
