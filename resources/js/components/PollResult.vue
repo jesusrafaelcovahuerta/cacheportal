@@ -68,12 +68,13 @@
             this.storeAudit();
         },
         methods: {
-            getExcel(id) {
+            getExcel() {
                 this.loading = true;
 
                 axios.get('/api/poll/excel/'+ this.$route.params.id +'?api_token='+App.apiToken)
                 .then(response => {
                     this.json_data = response.data.data;
+                    console.log(this.json_data);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -137,6 +138,7 @@
                 supervisor_posts: [],
                 rol_id: this.rol_id,
                 postsSelected: "",
+                json_data: [],
                 posts: [],
                 currentPage: 1,
                 total: 0,
