@@ -68,6 +68,8 @@ class SectionController extends ApiResponseController
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
+        echo $request->video_id;
+        die();
         if($request->video_id != 'undefined') {
             $video = explode("=", $request->video_id);
             $video = explode("&", $video[1]);
