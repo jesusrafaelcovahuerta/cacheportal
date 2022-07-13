@@ -254,11 +254,17 @@
                     if(this.post.icon_type_id == 2) {
                         var icon = this.post.icon;
                         var icon_detail = icon.split(' ');
+                        var icon = icon_detail[0]+' '+icon_detail[1];
+                        this.$set(this.form, 'fai', icon);
+                    } else {
+                        var icon = this.post.icon;
+                        var icon_detail = icon.split(' ');
                         var icon_detail = icon_detail[1];
                         var icon_detail = icon_detail.split('-');
                         var icon = 'ios-'+icon_detail[2];
                         this.$set(this.form, 'fai', icon);
                     }
+
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     this.$set(this.form, 'link_question_id', this.post.link_question_id);
                     this.$set(this.form, 'url', this.post.url);
