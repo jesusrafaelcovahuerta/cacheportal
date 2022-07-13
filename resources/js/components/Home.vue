@@ -87,5 +87,7 @@
 .alert-secondary {
   color: #FFF !important;
   background-color: rgb(47, 47, 98);
+  text-align: center !important;
+  font-weight: bold;
 }
 </style>
