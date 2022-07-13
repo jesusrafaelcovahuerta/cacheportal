@@ -249,7 +249,7 @@
                     this.post = response.data.data;
                     
                     this.$set(this.form, 'title', this.post.section_title);
-                    this.$set(this.form, 'title', this.post.section_subtitle);
+                    this.$set(this.form, 'subtitle', this.post.section_subtitle);
                     this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
@@ -307,6 +307,7 @@
                 ) {
                     let formData = new FormData();
                     formData.append('title', this.form.title);
+                    formData.append('subtitle', this.form.subtitle);
                     formData.append('color', this.form.color);
                     formData.append('icon_type_id', this.form.icon_type_id);
                     if(this.form.icon_type_id == 1) {
