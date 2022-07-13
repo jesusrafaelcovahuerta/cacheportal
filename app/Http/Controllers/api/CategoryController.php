@@ -183,11 +183,7 @@ class CategoryController extends ApiResponseController
         if($request->file != 'undefined') { 
             $category->banner = $fileName;
         }
-        if(isset($icon_fileName)) {
-            if($icon_fileName != '' && $icon_fileName != null) {
-                $category->icon = 'icon ion-'.$icon_fileName.' home_icon_size2';
-            }
-        }
+
         if($category->save()) {
             if($request->file != 'undefined') { 
                 Storage::disk('local')->putFileAs(
@@ -263,11 +259,7 @@ class CategoryController extends ApiResponseController
         if($request->file != 'undefined') { 
             $category->banner = $fileName;
         }
-        if(isset($icon_fileName)) {
-            if($icon_fileName != '' && $icon_fileName != null) {
-                $category->icon = 'icon ion-'.$icon_fileName.' home_icon_size2';
-            }
-        }
+
         if($category->save()) {
             if($request->file != 'undefined') { 
                 Storage::disk('local')->putFileAs(
