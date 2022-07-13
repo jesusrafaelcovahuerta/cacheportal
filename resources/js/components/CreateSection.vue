@@ -53,7 +53,6 @@
                                         class="form-control"
                                         placeholder="Ingresa el subtítulo"
                                         >
-                                        <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
