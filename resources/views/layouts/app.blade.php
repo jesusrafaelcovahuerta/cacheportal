@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/fakeLoader.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/css/swiper.min.css') }}">
 
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css">
+
 
 	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
