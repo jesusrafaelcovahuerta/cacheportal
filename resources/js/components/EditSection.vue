@@ -208,7 +208,7 @@
                     color: '',
                     icon: '',
                     position: '',
-                    icon_type_id: 2,
+                    icon_type_id: null,
                     fai: '',
                     google_tag: '',
                     link_question_id: 2,

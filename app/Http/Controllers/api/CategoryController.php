@@ -164,6 +164,12 @@ class CategoryController extends ApiResponseController
         $category->google_tag = 'category_' . $request->google_tag;
         $category->position = $request->position;
 
+        if($request->icon_type_id == 2) {
+            $category->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $category->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
+
         $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_categories as $move_position_category) {
@@ -234,6 +240,12 @@ class CategoryController extends ApiResponseController
         $category->google_tag = 'category_' . $request->google_tag;
         $old_position = $category->position;
         $category->position = $request->position;
+
+        if($request->icon_type_id == 2) {
+            $category->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $category->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
         
         if($old_position != $request->position) {
             $move_position_categories = Category::where('section_id', $category->section_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();

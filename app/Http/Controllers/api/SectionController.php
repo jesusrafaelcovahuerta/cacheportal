@@ -217,6 +217,13 @@ class SectionController extends ApiResponseController
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
         $video = explode("=", $request->video_id);
+
+        if($request->icon_type_id == 2) {
+            $section->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
+        
         $video = explode("&", $video[1]);
         $section->video_id = $video[0];
         if(isset($fileName)) {
