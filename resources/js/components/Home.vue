@@ -1,13 +1,13 @@
 <template>
     <div class="container pt-32">
-        <b-alert show variant="secondary"><a href="#" class="alert-link">Haz click en los botones para ver cada contenido</a></b-alert>
+        <b-alert show variant="secondary">Haz click en los botones para ver cada contenido</b-alert>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link @click.native="Track(post.google_tag)" v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
-                    <font class="section_title">{{ post.section_title }}</font><br><i v-bind:class="post.icon"></i>
+                    <font class="section_title">{{ post.section_title }}</font><br><font-awesome-icon icon="fa-solid fa-user-secret" />
                 </router-link>
                 <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
-                    <font class="section_title">{{ post.section_title }}</font><br> <i v-bind:class="post.icon"></i>
+                    <font class="section_title">{{ post.section_title }}</font><br> <font-awesome-icon icon="fa-solid fa-user-secret" />
                 </button>
 		    </div>
         </div>
@@ -85,7 +85,7 @@
 </script>
 <style scoped>
 .alert-secondary {
-  color: #FFF;
+  color: #FFF !important;
   background-color: rgb(47, 47, 98);
 }
 </style>
