@@ -61,7 +61,12 @@ class SectionController extends ApiResponseController
         $section = new Section();
         $section->section_title = $request->title;
         $section->color = $request->color;
-        $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        if($request->icon_type_id == 2) {
+            $section->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
+        
         $section->icon_type_id = $request->icon_type_id;
         $section->status = 1;
         $section->position = $request->position;
