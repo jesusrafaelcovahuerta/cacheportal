@@ -37,7 +37,7 @@
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
-                                        maxlength="24"
+                                        maxlength="25"
                                         v-model="form.title" 
                                         class="form-control"
                                         placeholder="Ingresa el título"
@@ -88,10 +88,26 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
                                         >
-                                            <option :value="2">Ionic Icon</option>
+                                            <option :value="null">Seleccionar</option>
+                                            <option :value="1">Personalizado</option>
+                                            <option :value="2">Fa Icon</option>
+                                            <option :value="3">Ionic Icon</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 1">
+                                        <label for="exampleInputEmail1">Icono</label>
+                                        <input ref="file" accept="image/png" type="file" class="form-control" v-on:change="onFileChange">
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 2">
+                                        <label for="exampleInputEmail1">Fa Icon - <a href="https://fontawesome.com/icons" target= "_blank">Ver iconos</a></label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.fai" 
+                                            class="form-control"
+                                            placeholder="Ingresa el icono"
+                                        >
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 3">
                                         <label for="exampleInputEmail1">Ionic Icon - <a href="https://ionicframework.com/docs/v3/ionicons/" target= "_blank">Ver iconos</a></label>
                                         <input
                                             type="text" 
@@ -224,6 +240,8 @@
                     this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
+                    this.$set(this.form, 'fai', this.post.icon);
+                    this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     this.$set(this.form, 'google_tag', this.post.google_tag);
                     this.$set(this.form, 'video_id', "https://www.youtube.com/watch?v="+this.post.video_id);
 
@@ -339,7 +357,7 @@
             },
             charactersLeft() {
                 var char = this.form.title.length,
-                    limit = 24;
+                    limit = 25;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
             }
