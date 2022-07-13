@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -44,7 +44,18 @@
                                         >
                                         <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Sub-título</label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.subtitle" 
+                                        maxlength="25"
+                                        class="form-control"
+                                        placeholder="Ingresa el subtítulo"
+                                        >
+                                        <span class="col-sm-12">{{charactersLeft}}</span>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -214,7 +225,8 @@
                     link_question_id: 2,
                     url: '',
                     video_id: '',
-                    youtube_question_id: 2
+                    youtube_question_id: 2,
+                    subtitle: ''
                 }
             }
         },
@@ -237,6 +249,7 @@
                     this.post = response.data.data;
                     
                     this.$set(this.form, 'title', this.post.section_title);
+                    this.$set(this.form, 'title', this.post.section_subtitle);
                     this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);

@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-32">
-        <div class="row">
-            <h2><center>Prueba de título</center></h2>
+        <div class="row" v-if="post.section_subtitle != ''">
+            <h2><center>{{ post.section_subtitle }}</center></h2>
         </div>
         <div v-if="post.video_id != 0" class="row">
             <h1><center>{{ post.section_title }}</center></h1>

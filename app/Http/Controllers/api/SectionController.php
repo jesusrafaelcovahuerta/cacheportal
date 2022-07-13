@@ -60,6 +60,7 @@ class SectionController extends ApiResponseController
 
         $section = new Section();
         $section->section_title = $request->title;
+        $section->section_subtitle = $request->section_subtitle;
         $section->color = $request->color;
         if($request->icon_type_id == 2) {
             $section->icon = $fileName.' home_icon_size2';
@@ -208,6 +209,7 @@ class SectionController extends ApiResponseController
         }
 
         $section = Section::find($id);
+        $section->section_subtitle = $request->section_subtitle;
         $section->section_title = $request->title;
         $section->color = $request->color;
         $old_icon_type = $section->icon_type_id;
