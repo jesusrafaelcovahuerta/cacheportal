@@ -226,11 +226,6 @@ class SectionController extends ApiResponseController
         
         $video = explode("&", $video[1]);
         $section->video_id = $video[0];
-        if(isset($fileName)) {
-            if($fileName != '' && $fileName != null) {
-                $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
-            }
-        }
 
         $old_position = $section->position;
         $section->position = $request->position;
