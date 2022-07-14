@@ -44,6 +44,7 @@
         "vue-gtag": "^1.16.1",
         "vue-lazytube": "^1.1.1",
         "vue-native-color-picker": "^1.2.0",
+        "vue-pdf": "^4.3.0",
         "vue-plain-pagination": "^0.3.0",
         "vue-router": "^3.3.4",
         "vue-spinner": "^1.0.4",
