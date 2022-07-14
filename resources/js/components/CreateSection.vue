@@ -38,7 +38,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.title" 
-                                        maxlength="25"
+                                        maxlength="40"
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
@@ -49,7 +49,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.subtitle" 
-                                        maxlength="25"
+                                        maxlength="30"
                                         class="form-control"
                                         placeholder="Ingresa el subtítulo"
                                         >

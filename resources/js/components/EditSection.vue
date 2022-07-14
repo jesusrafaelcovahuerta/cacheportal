@@ -49,7 +49,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.subtitle" 
-                                        maxlength="25"
+                                        maxlength="40"
                                         class="form-control"
                                         placeholder="Ingresa el subtítulo"
                                         >
@@ -254,7 +254,9 @@
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'fai', this.post.icon);
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
-                    this.$set(this.form, 'google_tag', this.post.google_tag);
+                    var google_tag = this.post.google_tag;
+                    var google_tag_detail = google_tag.split('_');
+                    this.$set(this.form, 'google_tag', google_tag_detail[1]);
                     this.$set(this.form, 'video_id', "https://www.youtube.com/watch?v="+this.post.video_id);
 
                     if(this.post.video_id != 0) {
