@@ -15,12 +15,7 @@
                 </div>
                 
                 <div v-if="videoID !== null">
-                {{ this.post.video_type_id }}
                     <div v-if="this.post.video_type_id == 1">
-                    {{this.post.video_type_id}}
-                        <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${videoID}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div v-if="this.post.video_type_id == 2">
                         <vimeo-player
                             class="vimeo"
                             ref="player"
@@ -31,6 +26,9 @@
                             :player-height="320"
                             :player-width="640"
                         ></vimeo-player>
+                    </div>
+                    <div v-if="this.post.video_type_id == 2">
+                        <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${videoID}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
                 <hr>	
