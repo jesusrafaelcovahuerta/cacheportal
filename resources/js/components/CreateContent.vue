@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -59,7 +59,7 @@
                                         >
                                         <span>{{charactersLeft}}</span>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div v-if="form.type_id == 1">
                                             <label for="exampleInputEmail1">ID del Video Vimeo <h6 class="m-0 text-danger float-right">*</h6></label>
                                             <select class="form-control" id="exampleFormControlSelect1"
@@ -70,15 +70,6 @@
                                                 <option :value="2">Youtube</option>
                                             </select>
                                         </div>
-                                        <div v-if="form.type_id == 1">
-                                            <label for="exampleInputEmail1">ID del Video <h6 class="m-0 text-danger float-right">*</h6></label>
-                                            <input
-                                            type="text" 
-                                            v-model="form.video_id" 
-                                            class="form-control"
-                                            placeholder="Ingresa el ID"
-                                            >
-                                        </div>
                                         <div v-if="form.type_id == 2">
                                             <label for="exampleInputEmail1">Src</label>
                                             <input
@@ -86,6 +77,17 @@
                                             v-model="form.src" 
                                             class="form-control"
                                             placeholder="Ingresa el src del audio"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div v-if="form.type_id == 1">
+                                            <label for="exampleInputEmail1">ID del Video <h6 class="m-0 text-danger float-right">*</h6></label>
+                                            <input
+                                            type="text" 
+                                            v-model="form.video_id" 
+                                            class="form-control"
+                                            placeholder="Ingresa el ID"
                                             >
                                         </div>
                                     </div>
