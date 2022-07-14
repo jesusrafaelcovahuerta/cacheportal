@@ -13,6 +13,7 @@
                         </audio>
                     </center>
                 </div>
+                {{ videoID }}
                 <div v-if="videoID !== null">
                     <div v-if="this.post.video_type_id == 1">
                     {{this.post.video_type_id}}
