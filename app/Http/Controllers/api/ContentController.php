@@ -143,7 +143,7 @@ class ContentController extends ApiResponseController
 
         $content->image = $fileName;
         $content->src = $request->src;
-        if($this->user->rol_id == 1) {
+        if($this->user->rol_id == 1 || $this->user->rol_id == 3) {
             $content->status = 1;
         } else {
             $content->status = 2;
