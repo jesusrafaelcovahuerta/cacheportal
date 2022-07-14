@@ -62,6 +62,16 @@
                                     <div class="col-sm-6">
                                         <div v-if="form.type_id == 1">
                                             <label for="exampleInputEmail1">ID del Video Vimeo <h6 class="m-0 text-danger float-right">*</h6></label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.video_type_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option :value="1">Vimeo</option>
+                                                <option :value="2">Youtube</option>
+                                            </select>
+                                        </div>
+                                        <div v-if="form.type_id == 1">
+                                            <label for="exampleInputEmail1">ID del Video <h6 class="m-0 text-danger float-right">*</h6></label>
                                             <input
                                             type="text" 
                                             v-model="form.video_id" 
@@ -213,7 +223,8 @@
                     description: '',
                     start_date: '',
                     end_date: '',
-                    src: ''
+                    src: '',
+                    video_type_id: null
                 }
             }
         },
@@ -263,6 +274,7 @@
                     formData.append('position', this.form.position);
                     formData.append('src', this.form.src);
                     formData.append('file', this.file);
+                    formData.append('video_type_id', this.form.video_type_id);
 
                     axios.post('/api/content/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
