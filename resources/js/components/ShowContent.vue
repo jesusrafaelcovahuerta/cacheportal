@@ -15,6 +15,7 @@
                 </div>
                 <div v-if="videoID !== null">
                     <div v-if="this.post.video_type_id == 1">
+                    {{this.post.video_type_id}}
                         <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${videoID}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div v-if="this.post.video_type_id == 2">
