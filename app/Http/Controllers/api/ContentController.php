@@ -120,9 +120,9 @@ class ContentController extends ApiResponseController
         }
 
         if($request->pdf != 'undefined') { 
-            $fileName = time().'_'.'pdf'.'_'.$request->category_id.'.'.$request->pdf->getClientOriginalExtension();
+            $pdfName = time().'_'.'pdf'.'_'.$request->category_id.'.'.$request->pdf->getClientOriginalExtension();
         } else {
-            $fileName = '';
+            $pdfName = '';
         }
 
         $content = new Content();
@@ -137,6 +137,7 @@ class ContentController extends ApiResponseController
         $content->end_date = $request->end_date;
         $content->description = $request->description;
         $content->position = $request->position;
+        $content->pdf = $pdfName;
 
         $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
@@ -160,6 +161,14 @@ class ContentController extends ApiResponseController
                     '/public',
                     $request->file,
                     $fileName
+                );
+            }
+
+            if($request->pdf != 'undefined') { 
+                Storage::disk('local')->putFileAs(
+                    '/public',
+                    $request->pdf,
+                    $pdfName
                 );
             }
         }
