@@ -121,6 +121,11 @@
         components: {
             pdf
         },
+        mounted() {
+            this.src.promise.then(pdf => {
+                this.numPages = pdf.numPages;
+            });
+        },
         methods: {
             onSubmit(e) {
                 this.loading = true;
@@ -250,7 +255,8 @@
                 form: {
                     yes_no_answer: [],
                     text_answer: []
-                }
+                },
+                numPages: undefined
             }
         }
     }
