@@ -33,7 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <pdf :src="pdf_url" style="width: 300%"></pdf>
+                    <iframe height='100%' width='100%' scrolling='no' allowfullscreen webkitallowfullscreen :src="`./viewer.html?file=./${pdf_url}`"></iframe>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
