@@ -34,7 +34,7 @@
 
                 <div v-if="pdf_url !== null">
                     <panZoom>
-                        <pdf :src="pdf_url"></pdf>
+                        <div ref="mypdf"><pdf :src="pdf_url"></pdf></div>
                     </panZoom>
                 </div>
                 <hr>	
