@@ -13,6 +13,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueGtag from "vue-gtag";
+// import vue-panzoom
+import panZoom from 'vue-panzoom'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -35,7 +37,7 @@ library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.component("LazyYoutube", LazyYoutube);
-
+Vue.use(panZoom);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(excel)
