@@ -228,8 +228,6 @@
         },
         data: function() {
             return {
-                src: loadingTask,
-			    numPages: undefined,
                 polls: [],
                 poll_question_posts: [],
                 poll_quantity: 0,
