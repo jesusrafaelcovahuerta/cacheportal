@@ -232,7 +232,7 @@ class ContentController extends ApiResponseController
             $detail_content->save();
         }
 
-        if($this->user->rol_id == 1) {
+        if($this->user->rol_id == 1 ||  $this->user->rol_id == 3) {
             $content->status = 1;
         } else {
             $content->status = 2;
