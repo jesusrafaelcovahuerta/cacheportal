@@ -33,7 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <pdf :src="pdf_url"></pdf>
+                    <pdf @loaded="onLoad" :src="pdf_url" ref="mypdf"></pdf>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -103,6 +103,7 @@
 </template>
 <script>
     import pdf from 'vue-pdf'
+    import panzoom from 'panzoom';
 
     export default {
         created() {
@@ -113,9 +114,13 @@
             this.catchUser();
         },
         components: {
-            pdf
+            pdf,
+            panzoom
         },
         methods: {
+            onLoad() {
+                panzooom(this.$refs.mypdf);
+            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
