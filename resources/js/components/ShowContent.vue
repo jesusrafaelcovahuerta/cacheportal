@@ -33,7 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <vue-pdf-app :pdf="pdf_url"></vue-pdf-app>
+                    <vue-pdf-app pdf="http://app.conectamayor.cl/storage/1657881108_pdf_25.pdf"></vue-pdf-app>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
