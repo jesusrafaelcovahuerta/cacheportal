@@ -36,7 +36,7 @@
                     <pdf
                         v-for="i in numPages"
                         :key="i"
-                        :src="src"
+                        :src="pdf_url"
                         :page="i"
                         style="display: inline-block; width: 25%"
                     ></pdf>
@@ -124,7 +124,7 @@
         },
         methods: {
             numPages() {
-                this.src.promise.then(pdf => {
+                this.pdf_url.promise.then(pdf => {
                     this.numPages = pdf.numPages;
                 });
             },
@@ -257,7 +257,7 @@
                     yes_no_answer: [],
                     text_answer: []
                 },
-                src: pdf_url,
+                src: '',
                 numPages: undefined
             }
         }
