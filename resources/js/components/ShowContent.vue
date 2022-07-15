@@ -226,13 +226,6 @@
                 });
             }
         },
-        mounted() {
-
-		this.src.promise.then(pdf => {
-
-			this.numPages = pdf.numPages;
-		});
-	},
         data: function() {
             return {
                 src: loadingTask,
