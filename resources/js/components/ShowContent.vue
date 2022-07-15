@@ -33,9 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <panZoom>
-                        <div ref="mypdf"><pdf :src="pdf_url"></pdf></div>
-                    </panZoom>
+                    <pdf :src="pdf_url" style="width: 300%"></pdf>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
