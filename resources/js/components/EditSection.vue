@@ -141,7 +141,7 @@
                                         <label for="exampleInputEmail1">Url o enlace</label>
                                         <input
                                             type="text" 
-                                            v-mask="'http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'"
+                                            v-mask="'http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'"
                                             v-model="form.url" 
                                             class="form-control"
                                             placeholder="Ingresa la url o enlace"
