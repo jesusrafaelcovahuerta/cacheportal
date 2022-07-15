@@ -238,9 +238,9 @@ class CategoryController extends ApiResponseController
         $category->position = $request->position;
 
         if($request->icon_type_id == 2) {
-            $category->icon = $fileName.' home_icon_size2';
+            $category->icon = $icon_fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
-            $category->icon = 'icon ion-'.$fileName.' home_icon_size2';
+            $category->icon = 'icon ion-'.$icon_fileName.' home_icon_size2';
         }
         
         if($old_position != $request->position) {
