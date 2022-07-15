@@ -38,7 +38,7 @@
                         :key="i"
                         :src="src"
                         :page="i"
-                        style="display: inline-block; width: 25%"
+                        style="height: 100%"
                     ></pdf>
                 </div>
                 <hr>	
@@ -261,8 +261,7 @@
                 form: {
                     yes_no_answer: [],
                     text_answer: []
-                },
-                numPages: undefined
+                }
             }
         }
     }
