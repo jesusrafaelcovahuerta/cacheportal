@@ -110,7 +110,7 @@
 <script>
     import pdf from 'vue-pdf'
 
-    var loadingTask = pdf.createLoadingTask('http://app.conectamayor.cl/content/show/62');
+    var loadingTask = pdf.createLoadingTask('http://app.conectamayor.cl/storage/1657881108_pdf_25.pdf');
 
     export default {
         created() {
