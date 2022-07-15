@@ -117,13 +117,13 @@
             this.getPolls();
             this.getPost();
             this.catchUser();
-            this.numPages();
+            this.numPagesData();
         },
         components: {
             pdf
         },
         methods: {
-            numPages() {
+            numPagesData() {
                 this.pdf_url.promise.then(pdf => {
                     this.numPages = pdf.numPages;
                 });
