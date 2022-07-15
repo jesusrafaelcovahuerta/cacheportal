@@ -129,7 +129,12 @@ class ContentController extends ApiResponseController
         $content->category_id = $request->category_id;
         $content->type_id = $request->type_id;
         $content->video_id = $request->video_id;
-        $content->video_type_id = $request->video_type_id;
+        if($request->video_type_id == 'null') {
+            $content->video_type_id = '';
+        } else {
+            $content->video_type_id = $request->video_type_id;
+        }
+       
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
