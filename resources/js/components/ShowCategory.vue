@@ -231,8 +231,3 @@
         }
     }
 </script>
-<style scoped>
-.boton2 {
-  font-size: 25px;
-}
-</style>
