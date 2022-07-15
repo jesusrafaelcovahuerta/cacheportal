@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-32">
         <div v-if="poll_question_posts == ''" class="row">
-		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2">
+		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2 || this.post.type_id == 4">
                 <h1><center>{{ this.post.title }}</center></h1>
                 <hr>
                 <div v-if="url !== null">
@@ -29,6 +29,12 @@
                     </div>
                     <div v-if="this.post.video_type_id == 2">
                         <iframe width="100%" height="" :src="`https://www.youtube.com/embed/${videoID}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div v-if="pdf !== null">
+                    <div v-if="this.post.video_type_id == 1">
+                        <pdf :src="pdf"></pdf>
                     </div>
                 </div>
                 <hr>	
@@ -98,6 +104,8 @@
 	
 </template>
 <script>
+    import pdf from 'vue-pdf'
+
     export default {
         created() {
             this.getPollQuestions();
@@ -105,6 +113,9 @@
             this.getPolls();
             this.getPost();
             this.catchUser();
+        },
+        components: {
+            pdf
         },
         methods: {
             onSubmit(e) {
