@@ -120,7 +120,7 @@ class ContentController extends ApiResponseController
         }
 
         if($request->pdf != 'undefined') { 
-            $fileName = time().'_'.'pdf'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+            $fileName = time().'_'.'pdf'.'_'.$request->category_id.'.'.$request->pdf->getClientOriginalExtension();
         } else {
             $fileName = '';
         }
