@@ -117,16 +117,17 @@
             this.getPolls();
             this.getPost();
             this.catchUser();
+            this.numPages();
         },
         components: {
             pdf
         },
-        mounted() {
-            this.src.promise.then(pdf => {
-                this.numPages = pdf.numPages;
-            });
-        },
         methods: {
+            numPages() {
+                this.src.promise.then(pdf => {
+                    this.numPages = pdf.numPages;
+                });
+            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
