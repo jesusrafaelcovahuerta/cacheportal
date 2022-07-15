@@ -33,13 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <pdf
-                        v-for="i in numPages"
-                        :key="i"
-                        :src="pdf_url"
-                        :page="i"
-                        style="display: inline-block; width: 25%"
-                    ></pdf>
+                    <vue-pdf-app :pdf="pdf_url"></vue-pdf-app>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -108,7 +102,9 @@
 	
 </template>
 <script>
-    import pdf from 'vue-pdf'
+    import VuePdfApp from "vue-pdf-app";
+    // import this to use default icons for buttons
+    import "vue-pdf-app/dist/icons/main.css";
 
     export default {
         created() {
@@ -117,17 +113,11 @@
             this.getPolls();
             this.getPost();
             this.catchUser();
-            this.numPagesData();
         },
         components: {
-            pdf
+            VuePdfApp
         },
         methods: {
-            numPagesData() {
-                this.pdf_url.promise.then(pdf => {
-                    this.numPages = pdf.numPages;
-                });
-            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
@@ -257,7 +247,6 @@
                     yes_no_answer: [],
                     text_answer: []
                 },
-                src: '',
                 numPages: undefined
             }
         }
