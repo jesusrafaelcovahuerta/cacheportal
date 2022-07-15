@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div v-if="pdf !== null">
+                <div v-if="pdf_url !== null">
                     <div v-if="this.post.video_type_id == 1">
                     {{ pdf_url }}
                         <pdf :src="pdf_url"></pdf>
