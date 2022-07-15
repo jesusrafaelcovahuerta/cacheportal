@@ -34,6 +34,7 @@
 
                 <div v-if="pdf !== null">
                     <div v-if="this.post.video_type_id == 1">
+                    {{ pdf }}
                         <pdf :src="pdf"></pdf>
                     </div>
                 </div>
