@@ -33,7 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <vue-pdf-app pdf="http://app.conectamayor.cl/storage/1657889104_pdf_25.pdf"></vue-pdf-app>
+                    <iframe src="http://docs.google.com/viewer?url=http://app.conectamayor.cl/storage/1657891270_pdf_25.pdf&embedded=true" width="600" height="780" style="border: none;"></iframe>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -102,7 +102,9 @@
 	
 </template>
 <script>
-    import VuePdfApp from "vue-pdf-app";
+    import pdf from 'vue-pdf'
+
+    var loadingTask = pdf.createLoadingTask('http://app.conectamayor.cl/storage/1657881108_pdf_25.pdf');
 
     export default {
         created() {
@@ -113,7 +115,7 @@
             this.catchUser();
         },
         components: {
-            VuePdfApp
+            pdf
         },
         methods: {
             onSubmit(e) {
@@ -226,8 +228,17 @@
                 });
             }
         },
+        mounted() {
+
+		this.src.promise.then(pdf => {
+
+			this.numPages = pdf.numPages;
+		});
+	},
         data: function() {
             return {
+                src: loadingTask,
+			    numPages: undefined,
                 polls: [],
                 poll_question_posts: [],
                 poll_quantity: 0,
