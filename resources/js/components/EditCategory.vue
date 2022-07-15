@@ -105,10 +105,26 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
                                         >
-                                            <option :value="2">Ionic Icon</option>
+                                            <option :value="null">Seleccionar</option>
+                                            <option :value="1">Personalizado</option>
+                                            <option :value="2">Fa Icon</option>
+                                            <option :value="3">Ionic Icon</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 1">
+                                        <label for="exampleInputEmail1">Icono</label>
+                                        <input ref="file" accept="image/png" type="file" class="form-control" v-on:change="onFileChange">
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 2">
+                                        <label for="exampleInputEmail1">Fa Icon - <a href="https://fontawesome.com/icons" target= "_blank">Ver iconos</a></label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.fai" 
+                                            class="form-control"
+                                            placeholder="Ingresa el icono"
+                                        >
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 3">
                                         <label for="exampleInputEmail1">Ionic Icon - <a href="https://ionicframework.com/docs/v3/ionicons/" target= "_blank">Ver iconos</a></label>
                                         <input
                                             type="text" 
@@ -217,12 +233,19 @@
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'highlight_id', this.post.highlight_id);
-                    var icon = this.post.icon;
-                    var icon_detail = icon.split(' ');
-                    var icon_detail = icon_detail[1];
-                    var icon_detail = icon_detail.split('-');
-                    var icon = 'ios-'+icon_detail[2];
-                    this.$set(this.form, 'fai', icon);
+                    if(this.post.icon_type_id == 2) {
+                        var icon = this.post.icon;
+                        var icon_detail = icon.split(' ');
+                        var icon = icon_detail[0]+' '+icon_detail[1];
+                        this.$set(this.form, 'fai', icon);
+                    } else {
+                        var icon = this.post.icon;
+                        var icon_detail = icon.split(' ');
+                        var icon_detail = icon_detail[1];
+                        var icon_detail = icon_detail.split('-');
+                        var icon = 'ios-'+icon_detail[2];
+                        this.$set(this.form, 'fai', icon);
+                    }
                 });
             },
             handleChange() {
