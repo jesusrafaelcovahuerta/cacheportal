@@ -33,7 +33,6 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    {{ pdf_url }}
                     <pdf :src="pdf_url"></pdf>
                 </div>
                 <hr>	
