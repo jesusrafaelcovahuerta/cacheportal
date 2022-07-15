@@ -33,7 +33,8 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <vue-pdf-app pdf="http://app.conectamayor.cl/storage/1657881108_pdf_25.pdf"></vue-pdf-app>
+                        <pdf :src="pdf_url"
+                    ></pdf>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -102,9 +103,7 @@
 	
 </template>
 <script>
-    import VuePdfApp from "vue-pdf-app";
-    // import this to use default icons for buttons
-    import "vue-pdf-app/dist/icons/main.css";
+    import pdf from 'vue-pdf'
 
     export default {
         created() {
@@ -115,7 +114,7 @@
             this.catchUser();
         },
         components: {
-            VuePdfApp
+            pdf
         },
         methods: {
             onSubmit(e) {
