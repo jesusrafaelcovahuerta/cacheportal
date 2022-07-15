@@ -60,7 +60,7 @@
                                             <option :value="4">Archivo PDF</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" v-if="form.type_id == 1 || form.type_id == 2">
                                         <div v-if="form.type_id == 1">
                                             <label for="exampleInputEmail1">Tipo de Video <h6 class="m-0 text-danger float-right">*</h6></label>
                                             <select class="form-control" id="exampleFormControlSelect1"
@@ -81,11 +81,9 @@
                                             >
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div v-if="form.type_id == 4">
-                                            <label for="exampleInputEmail1">Imagen</label>
-                                            <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
-                                        </div>
+                                    <div class="col-sm-12" v-if="form.type_id == 4">
+                                        <label for="exampleInputEmail1">Imagen</label>
+                                        <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
                                     </div>
                                 </div>
                                 <div class="form-group row">
