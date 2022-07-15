@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-8" v-if="form.type_id == 1 || form.type_id == 2">
+                                    <div class="col-sm-8" v-if="form.type_id == 1 || form.type_id == 2 || form.type_id == 4">
                                         <label for="exampleInputEmail1">Descripción <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
