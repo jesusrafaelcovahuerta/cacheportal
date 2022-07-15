@@ -81,8 +81,8 @@
                                             >
                                         </div>
                                     </div>
-                                    <div class="col-sm-12" v-if="form.type_id == 4">
-                                        <label for="exampleInputEmail1">Imagen</label>
+                                    <div class="col-sm-8" v-if="form.type_id == 4">
+                                        <label for="exampleInputEmail1">PDF</label>
                                         <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
                                     </div>
                                 </div>
