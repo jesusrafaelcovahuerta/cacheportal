@@ -33,13 +33,7 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                    <pdf
-                        v-for="i in numPages"
-                        :key="i"
-                        :src="src"
-                        :page="i"
-                        style="height: 100%"
-                    ></pdf>
+                    <vue-pdf-app pdf="http://app.conectamayor.cl/storage/1657889104_pdf_25.pdf"></vue-pdf-app>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -108,9 +102,7 @@
 	
 </template>
 <script>
-    import pdf from 'vue-pdf'
-
-    var loadingTask = pdf.createLoadingTask('http://app.conectamayor.cl/storage/1657881108_pdf_25.pdf');
+    import VuePdfApp from "vue-pdf-app";
 
     export default {
         created() {
@@ -121,7 +113,7 @@
             this.catchUser();
         },
         components: {
-            pdf
+            VuePdfApp
         },
         methods: {
             onSubmit(e) {
