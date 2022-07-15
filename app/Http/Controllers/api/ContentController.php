@@ -114,7 +114,13 @@ class ContentController extends ApiResponseController
     public function store(Request $request)
     {
         if($request->file != 'undefined') { 
-            $fileName = time().'_'.'audio'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+            $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+        } else {
+            $fileName = '';
+        }
+
+        if($request->pdf != 'undefined') { 
+            $fileName = time().'_'.'pdf'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
         } else {
             $fileName = '';
         }

@@ -57,6 +57,7 @@
                                             <option :value="1">Video</option>
                                             <option :value="2">Audio</option>
                                             <option :value="3">Texto</option>
+                                            <option :value="4">Archivo PDF</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
@@ -81,14 +82,9 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div v-if="form.type_id == 1">
-                                            <label for="exampleInputEmail1">ID del Video <h6 class="m-0 text-danger float-right">*</h6></label>
-                                            <input
-                                            type="text" 
-                                            v-model="form.video_id" 
-                                            class="form-control"
-                                            placeholder="Ingresa el ID"
-                                            >
+                                        <div v-if="form.type_id == 4">
+                                            <label for="exampleInputEmail1">Imagen</label>
+                                            <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
                                         </div>
                                     </div>
                                 </div>
@@ -212,6 +208,7 @@
                 loading: false,
                 category_posts: [],
                 noFile: false,
+                noPdf: false,
                 form: {
                     category_id: null,
                     type_id: null,
@@ -237,6 +234,10 @@
             onFileChange(e){
                 this.file = e.target.files[0];
                 this.noFile = e.target.files.length;
+            },
+            onFileChangePdf(e){
+                this.pdf = e.target.files[0];
+                this.noPdf = e.target.files.length;
             },
             getCategoryList() {
                 axios.get('/api/category/list?api_token='+App.apiToken)
@@ -276,6 +277,7 @@
                     formData.append('position', this.form.position);
                     formData.append('src', this.form.src);
                     formData.append('file', this.file);
+                    formData.append('pdf', this.pdf);
                     formData.append('video_type_id', this.form.video_type_id);
 
                     axios.post('/api/content/store?api_token='+App.apiToken, formData, config)
