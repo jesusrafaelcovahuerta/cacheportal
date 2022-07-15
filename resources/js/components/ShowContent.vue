@@ -33,10 +33,10 @@
                 </div>
 
                 <div v-if="pdf_url !== null">
-                        <pdf
+                    <pdf
                         v-for="i in numPages"
                         :key="i"
-                        :src="pdf_url"
+                        :src="src"
                         :page="i"
                         style="display: inline-block; width: 25%"
                     ></pdf>
@@ -256,6 +256,7 @@
                     yes_no_answer: [],
                     text_answer: []
                 },
+                src: pdf_url,
                 numPages: undefined
             }
         }
