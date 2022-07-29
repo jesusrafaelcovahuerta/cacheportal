@@ -36,6 +36,20 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Tipo de Contenido <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.type_id"
+                                        >
+                                            <option :value="null">-Seleccionar-</option>
+                                            <option :value="1">Video</option>
+                                            <option :value="2">Audio</option>
+                                            <option :value="3">Texto</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -46,21 +60,7 @@
                                         >
                                         <span>{{charactersLeft}}</span>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-4">
-                                        <label for="exampleInputEmail1">Tipo de Contenido <h6 class="m-0 text-danger float-right">*</h6></label>
-                                        <select class="form-control" id="exampleFormControlSelect1"
-                                        v-model="form.type_id"
-                                        >
-                                            <option :value="null">-Seleccionar-</option>
-                                            <option :value="1">Video</option>
-                                            <option :value="2">Audio</option>
-                                            <option :value="3">Texto</option>
-                                            <option :value="4">Archivo PDF</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4" v-if="form.type_id == 1 || form.type_id == 2">
+                                    <div class="col-sm-6" v-if="form.type_id == 1">
                                         <div v-if="form.type_id == 1">
                                             <label for="exampleInputEmail1">Tipo de Video <h6 class="m-0 text-danger float-right">*</h6></label>
                                             <select class="form-control" id="exampleFormControlSelect1"
@@ -70,6 +70,13 @@
                                                 <option :value="1">Vimeo</option>
                                                 <option :value="2">Youtube</option>
                                             </select>
+                                            <label for="exampleInputEmail1">ID del Video Vimeo o Youtube <h6 class="m-0 text-danger float-right">*</h6></label>
+                                            <input
+                                            type="text" 
+                                            v-model="form.video_id" 
+                                            class="form-control"
+                                            placeholder="Ingresa el ID"
+                                            >
                                         </div>
                                         <div v-if="form.type_id == 2">
                                             <label for="exampleInputEmail1">Src</label>

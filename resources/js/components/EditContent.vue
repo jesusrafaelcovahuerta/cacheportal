@@ -61,7 +61,15 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div v-if="form.type_id == 1">
-                                            <label for="exampleInputEmail1">ID del Video Vimeo <h6 class="m-0 text-danger float-right">*</h6></label>
+                                            <label for="exampleInputEmail1">Tipo de Video <h6 class="m-0 text-danger float-right">*</h6></label>
+                                            <select class="form-control" id="exampleFormControlSelect1"
+                                            v-model="form.video_type_id"
+                                            >
+                                                <option :value="null">-Seleccionar-</option>
+                                                <option :value="1">Vimeo</option>
+                                                <option :value="2">Youtube</option>
+                                            </select>
+                                            <label for="exampleInputEmail1">ID del Video Vimeo o Youtube <h6 class="m-0 text-danger float-right">*</h6></label>
                                             <input
                                             type="text" 
                                             v-model="form.video_id" 
@@ -309,6 +317,7 @@
                     this.$set(this.form, 'video_id', this.post.video_id);
                     this.$set(this.form, 'title', this.post.title);
                     this.$set(this.form, 'google_tag', this.post.google_tag);
+                    this.$set(this.form, 'video_type_id', this.post.video_type_id);
                     var icon = this.post.icon;
                     var icon_detail = icon.split(' ');
                     var icon_detail = icon_detail[1];
