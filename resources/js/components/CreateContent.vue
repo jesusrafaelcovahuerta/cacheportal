@@ -50,6 +50,17 @@
                                     
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-sm-6" v-if="form.type_id == 1">
+                                        <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.title" 
+                                        maxlength="36"
+                                        class="form-control"
+                                        placeholder="Ingresa el título"
+                                        >
+                                        <span>{{charactersLeft}}</span>
+                                    </div>
                                     <div class="col-sm-3" v-if="form.type_id == 1">
                                         <div v-if="form.type_id == 1">
                                             <label for="exampleInputEmail1">Tipo de Video <h6 class="m-0 text-danger float-right">*</h6></label>
