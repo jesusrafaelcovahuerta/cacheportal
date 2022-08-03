@@ -106,7 +106,6 @@
                                         v-model="form.icon_type_id"
                                         >
                                             <option :value="null">Seleccionar</option>
-                                            <option :value="1">Personalizado</option>
                                             <option :value="2">Fa Icon</option>
                                             <option :value="3">Ionic Icon</option>
                                         </select>
