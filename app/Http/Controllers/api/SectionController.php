@@ -76,9 +76,24 @@ class SectionController extends ApiResponseController
         $section->url = $request->url;
 
         if($request->video_id != '') {
-            $video = explode("=", $request->video_id);
-            $video = explode("&", $video[1]);
-            $section->video_id = $video[0];
+            $word = "/";
+            $string = $request->video_id;
+ 
+            if(strpos($mystring, $word) !== false){
+                $word = "=";
+                $string = $request->video_id;
+
+                if(strpos($mystring, $word) !== false){
+                    $video = explode("=", $request->video_id);
+                    $video = explode("&", $video[1]);
+                    $section->video_id = $video[0];
+                } else {
+                    $video = explode("/", $request->video_id);
+                    $section->video_id = $video[3];
+                }
+            } else{
+                $section->video_id = $request->video_id;
+            }
         }
         
         $move_position_sections = Section::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
@@ -218,16 +233,31 @@ class SectionController extends ApiResponseController
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
         $section->url = $request->url;
-        $video = explode("=", $request->video_id);
+
+        $word = "/";
+        $string = $request->video_id;
+ 
+        if(strpos($mystring, $word) !== false){
+            $word = "=";
+            $string = $request->video_id;
+
+            if(strpos($mystring, $word) !== false){
+                $video = explode("=", $request->video_id);
+                $video = explode("&", $video[1]);
+                $section->video_id = $video[0];
+            } else {
+                $video = explode("/", $request->video_id);
+                $section->video_id = $video[3];
+            }
+        } else{
+            $section->video_id = $request->video_id;
+        }
 
         if($request->icon_type_id == 2) {
             $section->icon = $fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
             $section->icon = 'icon ion-'.$fileName.' home_icon_size2';
         }
-        
-        $video = explode("&", $video[1]);
-        $section->video_id = $video[0];
 
         $old_position = $section->position;
         $section->position = $request->position;
