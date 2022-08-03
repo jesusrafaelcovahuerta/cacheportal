@@ -77,7 +77,7 @@ class SectionController extends ApiResponseController
 
         if($request->video_id != '') {
             $word = "/";
-            echo $string = $request->video_id;
+            $string = $request->video_id;
  
             if(strpos($string, $word) !== false){
                 echo 3;
