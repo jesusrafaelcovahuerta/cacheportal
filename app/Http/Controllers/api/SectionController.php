@@ -95,8 +95,7 @@ class SectionController extends ApiResponseController
                 $section->video_id = trim($request->video_id);
             }
         }
-        echo $section->video_id;
-        die();
+
         $move_position_sections = Section::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
         foreach($move_position_sections as $move_position_section) {
