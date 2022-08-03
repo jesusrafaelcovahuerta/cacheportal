@@ -88,15 +88,15 @@ class SectionController extends ApiResponseController
                     echo 4;
                     $video = explode("=", $request->video_id);
                     $video = explode("&", $video[1]);
-                    $section->video_id = $video[0];
+                    $section->video_id = trim($video[0]);
                 } else {
                     echo 5;
                     $video = explode("/", $request->video_id);
-                    $section->video_id = $video[3];
+                    $section->video_id = trim($video[3]);
                 }
             } else{
                 echo 6;
-                $section->video_id = $request->video_id;
+                $section->video_id = trim($request->video_id);
             }
         }
         echo $section->video_id;
