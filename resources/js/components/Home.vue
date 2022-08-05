@@ -6,7 +6,7 @@
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
         <form action="https://www.google.com/search" class="example">
-            <input type="text" @blur="handleBlur" v-model="form.search" name="q" placeholder="Buscar en Google.com">
+            <input type="text" @click="handleBlur" v-model="form.search" name="q" placeholder="Buscar en Google.com">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <div class="row">
@@ -30,7 +30,6 @@
         },
         methods: {
             handleBlur(e) {
-                console.log('1');
                 this.$set(this.form, 'search', '');
             },
             Track(google_tag) {
