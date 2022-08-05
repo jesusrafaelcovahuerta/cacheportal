@@ -139,16 +139,24 @@ form.example::after {
   display: table;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: black;
-  opacity: 1; /* Firefox */
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    black;
 }
-
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    black;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    black;
+   opacity:  1;
+}
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: black;
+   color:    black;
 }
-
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: black;
+   color:    black;
+}
+::placeholder { /* Most modern browsers support this now. */
+   color:    black;
 }
 </style>
