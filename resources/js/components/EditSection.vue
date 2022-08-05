@@ -274,7 +274,10 @@
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'fai', this.post.icon);
-                    this.$set(this.form, 'fai', this.post.iframe);
+                    this.$set(this.form, 'iframe', this.post.iframe);
+                    if(this.post.iframe != '') {
+                        this.$set(this.form, 'iframe_question_id', 1);
+                    }
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     var google_tag = this.post.google_tag;
                     var google_tag_detail = google_tag.split('_');
