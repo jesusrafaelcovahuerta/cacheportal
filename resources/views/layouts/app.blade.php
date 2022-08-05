@@ -40,11 +40,7 @@
 	<div class="fakeLoader"></div>
 	<!-- end fakeloader -->
 	
-	<!-- navbar -->
-	<div class="navbar navbar-home">
-		<div class="title title-home"><img style="height:55px;" src="{{ asset('frontend/images/logo.jpg') }}" alt=""></div>
-	</div>
-	<!-- end navbar -->
+
 
 	<!-- sidebar -->
 
