@@ -41,11 +41,9 @@
 	<!-- end fakeloader -->
 	
 	<!-- navbar -->
-	@if(url()->current() == "https://app.conectamayor.cl/" || url()->current() == "https://app.conectamayor.cl")
-		<div class="navbar navbar-home">
-			<div class="title title-home"><img style="height:55px;" src="{{ asset('frontend/images/logo.jpg') }}" alt=""></div>
-		</div>
-	@endif
+	<div class="navbar navbar-home">
+		<div class="title title-home"><img style="height:55px;" src="{{ asset('frontend/images/logo.jpg') }}" alt=""></div>
+	</div>
 	<!-- end navbar -->
 
 	<!-- sidebar -->
