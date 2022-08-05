@@ -205,6 +205,20 @@
             goBack() {
                 this.$router.go(-1)
             },
+            getPost() {
+                this.loading = true;
+
+                axios.get('/api/category/show/'+ this.$route.params.id)
+                .then(response => {
+                    this.post = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
             getPosts() {
                 this.loading = true;
 
