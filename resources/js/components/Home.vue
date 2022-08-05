@@ -2,12 +2,16 @@
     <div class="container pt-32">
         <div class="row">
             <hr>
-            <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
+            <h2><center><strong>¿Estás buscando algo? Escribe en el recuadro de abajo que buscas y luego haz click en buscar</strong></center></h2>
         </div>
         <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
-            <input autocomplete="on" class="form-control search" name="q" placeholder="¿Qué estás buscando? Te ayudamos" required="required"  type="text">
-            <button class="button" type="submit">Buscar</button>
+            <input autocomplete="on" class="form-control search" style="color: #000 !important;" name="q" placeholder="" required="required"  type="text">
+            <button class="button" type="submit" style="background-color: blueviolet !important; color: #fff !important;">Buscar</button>
         </form>
+        <div class="row">
+            <hr>
+            <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
+        </div>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link @click.native="Track(post.google_tag)" v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
