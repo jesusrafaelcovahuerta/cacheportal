@@ -30,6 +30,7 @@
         },
         methods: {
             handleBlur(e) {
+                console.log('1');
                 this.$set(this.form, 'search', '');
             },
             Track(google_tag) {
