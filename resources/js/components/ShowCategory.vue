@@ -209,7 +209,7 @@
             getPost() {
                 this.loading = true;
 
-                axios.get('/api/category/show/'+ this.$route.params.id)
+                axios.get('/api/category/'+ this.$route.params.id +'/edit')
                 .then(response => {
                     this.post = response.data.data;
                 })
