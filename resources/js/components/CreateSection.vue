@@ -149,6 +149,26 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un Iframe? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.iframe_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.iframe_question_id == 1">
+                                        <label for="exampleInputEmail1">Url del Iframe</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.iframe"
+                                            class="form-control"
+                                            placeholder="Ingresa la url o enlace"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">¿Es un video de Youtube? <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.youtube_question_id"
@@ -221,7 +241,9 @@
                     video_id: '',
                     youtube_question_id: 2,
                     google_tag: '',
-                    subtitle: ''
+                    subtitle: '',
+                    iframe_question_id: 2,
+                    iframe: ''
                 }
             }
         },
@@ -275,6 +297,7 @@
                     formData.append('url', this.form.url);
                     formData.append('video_id', this.form.video_id);
                     formData.append('subtitle', this.form.subtitle);
+                    formData.append('iframe', this.form.iframe);
 
                     axios.post('/api/section/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {

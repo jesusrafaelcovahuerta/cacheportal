@@ -70,6 +70,7 @@ class SectionController extends ApiResponseController
         
         $section->icon_type_id = $request->icon_type_id;
         $section->status = 1;
+        $section->iframe = $request->iframe;
         $section->position = $request->position;
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
@@ -226,6 +227,7 @@ class SectionController extends ApiResponseController
         $section = Section::find($id);
         $section->section_subtitle = $request->subtitle;
         $section->section_title = $request->title;
+        $section->iframe = $request->iframe;
         $section->color = $request->color;
         $old_icon_type = $section->icon_type_id;
         $old_icon_name = $section->icon;
