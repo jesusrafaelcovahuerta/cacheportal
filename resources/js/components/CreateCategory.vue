@@ -135,6 +135,26 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un Iframe? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.iframe_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.iframe_question_id == 1">
+                                        <label for="exampleInputEmail1">Url del Iframe</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.iframe"
+                                            class="form-control"
+                                            placeholder="Ingresa la url o enlace"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">¿Es destacada la categoría? <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.highlight_id"
@@ -201,7 +221,9 @@
                     icon_type_id: null,
                     google_tag: '',
                     fai: '',
-                    highlight_id: 0
+                    highlight_id: 0,
+                    iframe_question_id: 2,
+                    iframe: ''
                 }
             }
         },
@@ -274,6 +296,7 @@
                     formData.append('position', this.form.position);
                     formData.append('file', this.file);
                     formData.append('icon_type_id', this.form.icon_type_id);
+                    formData.append('iframe', this.form.iframe);
                     if(this.form.icon_type_id == 1) {
                         formData.append('icon_image', this.icon_image);
                     } else {
