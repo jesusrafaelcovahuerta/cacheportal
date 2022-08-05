@@ -4,6 +4,7 @@
             <hr>
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
+        <div class="gcse-search"></div>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link @click.native="Track(post.google_tag)" v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
