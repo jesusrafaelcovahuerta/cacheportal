@@ -33,7 +33,7 @@
                                     </ul>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Nombre <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -44,7 +44,17 @@
                                         >
                                         <span class="col-sm-12">{{charactersLeft}}</span>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">Subtitulo </label>
+                                        <input
+                                        type="text" 
+                                        v-model="form.subtitle" 
+                                        maxlength="36"
+                                        class="form-control"
+                                        placeholder="Ingresa el subtitulo"
+                                        >
+                                    </div>
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
@@ -223,7 +233,8 @@
                     fai: '',
                     highlight_id: 0,
                     iframe_question_id: 2,
-                    iframe: ''
+                    iframe: '',
+                    subtitle: ''
                 }
             }
         },
@@ -297,6 +308,7 @@
                     formData.append('file', this.file);
                     formData.append('icon_type_id', this.form.icon_type_id);
                     formData.append('iframe', this.form.iframe);
+                    formData.append('subtitle', this.form.subtitle);
                     if(this.form.icon_type_id == 1) {
                         formData.append('icon_image', this.icon_image);
                     } else {

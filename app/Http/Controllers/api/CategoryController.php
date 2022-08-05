@@ -161,6 +161,7 @@ class CategoryController extends ApiResponseController
         $category->highlight_id = $request->highlight_id;
         $category->name = $request->name;
         $category->iframe = $request->iframe;
+        $category->subtitle = $request->subtitle;
         $category->color = $request->color;
         $category->google_tag = 'category_' . $request->google_tag;
         $category->position = $request->position;
@@ -234,6 +235,7 @@ class CategoryController extends ApiResponseController
         $category->section_id = $request->section_id;
         $category->name = $request->name;
         $category->color = $request->color;
+        $category->subtitle = $request->subtitle;
         $category->iframe = $request->iframe;
         $category->google_tag = 'category_' . $request->google_tag;
         $old_position = $category->position;
