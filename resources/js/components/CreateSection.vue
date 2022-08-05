@@ -298,6 +298,7 @@
                     formData.append('video_id', this.form.video_id);
                     formData.append('subtitle', this.form.subtitle);
                     formData.append('iframe', this.form.iframe);
+                    formData.append('google_tag', this.form.google_tag);
 
                     axios.post('/api/section/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
