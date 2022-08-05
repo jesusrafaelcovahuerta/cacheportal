@@ -42,9 +42,9 @@
 	
 	<!-- navbar -->
 	<div class="navbar navbar-home">
-		if(url()->current() == "https://app.conectamayor.cl/")
+		@if(url()->current() == "https://app.conectamayor.cl/")
 			<div class="title title-home"><img style="height:55px;" src="{{ asset('frontend/images/logo.jpg') }}" alt=""></div>
-		endif
+		@endif
 	</div>
 	<!-- end navbar -->
 
