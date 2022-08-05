@@ -1,9 +1,5 @@
 <template>
     <div class="container pt-32">
-        <div class="row">
-            <hr>
-            <h2><center><strong>¿Estás buscando algo? Escribe en el recuadro de abajo que buscas y luego haz click en buscar</strong></center></h2>
-        </div>
         <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
             <input autocomplete="on" class="form-control search" style="color: #000 !important;" name="q" placeholder="" required="required"  type="text">
             <button class="button" type="submit" style="background-color: blueviolet !important; color: #fff !important;">Buscar</button>
@@ -11,6 +7,10 @@
         <div class="row">
             <hr>
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
+        </div>
+        <div class="bar">
+            <input class="searchbar" type="text" title="Search">
+            <a href="#"> <img class="voice" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png" title="Search by Voice"></a>
         </div>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
@@ -100,5 +100,31 @@
   background-color: rgb(47, 47, 98);
   text-align: center !important;
   font-weight: bold;
+}
+.grid{
+  height:23px;
+  position:relative;
+  bottom:4px;
+}
+.bar{
+  margin:0 auto;
+  width:575px;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+}
+.bar:hover{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+}
+.bar:focus-within{
+  box-shadow: 1px 1px 8px 1px #dcdcdc;
+  outline:none;
+}
+.searchbar{
+  height:45px;
+  border:none;
+  width:500px;
+  font-size:16px;
+  outline: none;
+  
 }
 </style>
