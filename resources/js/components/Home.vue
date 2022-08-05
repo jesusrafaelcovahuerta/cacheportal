@@ -1,16 +1,14 @@
 <template>
     <div class="container pt-32">
-        <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
-            <input autocomplete="on" class="form-control search" style="color: #000 !important;" name="q" placeholder="" required="required"  type="text">
-            <button class="button" type="submit" style="background-color: blueviolet !important; color: #fff !important;">Buscar</button>
-        </form>
+
         <div class="row">
             <hr>
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
-        <div class="bar">
-            <input class="searchbar" type="text" title="Search">
-            <a href="#"> <img class="voice" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Google_mic.svg/716px-Google_mic.svg.png" title="Search by Voice"></a>
+        <div class="search-container">
+            <form class="no-submit">
+                <input class="no-submit" type="search" placeholder="Search..." method="GET">
+            </form>
         </div>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
@@ -101,30 +99,71 @@
   text-align: center !important;
   font-weight: bold;
 }
-.grid{
-  height:23px;
-  position:relative;
-  bottom:4px;
+/* || PRIMARY MENU || */
+
+.primary-nav {
+  align-items: center;
+  height: 50px;
+  left: 0px;
+  padding: 15px;
+  width: 100%;
+  margin: 0px;
+  background-color: darkgray;
+  display: inline;
+  position: fixed;
+  top: 70px;
+  z-index: 3;
+  font-weight: bold;
 }
-.bar{
-  margin:0 auto;
-  width:575px;
-  border-radius:30px;
-  border:1px solid #dcdcdc;
+
+.search-container {
+  align-items: center;
+  display: flex;
+  justify-content: left;
 }
-.bar:hover{
-  box-shadow: 1px 1px 8px 1px #dcdcdc;
+
+form .no-submit {
+  width: 180px;
+  align-items: center;
+  color: white;
+  right: 0;
+  display: flex;
+  padding: 2px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  margin: 0 0;
 }
-.bar:focus-within{
-  box-shadow: 1px 1px 8px 1px #dcdcdc;
-  outline:none;
+
+input.no-submit {
+  border: 1px solid white;
+  width: 100%;
+  padding: 9px 4px 9px 4px;
+  /* You can use your image but having cleaner code is better, so I suggest saving the file and just linking it*/
+  /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z'/%3E%3C/svg%3E") ;*/
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
 }
-.searchbar{
-  height:45px;
-  border:none;
-  width:500px;
-  font-size:16px;
+
+input[type="search"] {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 7px 8px 7px 30px;
+  font-size: 16px;
+  color: inherit;
+  border: 1px solid black;
+  border-radius: inherit;
+}
+
+input[type="search"]::placeholder {
+  color: white;
+}
+
+input[type="search"]:focus {
+  box-shadow: 0 0 3px 0 #3f69a8;
+  border-color: #3f69a8;
   outline: none;
-  
 }
 </style>
