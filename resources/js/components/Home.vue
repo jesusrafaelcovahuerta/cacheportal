@@ -5,11 +5,10 @@
             <hr>
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
-        <div class="search-container">
-            <form class="no-submit">
-                <input class="no-submit" type="search" placeholder="Search..." method="GET">
-            </form>
-        </div>
+        <form class="example" action="action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link @click.native="Track(post.google_tag)" v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
@@ -101,69 +100,41 @@
 }
 /* || PRIMARY MENU || */
 
-.primary-nav {
-  align-items: center;
-  height: 50px;
-  left: 0px;
-  padding: 15px;
-  width: 100%;
-  margin: 0px;
-  background-color: darkgray;
-  display: inline;
-  position: fixed;
-  top: 70px;
-  z-index: 3;
-  font-weight: bold;
+* {
+  box-sizing: border-box;
 }
 
-.search-container {
-  align-items: center;
-  display: flex;
-  justify-content: left;
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
 }
 
-form .no-submit {
-  width: 180px;
-  align-items: center;
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
   color: white;
-  right: 0;
-  display: flex;
-  padding: 2px;
-  border: 1px solid currentColor;
-  border-radius: 5px;
-  margin: 0 0;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
 }
 
-input.no-submit {
-  border: 1px solid white;
-  width: 100%;
-  padding: 9px 4px 9px 4px;
-  /* You can use your image but having cleaner code is better, so I suggest saving the file and just linking it*/
-  /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z'/%3E%3C/svg%3E") ;*/
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
-  background-size: 13px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+form.example button:hover {
+  background: #0b7dda;
 }
 
-input[type="search"] {
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 7px 8px 7px 30px;
-  font-size: 16px;
-  color: inherit;
-  border: 1px solid black;
-  border-radius: inherit;
-}
-
-input[type="search"]::placeholder {
-  color: white;
-}
-
-input[type="search"]:focus {
-  box-shadow: 0 0 3px 0 #3f69a8;
-  border-color: #3f69a8;
-  outline: none;
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 </style>
