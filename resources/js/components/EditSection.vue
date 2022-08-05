@@ -149,6 +149,26 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un Iframe? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.iframe_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.iframe_question_id == 1">
+                                        <label for="exampleInputEmail1">Url del Iframe</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.iframe"
+                                            class="form-control"
+                                            placeholder="Ingresa la url o enlace"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">¿Es un video de Youtube? <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.youtube_question_id"
@@ -224,7 +244,9 @@
                     url: '',
                     video_id: '',
                     youtube_question_id: 2,
-                    subtitle: ''
+                    subtitle: '',
+                    iframe_question_id: 2,
+                    iframe: ''
                 }
             }
         },
@@ -252,6 +274,7 @@
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'fai', this.post.icon);
+                    this.$set(this.form, 'fai', this.post.iframe);
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     var google_tag = this.post.google_tag;
                     var google_tag_detail = google_tag.split('_');
@@ -309,6 +332,7 @@
                     formData.append('title', this.form.title);
                     formData.append('subtitle', this.form.subtitle);
                     formData.append('color', this.form.color);
+                    formData.append('iframe', this.form.iframe);
                     formData.append('icon_type_id', this.form.icon_type_id);
                     if(this.form.icon_type_id == 1) {
                         formData.append('file', this.file);
