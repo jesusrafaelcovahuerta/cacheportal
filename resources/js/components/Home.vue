@@ -6,7 +6,7 @@
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
         <form action="https://www.google.com/search" class="example">
-            <input type="text" name="q" placeholder="Buscar en Google.com" style="color: #000;">
+            <input type="text" @blur="handleBlur" v-model="form.search" name="q" placeholder="Buscar en Google.com">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <div class="row">
@@ -29,6 +29,9 @@
             this.checkDate();
         },
         methods: {
+            handleBlur(e) {
+                this.$set(this.form, 'search', '');
+            },
             Track(google_tag) {
                 this.$gtag.event('page_view', {
                     page_title: google_tag
@@ -86,7 +89,10 @@
         data: function() {
             return {
                 modalShow: '',
-                posts: []
+                posts: [],
+                form: {
+                    search: 'Buscar en Google.com'
+                }
             }
         }
     }
