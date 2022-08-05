@@ -6,7 +6,7 @@
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
         <form class="example" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
+            <input type="text" placeholder="Buscar en Google.com" name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <div class="row">
@@ -112,6 +112,7 @@ form.example input[type=text] {
   float: left;
   width: 80%;
   background: #f1f1f1;
+  color: #000 !important;
 }
 
 /* Style the submit button */
