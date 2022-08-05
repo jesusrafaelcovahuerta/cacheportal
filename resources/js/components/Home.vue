@@ -4,10 +4,11 @@
             <hr>
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
-        <div style="border: 1px solid blue;">
-            Area 1 (for example a sidebar)
-            <div class="gcse-searchbox"></div>
-        </div>
+        <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
+        <input name="sitesearch" type="hidden" value="example.com">
+        <input autocomplete="on" class="form-control search" name="q" placeholder="Search in example.com" required="required"  type="text">
+        <button class="button" type="submit">Search</button>
+        </form>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <router-link @click.native="Track(post.google_tag)" v-if="post.link_question_id == 2" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
