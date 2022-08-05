@@ -88,6 +88,7 @@
             this.checkContentPoll();
             this.getPollQuestions();
             this.getPollQuantity();
+            this.getPost();
             this.getPosts();
             this.catchUser();
             this.checkDate();
@@ -241,6 +242,7 @@
                 poll_quantity: 0,
                 check_category_poll: '',
                 posts: [],
+                post: '',
                 form: {
                     yes_no_answer: [],
                     text_answer: []
