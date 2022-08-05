@@ -6,7 +6,7 @@
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
         <form action="https://www.google.com/search" class="example">
-            <input type="text" name="q" placeholder="Buscar en Google.com">
+            <input type="text" name="q" placeholder="Buscar en Google.com" style="color: #000;">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
         <div class="row">
