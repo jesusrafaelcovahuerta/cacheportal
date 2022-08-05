@@ -239,7 +239,7 @@ class SectionController extends ApiResponseController
         $word = "/";
         $string = $request->video_id;
  
-        if(strpos($mystring, $word) !== false){
+        if(strpos($string, $word) !== false){
             $word = "=";
             $string = $request->video_id;
 
