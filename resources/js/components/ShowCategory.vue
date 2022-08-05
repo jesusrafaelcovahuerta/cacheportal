@@ -1,5 +1,9 @@
 <template>
     <div class="container pt-32">
+        <div v-if="post.iframe != null" class="row">
+            <h1><center>{{ post.section_title }}</center></h1>
+            <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <div v-if="check_category_poll == 0">
             <div v-if="poll_question_posts == ''" class="row">
                 <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
