@@ -1,5 +1,9 @@
 <template>
     <div class="container pt-32">
+        <div class="row" v-if="post.subtitle != ''">
+            <hr>
+            <h2><center><strong>{{ post.subtitle }}</strong></center></h2>
+        </div>
         <div v-if="post.iframe != null" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
             <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
