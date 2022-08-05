@@ -5,9 +5,8 @@
             <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
         </div>
         <form action="https://www.google.com/search" class="searchform" method="get" name="searchform" target="_blank">
-        <input name="sitesearch" type="hidden" value="example.com">
-        <input autocomplete="on" class="form-control search" name="q" placeholder="Search in example.com" required="required"  type="text">
-        <button class="button" type="submit">Search</button>
+            <input autocomplete="on" class="form-control search" name="q" placeholder="¿Qué estás buscando? Te ayudamos" required="required"  type="text">
+            <button class="button" type="submit">Buscar</button>
         </form>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
