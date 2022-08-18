@@ -1,9 +1,9 @@
 <template>
-    <div class="container pt-32">
+    <div class="container pt-32">123
         <div class="row" v-if="post.section_subtitle != ''">
             <hr>
             <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
-        </div>
+        </div>444
         {{ post.video_id }}
         <div v-if="post.video_id != 0 && post.iframe == ''" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
