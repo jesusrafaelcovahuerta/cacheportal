@@ -31,6 +31,10 @@
         methods: {
             handleBlur(e) {
                 this.$set(this.form, 'search', '');
+
+                this.$gtag.event('page_view', {
+                    page_title: 'Buscador de Google en Home'
+                });
             },
             Track(google_tag) {
                 this.$gtag.event('page_view', {
