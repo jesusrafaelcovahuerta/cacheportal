@@ -38,7 +38,7 @@
                                         <input
                                         type="text" 
                                         v-model="form.title" 
-                                        maxlength="40"
+                                        maxlength="36"
                                         class="form-control"
                                         placeholder="Ingresa el título"
                                         >
@@ -322,8 +322,8 @@
                     if (this.form.google_tag == '') {
                         this.errors.push('La etiqueta de Google es obligatoria.');
                     }
-                    if (this.form.title.length > 28) {
-                        this.errors.push('El nombre debe tener menos de 28 caracteres.');
+                    if (this.form.title.length > 36) {
+                        this.errors.push('El nombre debe tener menos de 36 caracteres.');
                     }
                     if (this.form.color == '') {
                         this.errors.push('El color es obligatorio.');
@@ -357,7 +357,7 @@
             },
             charactersLeft() {
                 var char = this.form.title.length,
-                    limit = 25;
+                    limit = 36;
 
                 return (limit - char) + " / " + limit + " caracteres disponibles";
             }
