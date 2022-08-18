@@ -14,12 +14,6 @@
 
     <title>{{ config('app.name', 'Portal de la Fundación Conecta Mayor') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 
 
