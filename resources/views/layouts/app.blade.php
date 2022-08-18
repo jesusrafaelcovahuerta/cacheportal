@@ -24,7 +24,6 @@
     <!-- Styles -->
     <link href="{{ mix('css/frontendapp.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
 
 
 </head>
