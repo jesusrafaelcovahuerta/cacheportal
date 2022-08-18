@@ -4,10 +4,10 @@
             <hr>
             <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
         </div>
-         {{ post.video_id }}
+        {{ post.video_id }}
         <div v-if="post.video_id != 0 && post.iframe == ''" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
-           
+            {{ post.video_id }}
             https://www.youtube.com/embed/${post.video_id}?autoplay=1
             <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${post.video_id}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -106,7 +106,13 @@
 <script>
     export default {
         created() {
-
+            this.checkVideo();
+            this.checkCategoryPoll();
+            this.getPollQuestions();
+            this.getPollQuantity();
+            this.getPosts();
+            this.getPolls();
+            this.checkDate();
         },
         methods: {
             Track(google_tag) {
