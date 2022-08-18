@@ -42,7 +42,7 @@
 	
 	<!-- navbar -->
 	<div class="navbar navbar-home">
-		<div class="title title-home"><img style="height:55px;" src="{{ asset('frontend/images/logo.jpg') }}" alt=""></div>
+		
 	</div>
 	<!-- end navbar -->
 
@@ -179,14 +179,6 @@
         @yield('content')
     </div>
     
-	<!-- end toolbar bottom -->
-    <script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
-	<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-	<script src="{{ asset('frontend/js/fakeLoader.js') }}"></script>
-	<script src="{{ asset('frontend/js/swiper.min.js') }}"></script>
-	<script src="{{ asset('frontend/js/jquery.big-slide.js') }}"></script>
-	<script src="{{ asset('frontend/js/main.j') }}s"></script>
-	<script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
 
 </body>
 </html>
