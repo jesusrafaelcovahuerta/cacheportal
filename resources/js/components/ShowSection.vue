@@ -106,13 +106,7 @@
 <script>
     export default {
         created() {
-            this.checkVideo();
-            this.checkCategoryPoll();
-            this.getPollQuestions();
-            this.getPollQuantity();
-            this.getPosts();
-            this.getPolls();
-            this.checkDate();
+
         },
         methods: {
             Track(google_tag) {
