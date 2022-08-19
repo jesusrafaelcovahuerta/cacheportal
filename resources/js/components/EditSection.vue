@@ -275,8 +275,10 @@
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'fai', this.post.icon);
                     this.$set(this.form, 'iframe', this.post.iframe);
-                    if(this.post.iframe != null && this.post.iframe != '') {
-                        this.$set(this.form, 'iframe_question_id', 1);
+                    if(this.post.iframe != null) {
+                        if(this.post.iframe != '') {
+                            this.$set(this.form, 'iframe_question_id', 1);
+                        }
                     }
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     var google_tag = this.post.google_tag;
@@ -346,6 +348,7 @@
                     formData.append('position', this.form.position);
                     formData.append('link_question_id', this.form.link_question_id);
                     formData.append('url', this.form.url);
+                    formData.append('youtube_question_id', this.form.youtube_question_id);
                     formData.append('video_id', this.form.video_id);
                     formData.append('google_tag', this.form.google_tag);
 

@@ -243,22 +243,26 @@ class SectionController extends ApiResponseController
         $word = "/";
         $string = $request->video_id;
         
-        if($string != '') {
-            if(strpos($string, $word) !== false){
-                $word = "=";
-                $string = $request->video_id;
-    
+        if($request->youtube_question_id == 1) {
+            if($string != '') {
                 if(strpos($string, $word) !== false){
-                    $video = explode("=", $request->video_id);
-                    $video = explode("&", $video[1]);
-                    $section->video_id = $video[0];
-                } else {
-                    $video = explode("/", $request->video_id);
-                    $section->video_id = $video[3];
+                    $word = "=";
+                    $string = $request->video_id;
+        
+                    if(strpos($string, $word) !== false){
+                        $video = explode("=", $request->video_id);
+                        $video = explode("&", $video[1]);
+                        $section->video_id = $video[0];
+                    } else {
+                        $video = explode("/", $request->video_id);
+                        $section->video_id = $video[3];
+                    }
+                } else{
+                    $section->video_id = $request->video_id;
                 }
-            } else{
-                $section->video_id = $request->video_id;
             }
+        } else {
+            $section->video_id = '';
         }
 
         if($request->icon_type_id == 2) {
