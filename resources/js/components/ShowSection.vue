@@ -5,11 +5,11 @@
             <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
         </div>
 
-        <div v-if="post.video_id != 0 && post.iframe == null" class="row">
+        <div v-if="post.video_id != 0 && (post.iframe == null || post.iframe == '')" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
             <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${post.video_id}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div v-if="post.iframe != null" class="row">
+        <div v-if="post.iframe != null || post.iframe != ''" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
             <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
