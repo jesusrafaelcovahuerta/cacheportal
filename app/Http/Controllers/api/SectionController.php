@@ -244,7 +244,7 @@ class SectionController extends ApiResponseController
                 $word = "=";
                 $string = $request->video_id;
     
-                if(strpos($mystring, $word) !== false){
+                if(strpos($string, $word) !== false){
                     $video = explode("=", $request->video_id);
                     $video = explode("&", $video[1]);
                     $section->video_id = $video[0];
