@@ -275,7 +275,7 @@
                     this.$set(this.form, 'position', this.post.position);
                     this.$set(this.form, 'fai', this.post.icon);
                     this.$set(this.form, 'iframe', this.post.iframe);
-                    if(this.post.iframe != '') {
+                    if(this.post.iframe != null) {
                         this.$set(this.form, 'iframe_question_id', 1);
                     }
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
