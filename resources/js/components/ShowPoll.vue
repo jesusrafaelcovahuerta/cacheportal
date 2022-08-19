@@ -2,35 +2,34 @@
     <div class="container pt-32">
         <div class="row">
             <div>
-                <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
-                    <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
-                        <h2>{{ post.question }}</h2>
-                        <hr>
-                        <div class="form-group" v-if="post.answer_type_id == 1">
-                            <label class="question_poll_yes_no" style="font-size: 20px;" for="yes">Si</label>   <input style="font-size: 30px !important;" type="radio" sty v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="Si" required>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
-                            <label class="question_poll_yes_no" style="font-size: 20px;" for="no">No</label>    <input type="radio" v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="No" required>
+                <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
+                    <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
+                        
+                            <h2>{{ post.question }}</h2>
+                            <hr>
+                            <div class="form-group" v-if="post.answer_type_id == 1">
+                                <label class="question_poll_yes_no" style="font-size: 20px;" for="yes">Si</label>   <input style="font-size: 30px !important;" type="radio" sty v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="Si" required>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+                                <label class="question_poll_yes_no" style="font-size: 20px;" for="no">No</label>    <input type="radio" v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="No" required>
 
-                        </div>
-                        <div class="form-group" v-if="post.answer_type_id == 2">
-                            <input
-                                type="text" 
-                                v-model="form.text_answer[index]" 
-                                class="form-control"
-                                placeholder="Ingresa la respuesta"
-                                required
-                            >
-                        </div>
-
-                        <button
-                            type="submit" class="btn btn-success btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-check"></i>
-                            </span>
-                            <span class="text">Guardar</span>
-                        </button>
-                    </form>
-                </div>
+                            </div>
+                            <div class="form-group" v-if="post.answer_type_id == 2">
+                                <input
+                                    type="text" 
+                                    v-model="form.text_answer[index]" 
+                                    class="form-control"
+                                    placeholder="Ingresa la respuesta"
+                                    required
+                                >
+                            </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Guardar</span>
+                    </button>
+                </form>
             </div>
             
         </div>
