@@ -117,6 +117,9 @@
                                                 <button v-if="post.status == 1" v-on:click="stopPost(post.content_id, index)" class="btn btn-warning btn-circle btn-sm">
                                                     <i class="fas fa-pause"></i>
                                                 </button>
+                                                <button v-if="post.status == 0" v-on:click="playPost(post.content_id, index)" class="btn btn-warning btn-circle btn-sm">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
                                                 <button v-if="post.status == 1" v-on:click="deletePost(post.content_id, index)" class="btn btn-danger btn-circle btn-sm">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
@@ -344,6 +347,33 @@
 
                     let formData = new FormData();
                     formData.append('page', 'StopContent - '+id);
+                
+                    axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                    .then(function (response) {
+                        currentObj.success = response.data.success;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            playPost(id, index) {
+                if(confirm("¿Realmente usted quiere activar la publicación?")) {
+                    this.loading = true; //the loading begin
+                    axios.get('/api/content/play/'+id+'?api_token='+App.apiToken).then(response => {
+                        this.posts.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.onSubmit();
+                        this.$awn.success("El registro ha sido activado", {labels: {success: "Éxito"}});
+                    });
+
+                    let formData = new FormData();
+                    formData.append('page', 'PlayContent - '+id);
                 
                     axios.post('/api/audit/store?api_token='+App.apiToken, formData)
                     .then(function (response) {

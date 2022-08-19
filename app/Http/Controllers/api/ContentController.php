@@ -390,4 +390,19 @@ echo \Storage::url($content->image);
 
         return $this->successResponse($content);
     }
+
+    /**
+     * Destroy the specified resource.
+     *
+     * @param  int  $id
+     * @return \App\Http\Controllers\ApiResponseController
+     */
+    public function play($id)
+    {
+        $content = Content::find($id);
+        $content->status = 1;
+        $content->save();
+
+        return $this->successResponse($content);
+    }
 }

@@ -279,7 +279,7 @@
 
                 if(this.form.category_id != null
                     && this.form.type_id != null
-                    && this.form.title != ''
+                    && (this.form.type_id == 1 && this.form.title != '')
                     && this.form.google_tag != ''
                     && this.form.fai != ''
                     && this.form.description != ''
