@@ -49,7 +49,7 @@
                                     
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6" v-if="form.type_id == 1">
+                                    <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Título <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
                                         type="text" 
