@@ -336,6 +336,7 @@
                     formData.append('subtitle', this.form.subtitle);
                     formData.append('color', this.form.color);
                     formData.append('iframe', this.form.iframe);
+                    formData.append('iframe_question_id', this.form.iframe_question_id);
                     formData.append('icon_type_id', this.form.icon_type_id);
                     if(this.form.icon_type_id == 1) {
                         formData.append('file', this.file);
