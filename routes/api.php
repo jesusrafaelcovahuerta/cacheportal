@@ -89,6 +89,7 @@ Route::get('category/move/{id}/{position}/{section_id}', 'api\CategoryController
 Route::get('metric', 'api\MetricController@index');
 Route::post('content/date', 'api\ContentController@date');
 Route::get('content/stop/{id}', 'api\ContentController@stop');
+Route::get('content/play/{id}', 'api\ContentController@play');
 Route::get('content/list', 'api\ContentController@list');
 Route::get('content/list/{id}', 'api\ContentController@list');
 Route::post('content/search/{section_id}/{category_id}', 'api\ContentController@index');
