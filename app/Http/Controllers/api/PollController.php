@@ -326,39 +326,58 @@ class PollController extends ApiResponseController
 
     public function answer(Request $request)
     {
-        $yes_no_asnwers = explode(',', $request->yes_no_answers);
-        $text_answers = explode(',', $request->text_answers);
-
-        $poll = Poll::where('section_id', $request->poll_id)->first();
-        $poll_qty = Poll::where('section_id', $request->poll_id)->count();
-        
-        if($poll_qty == 0) {
-            $poll = Poll::where('category_id', $request->poll_id)->first();
-            $poll_qty = Poll::where('category_id', $request->poll_id)->count();
-
-            if($poll_qty == 0) {
-                $poll = Poll::where('content_id', $request->poll_id)->first();
-                $poll_qty = Poll::where('content_id', $request->poll_id)->count();
-            }
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
+            $ip = $_SERVER['HTTP_CLIENT_IP'];  
+            $ip = explode(":", $ip);
+            $ip = $ip[3];
+        } 
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
+            $ip = explode(":", $ip);
+            $ip = $ip[3];
+        }
+        else{  
+            $ip = $_SERVER['REMOTE_ADDR'];  
         }
 
-        $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
+        $poll_question_answer_check = PollQuestionAnswer::where('poll_id', $request->poll_id)->where('user_ip', $ip)->count();
 
-        $i = 0;
+        if($poll_question_answer_check == 0) {
+            $yes_no_asnwers = explode(',', $request->yes_no_answers);
+            $text_answers = explode(',', $request->text_answers);
 
-        foreach($poll_questions as $poll_question) {
-            $poll_question_answer = new PollQuestionAnswer;
-            $poll_question_answer->poll_id = $poll->poll_id;
-            $poll_question_answer->question_id = $poll_question->poll_question_id;
-            if($poll_question->answer_type_id == 1) {
-                $poll_question_answer->answer = $yes_no_asnwers[$i];
-            } else if($poll_question->answer_type_id == 2) {
-                $poll_question_answer->answer = $text_answers[$i];
-            }
+            $poll = Poll::where('section_id', $request->poll_id)->first();
+            $poll_qty = Poll::where('section_id', $request->poll_id)->count();
             
-            $i = $i + 1;
+            if($poll_qty == 0) {
+                $poll = Poll::where('category_id', $request->poll_id)->first();
+                $poll_qty = Poll::where('category_id', $request->poll_id)->count();
 
-            $poll_question_answer->save();
+                if($poll_qty == 0) {
+                    $poll = Poll::where('content_id', $request->poll_id)->first();
+                    $poll_qty = Poll::where('content_id', $request->poll_id)->count();
+                }
+            }
+
+            $poll_questions = PollQuestion::where('poll_id', $poll->poll_id)->get();
+
+            $i = 0;
+
+            foreach($poll_questions as $poll_question) {
+                $poll_question_answer = new PollQuestionAnswer;
+                $poll_question_answer->poll_id = $poll->poll_id;
+                $poll_question_answer->question_id = $poll_question->poll_question_id;
+                $poll_question_answer->user_ip = $ip;
+                if($poll_question->answer_type_id == 1) {
+                    $poll_question_answer->answer = $yes_no_asnwers[$i];
+                } else if($poll_question->answer_type_id == 2) {
+                    $poll_question_answer->answer = $text_answers[$i];
+                }
+                
+                $i = $i + 1;
+
+                $poll_question_answer->save();
+            }
         }
     }
 
