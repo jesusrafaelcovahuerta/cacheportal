@@ -25,7 +25,7 @@ class ScrapingController extends ApiResponseController
         $result = $crawler->filter('.main-content__left > inner-list > inner-list__item inner-item > inner-item__content > inner-item__title')->each(function ($node) {
             return $node->text();
         });
-print($result);
+print_r($result);
 
     }
 }
