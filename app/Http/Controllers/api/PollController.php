@@ -340,13 +340,15 @@ class PollController extends ApiResponseController
             $ip = $_SERVER['REMOTE_ADDR'];  
         }
 
-        $poll_question_answer_check = PollQuestionAnswer::where('poll_d', $request->poll_id)->where('user_ip', $ip)->count();
+        $poll = Poll::where('section_id', $request->poll_id)->first();
+
+        $poll_question_answer_check = PollQuestionAnswer::where('poll_id', $poll->poll_id)->where('user_ip', $ip)->count();
 
         if($poll_question_answer_check == 0) {
             $yes_no_asnwers = explode(',', $request->yes_no_answers);
             $text_answers = explode(',', $request->text_answers);
 
-            $poll = Poll::where('section_id', $request->poll_id)->first();
+            
             $poll_qty = Poll::where('section_id', $request->poll_id)->count();
             
             if($poll_qty == 0) {
