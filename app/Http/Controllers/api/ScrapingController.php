@@ -22,7 +22,7 @@ class ScrapingController extends ApiResponseController
 
         $crawler = $client->request('GET', 'https://www.cnnchile.com/opinion/');
 
-        $result = $crawler->filter('.main-content__left > inner-list > inner-list__item inner-item > inner-item__content > inner-item__title')->each(function ($node) {
+        $result = $crawler->filter('.main-content__left > .inner-list > .inner-list__item .inner-item > .inner-item__content > .inner-item__title')->each(function ($node) {
             return $node->text();
         });
 print_r($result);
