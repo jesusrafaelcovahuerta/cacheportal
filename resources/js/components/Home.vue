@@ -3,7 +3,7 @@
 
         <div class="row">
             <hr>
-            <h2><center><strong>Haz click en los botones para ver cada contenido</strong></center></h2>
+            <h1><center><strong>Haz click en los botones para ver cada contenido</strong></center></h1>
         </div>
         <form action="https://www.google.com/search" class="example">
             <input type="text" @click="handleBlur" v-model="form.search" name="q" placeholder="Buscar en Google.com">
