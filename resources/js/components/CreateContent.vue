@@ -44,6 +44,7 @@
                                             <option :value="1">Video</option>
                                             <option :value="2">Audio</option>
                                             <option :value="3">Texto</option>
+                                            <option :value="4">Pdf</option>
                                         </select>
                                     </div>
                                     
