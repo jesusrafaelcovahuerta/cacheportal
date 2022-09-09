@@ -34,7 +34,7 @@
 
                 <div v-if="pdf_url !== null">
                     {{ pdf_url }}
-                    <iframe :src="`http://docs.google.com/viewer?url=${pdf_url}&embedded=true`" width="100%" height="780" style="border: none;"></iframe>
+                    <iframe :src="`https://docs.google.com/viewer?url=${pdf_url}&embedded=true`" width="100%" height="780" style="border: none;"></iframe>
                 </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
@@ -223,7 +223,7 @@
                     this.post = response.data.data;
                     this.url = this.post.src;
                     this.image_url = '/storage/'+this.post.image;
-                    this.pdf_url = 'http://app.conectamayor.cl/storage/'+this.post.pdf;
+                    this.pdf_url = 'https://app.conectamayor.cl/storage/'+this.post.pdf;
                     this.videoID = this.post.video_id;
                 })
                 .catch(function (error) {
