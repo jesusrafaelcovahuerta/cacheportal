@@ -4,7 +4,7 @@
             <hr>
             <h2><center><strong>{{ post.subtitle }}</strong></center></h2>
         </div>
-        <div class="row" v-if="post.description != ''">
+        <div class="row" v-if="post.description != '' && post.description != null">
             <hr>
             <h3><center><strong>Descripción: {{ post.description }}</strong></center></h3>
         </div>
