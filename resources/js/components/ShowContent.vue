@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div v-if="this.post.pdf != null && this.post.pdf != ''">
+                <div v-if="this.post.pdf != null">
                     <iframe :src="`https://docs.google.com/viewer?url=${pdf_url}&embedded=true`" width="100%" height="780" style="border: none;"></iframe>
                 </div>
                 <hr>	
