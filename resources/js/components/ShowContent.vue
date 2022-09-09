@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div v-if="this.post.tupe_id == 4">
+                <div v-if="this.post.type_id == 4">
                     <iframe :src="`https://docs.google.com/viewer?url=${pdf_url}&embedded=true`" width="100%" height="780" style="border: none;"></iframe>
                 </div>
                 <hr>	
