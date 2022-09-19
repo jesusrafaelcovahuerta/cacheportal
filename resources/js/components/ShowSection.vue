@@ -5,80 +5,82 @@
             <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
         </div>
 
-        <div v-if="post.video_id != 0 && (post.iframe == null || post.iframe == '')" class="row">
+        <div v-if="post.video_id != 0" class="row">
             <h1><center>{{ post.section_title }}</center></h1>
             <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${post.video_id}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div v-if="post.iframe != null && post.iframe != ''" class="row">
-            <h1><center>{{ post.section_title }}</center></h1>
-            <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div v-if="check_category_poll == 0 && post.video_id == 0">
-            <div v-if="poll_question_posts == ''" class="row">
-                <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                    </router-link>
-
-                    <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                    </router-link>
-                </div>
+        <div v-else>
+            <div v-if="post.iframe != null && post.iframe != ''" class="row">
+                <h1><center>{{ post.section_title }}</center></h1>
+                <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="row" v-if="poll_question_posts != ''">
-                <div v-if="poll_quantity == 1">
-                    <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
-                        <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
-                            
-                                <h2>{{ post.question }}</h2>
-                                
-                                <div class="form-group" v-if="post.answer_type_id == 1">
-                                    <h4>Selecciona la respuesta marcando en el circulo</h4>
-                                    <hr>
-                                    <label class="question_poll_yes_no" style="font-size: 20px;" for="yes">Si</label>   <input style="font-size: 30px !important;" type="radio" sty v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="Si" required>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
-                                    <label class="question_poll_yes_no" style="font-size: 20px;" for="no">No</label>    <input type="radio" v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="No" required>
+            <div v-if="check_category_poll == 0">
+                <div v-if="poll_question_posts == ''" class="row">
+                    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
+                        <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                        </router-link>
 
-                                </div>
-                                <div class="form-group" v-if="post.answer_type_id == 2">
-                                    <h4>Escriba su respuesta</h4>
-                                    <hr>
-                                    <input
-                                            type="text" 
-                                            v-model="form.text_answer[index]" 
-                                            class="form-control"
-                                            placeholder="Ingresa la respuesta"
-                                            required
-                                    >
-                                </div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-check"></i>
-                            </span>
-                            <span class="text">Guardar</span>
-                        </button>
-                    </form>
-                </div>
-                <div v-if="poll_quantity > 1">
-                    <div class="col-md-12" v-for="(post, index) in polls" v-bind:index="index">
-                        <router-link  class="pollboton" :style="{ background: '#572364'}" :to="`/poll/show/${post.poll_id}`"> 
-                            {{ post.title }}
+                        <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
                         </router-link>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div v-if="check_category_poll != 0 && post.video_id == 0">
-            <div class="row">
-                <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                    </router-link>
+                <div class="row" v-if="poll_question_posts != ''">
+                    <div v-if="poll_quantity == 1">
+                        <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
+                            <div class="col-12" v-for="(post, index) in poll_question_posts" v-bind:index="index">
+                                
+                                    <h2>{{ post.question }}</h2>
+                                    
+                                    <div class="form-group" v-if="post.answer_type_id == 1">
+                                        <h4>Selecciona la respuesta marcando en el circulo</h4>
+                                        <hr>
+                                        <label class="question_poll_yes_no" style="font-size: 20px;" for="yes">Si</label>   <input style="font-size: 30px !important;" type="radio" sty v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="Si" required>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+                                        <label class="question_poll_yes_no" style="font-size: 20px;" for="no">No</label>    <input type="radio" v-model="form.yes_no_answer[index]" id="yes_no_asnwer" value="No" required>
 
-                    <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                        <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                    </router-link>
+                                    </div>
+                                    <div class="form-group" v-if="post.answer_type_id == 2">
+                                        <h4>Escriba su respuesta</h4>
+                                        <hr>
+                                        <input
+                                                type="text" 
+                                                v-model="form.text_answer[index]" 
+                                                class="form-control"
+                                                placeholder="Ingresa la respuesta"
+                                                required
+                                        >
+                                    </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="text">Guardar</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div v-if="poll_quantity > 1">
+                        <div class="col-md-12" v-for="(post, index) in polls" v-bind:index="index">
+                            <router-link  class="pollboton" :style="{ background: '#572364'}" :to="`/poll/show/${post.poll_id}`"> 
+                                {{ post.title }}
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="check_category_poll != 0">
+                <div class="row">
+                    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
+                        <router-link v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                        </router-link>
+
+                        <router-link v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
