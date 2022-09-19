@@ -10,7 +10,6 @@
             <iframe width="560" height="315" :src="`https://www.youtube.com/embed/${post.video_id}?autoplay=1`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div v-else>
-            {{ post.direct_content_question_id }}
             <div v-if="post.direct_content_question_id == 1" class="row">
                 <div class="row">
                     <div class="col-12" v-for="(post, index) in section_content_posts" v-bind:index="index">
