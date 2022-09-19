@@ -24,7 +24,7 @@ class SectionContentController extends ApiResponseController
 
         $contents = Content::from('contents as c')
                         ->selectRaw('c.*')
-                        ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
+                        ->leftJoin('categries', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.category_id')
                         ->where('sections.section_id', $section_id)
                         ->orderBy('c.created_at', 'DESC')
