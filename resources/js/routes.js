@@ -32,6 +32,7 @@ import ShowPoll from './components/ShowPoll';
 import EditPoll from './components/EditPoll';
 import MetricResult from './components/MetricResult';
 import PollResult from './components/PollResult';
+import ShowSectionContent from './components/ShowSectionContent';
 
 export default{
     mode: 'history',
@@ -203,6 +204,11 @@ export default{
           path: '/poll/result/:id',
           name: 'pollresult',
           component: PollResult
+        },
+        {
+          path: '/section/content/show/:id',
+          name: 'show_section_content',
+          component: ShowSectionContent
         }
     ]
 }
