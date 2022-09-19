@@ -30,6 +30,11 @@ Vue.component(
     require('./components/Menu.vue').default
 );
 
+Vue.component(
+    'poll-component',
+    require('./components/PollComponent.vue').default
+);
+
 /* add icons to the library */
 library.add(faUserSecret)
 
