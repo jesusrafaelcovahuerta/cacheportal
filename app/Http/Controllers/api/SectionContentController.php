@@ -22,11 +22,13 @@ class SectionContentController extends ApiResponseController
     {
         $section_id = $request->segment(4);
 
+        $category = Category::where('section_id', $section_id)->first();
+
         $contents = Content::from('contents as c')
                         ->selectRaw('c.*')
-                        ->leftJoin('categries', 'categories.category_id', '=', 'c.category_id')
+                        ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.category_id')
-                        ->where('sections.section_id', $section_id)
+                        ->where('c.category_id', $category->category_id)
                         ->orderBy('c.created_at', 'DESC')
                         ->get();
         

@@ -108,6 +108,17 @@ class SectionController extends ApiResponseController
         }
 
         if($section->save()) {
+            if($request->direct_content_question_id == 1) {
+                $category = new Category;
+                $category->alliance_id = 0;
+                $category->section_id = $section->section_id;
+                $category->highlight_id = 0;
+                $category->name = 'Sin Categoría para la Sección '. $section->section_title;
+                $category->position = 1;
+                $category->status = 1;
+                $category->save();
+            }
+
             if($request->icon_type_id == 1) {
                 Storage::disk('local')->putFileAs(
                     '/public',
