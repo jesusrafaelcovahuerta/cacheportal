@@ -74,6 +74,7 @@ class SectionController extends ApiResponseController
         $section->position = $request->position;
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
+        $section->direct_content_question_id = $request->direct_content_question_id;
         $section->url = $request->url;
 
         if($request->video_id != '') {
@@ -238,6 +239,7 @@ class SectionController extends ApiResponseController
         $section->icon_type_id = $request->icon_type_id;
         $section->google_tag = 'section_' . $request->google_tag;
         $section->link_question_id = $request->link_question_id;
+        $section->direct_content_question_id = $request->direct_content_question_id;
         $section->url = $request->url;
 
         $word = "/";
