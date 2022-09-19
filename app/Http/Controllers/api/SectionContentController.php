@@ -22,9 +22,12 @@ class SectionContentController extends ApiResponseController
     {
         $section_id = $request->segment(4);
 
-        $contents = Content::where('section_id', $section_id)
-                        ->where('category_id', 1)
-                        ->orderBy('position', 'ASC')
+        $contents = Content::from('contents as c')
+                        ->selectRaw('c.*')
+                        ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
+                        ->leftJoin('sections', 'sections.section_id', '=', 'categories.category_id')
+                        ->where('sections.section_id', $section_id)
+                        ->orderBy('c.created_at', 'DESC')
                         ->get();
         
         return $this->successResponse($contents);
