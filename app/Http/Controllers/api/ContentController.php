@@ -225,6 +225,8 @@ class ContentController extends ApiResponseController
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
+        echo $request->icon_type_id;
+        die();
         if($request->icon_type_id == 2) {
             $content->icon = $fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
