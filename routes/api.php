@@ -107,3 +107,4 @@ Route::get('metric/top_visit', 'api\MetricController@top_visit');
 Route::get('poll/result/{id}', 'api\PollController@result');
 Route::get('poll/excel/{id}', 'api\PollController@excel');
 Route::get('scraping/search', 'api\ScrapingController@search');
+Route::get('section_content/show/{id}', 'api\SectionContentController@show');
