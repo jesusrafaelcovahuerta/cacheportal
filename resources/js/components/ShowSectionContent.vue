@@ -1,14 +1,21 @@
 <template>
     <div class="container pt-32">
-        <div class="row" v-if="post.section_subtitle != ''">
-            <hr>
-            <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
+        <div v-if="loading">
+            <center>
+                <clip-loader :color="color"></clip-loader>
+            </center>
         </div>
+        <div v-else>
+            <div class="row" v-if="post.section_subtitle != ''">
+                <hr>
+                <h2><center><strong>{{ post.section_subtitle }}</strong></center></h2>
+            </div>
 
-        <div class="col-12" v-for="(post, index) in section_content_posts" v-bind:index="index">
-            <router-link class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
-                <i v-bind:class="post.icon"></i><br> {{ post.title }}
-            </router-link>
+            <div class="col-12" v-for="(post, index) in section_content_posts" v-bind:index="index">
+                <router-link class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
+                    <i v-bind:class="post.icon"></i><br> {{ post.title }}
+                </router-link>
+            </div>
         </div>
 
         <!-- toolbar bottom -->
@@ -32,7 +39,11 @@
 	
 </template>
 <script>
+    import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
     export default {
+        components: {
+            ClipLoader
+        },
         created() {
             this.getSection();
             this.getSectionContentPosts();
@@ -62,17 +73,12 @@
                 this.$router.go(-1)
             },
             getSection() {
-                this.loading = true;
-
                 axios.get('/api/section/'+ this.$route.params.id+'/edit')
                 .then(response => {
                     this.post = response.data.data;
                 })
                 .catch(function (error) {
                     console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
                 });
             },
             getSectionContentPosts() {
@@ -93,15 +99,7 @@
         data: function() {
             return {
                 posts: [],
-                post: '',
-                polls: [],
-                poll_question_posts: [],
-                poll_quantity: 0,
-                check_category_poll: '',
-                form: {
-                    yes_no_answer: [],
-                    text_answer: []
-                },
+                post: ''
             }
         }
     }
