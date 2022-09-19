@@ -113,10 +113,12 @@ class ContentController extends ApiResponseController
      */
     public function store(Request $request)
     {
-        if($request->file != 'undefined') { 
-            $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+        if($request->icon_type_id == 1) {
+            if($request->file != 'undefined') {
+                $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+            }
         } else {
-            $fileName = '';
+            $fileName = $request->icon;
         }
 
         if($request->pdf != 'undefined') { 
@@ -138,7 +140,11 @@ class ContentController extends ApiResponseController
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
-        $content->icon = 'icon ion-'.$request->fai.' home_icon_size2';
+        if($request->icon_type_id == 2) {
+            $content->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $content->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
         $content->end_date = $request->end_date;
         $content->description = $request->description;
         $content->position = $request->position;
@@ -204,10 +210,12 @@ class ContentController extends ApiResponseController
      */
     public function update(Request $request, $id)
     {
-        if($request->file != 'undefined') { 
-            $fileName = time().'_'.'audio'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+        if($request->icon_type_id == 1) {
+            if($request->file != 'undefined') {
+                $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
+            }
         } else {
-            $fileName = '';
+            $fileName = $request->icon;
         }
 
         $content = Content::find($id);
@@ -217,7 +225,11 @@ class ContentController extends ApiResponseController
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
-        $content->icon = 'icon ion-'.$request->fai.' home_icon_size2';
+        if($request->icon_type_id == 2) {
+            $content->icon = $fileName.' home_icon_size2';
+        } else if($request->icon_type_id == 3) {
+            $content->icon = 'icon ion-'.$fileName.' home_icon_size2';
+        }
         $content->end_date = $request->end_date;
         $content->description = $request->description;
         $content->position = $request->position;
