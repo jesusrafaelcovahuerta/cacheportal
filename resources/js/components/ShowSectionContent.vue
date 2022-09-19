@@ -99,7 +99,8 @@
         data: function() {
             return {
                 posts: [],
-                post: ''
+                post: '',
+                loading: false
             }
         }
     }
