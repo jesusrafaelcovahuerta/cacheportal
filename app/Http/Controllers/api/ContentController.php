@@ -29,7 +29,7 @@ class ContentController extends ApiResponseController
     {
         $section_id = $request->segment(4);
         $category_id = $request->segment(5);
-
+        echo  $this->user->rol_id;
         if(($section_id == 'null' && $category_id == 'null')
         || ($section_id == '' && $category_id == '')
         ) {
@@ -41,6 +41,7 @@ class ContentController extends ApiResponseController
                         ->orderBy('c.position', 'ASC')
                         ->paginate(10);
         } else {
+            
             $query = "";
 
             if ($section_id != 'null') {

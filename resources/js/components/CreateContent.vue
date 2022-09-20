@@ -113,12 +113,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label for="exampleInputEmail1">Imagen</label>
-                                        <input ref="file" accept="image/jpeg, image/png" type="file" class="form-control" v-on:change="onFileChange">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
@@ -148,15 +142,30 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <label for="exampleInputEmail1">Tipo de Icono <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.icon_type_id"
                                         >
-                                            <option :value="2">Ionic Icon</option>
+                                            <option :value="null">Seleccionar</option>
+                                            <option :value="2">Fa Icon</option>
+                                            <option :value="3">Ionic Icon</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 1">
+                                        <label for="exampleInputEmail1">Icono</label>
+                                        <input ref="file" accept="image/png" type="file" class="form-control" v-on:change="onFileChange">
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 2">
+                                        <label for="exampleInputEmail1">Fa Icon - <a href="https://fontawesome.com/icons" target= "_blank">Ver iconos</a></label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.fai" 
+                                            class="form-control"
+                                            placeholder="Ingresa el icono"
+                                        >
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.icon_type_id == 3">
                                         <label for="exampleInputEmail1">Ionic Icon - <a href="https://ionicframework.com/docs/v3/ionicons/" target= "_blank">Ver iconos</a></label>
                                         <input
                                             type="text" 
@@ -293,8 +302,7 @@
                     formData.append('title', this.form.title);
                     formData.append('google_tag', this.form.google_tag);
                     formData.append('icon_type_id', this.form.icon_type_id);
-                    formData.append('icon', this.form.icon);
-                    formData.append('fai', this.form.fai);
+                    formData.append('icon', this.form.fai);
                     formData.append('description', this.form.description);
                     formData.append('start_date', this.form.start_date);
                     formData.append('end_date', this.form.end_date);
