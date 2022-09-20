@@ -216,6 +216,7 @@ class ContentController extends ApiResponseController
                 $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
             }
         } else {
+            echo 333;
             $fileName = $request->icon;
         }
         echo $fileName;
