@@ -210,6 +210,8 @@ class ContentController extends ApiResponseController
      */
     public function update(Request $request, $id)
     {
+        echo $request->icon_type_id;
+        die();
         if($request->icon_type_id == 1) {
             if($request->file != 'undefined') {
                 $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
