@@ -142,7 +142,7 @@ class ContentController extends ApiResponseController
         $content->start_date = $request->start_date;
         $content->icon_type_id = $request->icon_type_id;
         if($request->icon_type_id == 2) {
-            $content->icon = $fileName.' home_icon_size2';
+            $content->icon = 'icon '.$fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
             $content->icon = 'icon ion-'.$fileName.' home_icon_size2';
         }
@@ -218,7 +218,7 @@ class ContentController extends ApiResponseController
         } else {
             $fileName = $request->icon;
         }
-        
+
         $content = Content::find($id);
         $content->category_id = $request->category_id;
         $content->type_id = $request->type_id;
@@ -228,7 +228,7 @@ class ContentController extends ApiResponseController
         $content->start_date = $request->start_date;
         $content->icon_type_id = $request->icon_type_id;
         if($request->icon_type_id == 2) {
-            $content->icon = $fileName.' home_icon_size2';
+            $content->icon = 'icon '. $fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
             $content->icon = 'icon ion-'.$fileName.' home_icon_size2';
         }
