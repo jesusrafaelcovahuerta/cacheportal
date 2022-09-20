@@ -338,7 +338,7 @@
                     if(this.post.icon_type_id == 2) {
                         var icon = this.post.icon;
                         var icon_detail = icon.split(' ');
-                        var icon = icon_detail[0]+' '+icon_detail[1];
+                        var icon = icon_detail[1]+' '+icon_detail[2];
                         this.$set(this.form, 'fai', icon);
                     } else {
                         var icon = this.post.icon;
@@ -353,7 +353,6 @@
                     this.$set(this.form, 'start_date', this.post.start_date);
                     this.$set(this.form, 'end_date', this.post.end_date);
                     this.$set(this.form, 'position', this.post.position);
-                    this.$set(this.form, 'status', this.post.status);
                 });
             },
             getCategoryList() {
