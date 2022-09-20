@@ -377,8 +377,7 @@
                     formData.append('video_id', this.form.video_id);
                     formData.append('title', this.form.title);
                     formData.append('google_tag', this.form.google_tag);
-                    formData.append('icon', this.form.icon);
-                    formData.append('fai', this.form.fai);
+                    formData.append('icon', this.form.fai);
                     formData.append('description', this.form.description);
                     formData.append('icon_type_id', this.form.icon_type_id);
                     formData.append('start_date', this.form.start_date);
