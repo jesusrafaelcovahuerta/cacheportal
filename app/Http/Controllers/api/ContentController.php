@@ -235,13 +235,18 @@ class ContentController extends ApiResponseController
         $content->description = $request->description;
         $content->position = $request->position;
 
-        $move_position_contents = Content::where('category_id', $request->category_id)->where('content_id', $content->content_id)->where('position', '>', $request->position)->orderBy('position', 'ASC')->get();
-        $position = $request->position;
-        foreach($move_position_contents as $move_position_content) {
-            $position = $position + 1;
-            $detail_content = Content::find($move_position_content->content_id);
-            $detail_content->position = $position;
-            $detail_content->save();
+        $old_position = $content->position;
+        $content->position = $request->position;
+
+        if($old_position != $request->position) {
+            $move_position_contents = Content::where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
+            $position = $request->position;
+            foreach($move_position_contents as $move_position_content) {
+                $position = $position + 1;
+                $detail_content = Content::find($move_position_content->section_id);
+                $detail_content->position = $position;
+                $detail_content->save();
+            }
         }
 
         if($this->user->rol_id == 1 ||  $this->user->rol_id == 3) {
