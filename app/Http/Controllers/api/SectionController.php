@@ -15,7 +15,11 @@ class SectionController extends ApiResponseController
 {
     public function __construct(Request $request)
     {
-        $this->user = User::where('api_token', $request->api_token)->first();
+        $this->user = User::from('users as c')
+                        ->selectRaw('c.*, members.rol_id as rol_id')
+                        ->leftJoin('members', 'members.user_id', '=', 'c.rut')
+                        ->where('api_token', $request->api_token)
+                        ->first();
     }
 
     /**
@@ -140,6 +144,8 @@ class SectionController extends ApiResponseController
      */
     public function list(Request $request)
     {
+        echo $this->user->rol_id;
+
         $sections = Section::where('status', 1)->orderBy('section_title', 'ASC')
                         ->get();
         
