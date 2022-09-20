@@ -160,7 +160,6 @@ class ContentController extends ApiResponseController
             $detail_content->save();
         }
 
-        $content->image = $fileName;
         $content->src = $request->src;
         if($this->user->rol_id == 1 || $this->user->rol_id == 3) {
             $content->status = 1;
@@ -235,7 +234,6 @@ class ContentController extends ApiResponseController
         $content->end_date = $request->end_date;
         $content->description = $request->description;
         $content->position = $request->position;
-        $content->image = $fileName;
 
         $move_position_contents = Content::where('content_id', $content->content_id)->where('position', '>=', $request->position)->orderBy('position', 'ASC')->get();
         $position = $request->position;
