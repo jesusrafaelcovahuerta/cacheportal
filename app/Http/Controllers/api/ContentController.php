@@ -140,6 +140,7 @@ class ContentController extends ApiResponseController
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
+        $content->icon_type_id = $request->icon_type_id;
         if($request->icon_type_id == 2) {
             $content->icon = $fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
@@ -210,8 +211,6 @@ class ContentController extends ApiResponseController
      */
     public function update(Request $request, $id)
     {
-        echo $request->icon_type_id;
-        die();
         if($request->icon_type_id == 1) {
             if($request->file != 'undefined') {
                 $fileName = time().'_'.'contenido'.'_'.$request->category_id.'.'.$request->file->getClientOriginalExtension();
@@ -219,7 +218,8 @@ class ContentController extends ApiResponseController
         } else {
             $fileName = $request->icon;
         }
-
+        echo $fileName;
+        die();
         $content = Content::find($id);
         $content->category_id = $request->category_id;
         $content->type_id = $request->type_id;
@@ -227,6 +227,7 @@ class ContentController extends ApiResponseController
         $content->title = $request->title;
         $content->google_tag = 'content_' . $request->google_tag;
         $content->start_date = $request->start_date;
+        $content->icon_type_id = $request->icon_type_id;
         if($request->icon_type_id == 2) {
             $content->icon = $fileName.' home_icon_size2';
         } else if($request->icon_type_id == 3) {
