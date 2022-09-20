@@ -111,12 +111,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label for="exampleInputEmail1">Imagen</label>
-                                        <input ref="file" accept="image/jpeg, image/png" type="file" class="form-control" v-on:change="onFileChange">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">Google Tag <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <input
