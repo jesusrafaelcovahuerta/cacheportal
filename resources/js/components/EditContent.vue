@@ -345,7 +345,7 @@
                     var icon_detail = icon_detail.split('-');
                     var icon = 'ios-'+icon_detail[2];
                     this.$set(this.form, 'fai', icon);
-                    this.$set('icon_type_id', this.form.icon_type_id);
+                    this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     this.$set(this.form, 'description', this.post.description);
                     this.$set(this.form, 'start_date', this.post.start_date);
                     this.$set(this.form, 'end_date', this.post.end_date);
