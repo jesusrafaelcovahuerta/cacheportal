@@ -184,7 +184,7 @@
         },
         methods: {
             movePost(id, index, category_id) {
-                this.loading = true; //the loading begin
+                this.loading = true;
                 axios.get('/api/content/move/'+id+'/'+index+'/'+category_id+'?api_token='+App.apiToken).then(response => {
                     
                 })
