@@ -15,7 +15,11 @@ class CategoryController extends ApiResponseController
 {
     public function __construct(Request $request)
     {
-        $this->user = User::where('api_token', $request->api_token)->first();
+        $this->user = User::from('users as c')
+                        ->selectRaw('c.*, members.rol_id as rol_id, members.alliance_id as alliance_id')
+                        ->leftJoin('members', 'members.user_id', '=', 'c.rut')
+                        ->where('api_token', $request->api_token)
+                        ->first();
     }
 
     /**
@@ -130,7 +134,11 @@ class CategoryController extends ApiResponseController
         if($id != '') {
             $categories = Category::where('section_id', $id)->where('status', 1)->orderBy('name', 'ASC')->get();
         } else {
-            $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+            if($this->user->rol_id == 2) {
+                $categories = Category::where('alliance_id', $this->user->alliance_id)->where('status', 1)->orderBy('name', 'ASC')->get();
+            } else {
+                $categories = Category::where('status', 1)->orderBy('name', 'ASC')->get();
+            }
         }
         
         return $this->successResponse($categories);
