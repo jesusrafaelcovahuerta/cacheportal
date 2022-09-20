@@ -29,7 +29,7 @@ class SectionContentController extends ApiResponseController
                         ->leftJoin('categories', 'categories.category_id', '=', 'c.category_id')
                         ->leftJoin('sections', 'sections.section_id', '=', 'categories.category_id')
                         ->where('c.category_id', $category->category_id)
-                        ->orderBy('c.created_at', 'DESC')
+                        ->orderBy('c.position', 'ASC')
                         ->get();
         
         return $this->successResponse($contents);
