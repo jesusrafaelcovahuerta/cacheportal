@@ -270,10 +270,8 @@
                     
                     this.$set(this.form, 'title', this.post.section_title);
                     this.$set(this.form, 'subtitle', this.post.section_subtitle);
-                    this.$set(this, 'color', this.post.color);
                     this.$set(this.form, 'color', this.post.color);
                     this.$set(this.form, 'position', this.post.position);
-                    this.$set(this.form, 'fai', this.post.icon);
                     this.$set(this.form, 'iframe', this.post.iframe);
                     if(this.post.iframe != null) {
                         if(this.post.iframe != '') {

@@ -331,14 +331,23 @@
                     this.$set(this.form, 'type_id', this.post.type_id);
                     this.$set(this.form, 'video_id', this.post.video_id);
                     this.$set(this.form, 'title', this.post.title);
-                    this.$set(this.form, 'google_tag', this.post.google_tag);
+                    var google_tag = this.post.google_tag;
+                    var google_tag_detail = google_tag.split('_');
+                    this.$set(this.form, 'google_tag', google_tag_detail[1]);
                     this.$set(this.form, 'video_type_id', this.post.video_type_id);
-                    var icon = this.post.icon;
-                    var icon_detail = icon.split(' ');
-                    var icon_detail = icon_detail[1];
-                    var icon_detail = icon_detail.split('-');
-                    var icon = 'ios-'+icon_detail[2];
-                    this.$set(this.form, 'fai', icon);
+                    if(this.post.icon_type_id == 2) {
+                        var icon = this.post.icon;
+                        var icon_detail = icon.split(' ');
+                        var icon = icon_detail[0]+' '+icon_detail[1];
+                        this.$set(this.form, 'fai', icon);
+                    } else {
+                        var icon = this.post.icon;
+                        var icon_detail = icon.split(' ');
+                        var icon_detail = icon_detail[1];
+                        var icon_detail = icon_detail.split('-');
+                        var icon = 'ios-'+icon_detail[2];
+                        this.$set(this.form, 'fai', icon);
+                    }
                     this.$set(this.form, 'icon_type_id', this.post.icon_type_id);
                     this.$set(this.form, 'description', this.post.description);
                     this.$set(this.form, 'start_date', this.post.start_date);
