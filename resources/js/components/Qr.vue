@@ -1,47 +1,45 @@
 <template>
-    <div v-if="shown">
-      Add app to home screen?
-  
-      <button @click="installPWA">
-        Install!
-      </button>
-  
-      <button @click="dismissPrompt">
-        No, thanks
+    <div>
+      <button
+        v-if="deferredPrompt"
+        ref="addBtn"
+        class="add-button"
+        @click="clickCallback"
+      >
+        Add
       </button>
     </div>
   </template>
   
   <script>
   export default {
+    name: 'AddToHomeScreen',
     data: () => ({
-      shown: false,
+      deferredPrompt: null,
     }),
-  
-    beforeMount() {
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault()
-        this.installEvent = e
-        this.shown = true
-      })
+    mounted() {
+      this.captureEvent()
     },
-  
     methods: {
-      dismissPrompt() {
-        this.shown = false
-      },
-  
-      installPWA() {
-        this.installEvent.prompt()
-        this.installEvent.userChoice.then((choice) => {
-          this.dismissPrompt() // Hide the prompt once the user's clicked
-          if (choice.outcome === 'accepted') {
-            // Do something additional if the user chose to install
-          } else {
-            // Do something additional if the user declined
-          }
+      captureEvent() {
+        window.addEventListener('beforeinstallprompt', (e) => {
+          // ! Prevent Chrome 67 and earlier from automatically showing the prompt
+          e.preventDefault()
+          // Stash the event so it can be triggered later.
+          this.deferredPrompt = e
         })
       },
-    }
+      clickCallback() {
+        // Show the prompt
+        this.deferredPrompt.prompt()
+        // Wait for the user to respond to the prompt
+        this.deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            // Call another function?
+          }
+          this.deferredPrompt = null
+        })
+      },
+    },
   }
   </script>
