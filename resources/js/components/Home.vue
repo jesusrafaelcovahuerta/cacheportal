@@ -28,7 +28,7 @@
         </div>
         <b-modal ref="my-modal" hide-footer title="Nueva Noticia">
             <div class="d-block text-center">
-                <img style="height:250px;" :src="'/../frontend/images/mesa.jpg'" alt="">
+                <img style="height:170px;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
         </b-modal>
     </div>
@@ -57,6 +57,19 @@
                 });
             },
             showModal() {
+                var currentDate = new Date();
+                console.log(currentDate);
+    
+                var formatted_date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+                console.log(formatted_date);
+
+                this.input = formatted_date;
+                if (isLocalStorage()) {
+                    localStorage.setItem('storeDate', this.input)
+                }
+
+                app.input = localStorage.getItem('storeDate');
+                console.log(app.input)
                 this.$refs['my-modal'].show()
             },
             hideModal() {
