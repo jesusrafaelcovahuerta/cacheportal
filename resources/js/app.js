@@ -20,6 +20,10 @@ import VueQrcodeReader from "vue-qrcode-reader";
 
 Vue.use(VueQrcodeReader);
 
+import VuePwaInstallPlugin from "vue-pwa-install";
+ 
+Vue.use(VuePwaInstallPlugin);
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
