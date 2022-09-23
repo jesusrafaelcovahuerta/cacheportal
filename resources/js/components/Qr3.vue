@@ -22,13 +22,7 @@
             this.getPosts();
             this.getRol();
             this.storeAudit();
-            this.$on("canInstall", (event: BeforeInstallPromptEvent) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt:
-        event.preventDefault();
- 
-        // Stash the event so it can be triggered later:
-        this.deferredPrompt = event;
-      });
+
         },
         methods: {
             onSubmit() {

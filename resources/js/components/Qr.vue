@@ -1,119 +1,226 @@
 <template>
-    <div class="container">
-          <h2>Current Camera</h2>
-          <code v-if="device">{{ device.label }}</code>
-            <web-cam ref="webcam"
-                     :device-id="deviceId"
-                     width="100%"
-                     @started="onStarted" 
-                     @stopped="onStopped" 
-                     @error="onError"
-                     @cameras="onCameras"
-                     @camera-change="onCameraChange" />
-              <select v-model="camera">
-                <option>-- Select Device --</option>
-                <option v-for="device in devices" 
-                        :key="device.deviceId" 
-                        :value="device.deviceId">{{ device.label }}</option>
-              </select>
-              <button type="button" 
-                      class="btn btn-primary" 
-                      @click="onCapture">Capture Photo</button>
-              <button type="button" 
-                      class="btn btn-danger" 
-                      @click="onStop">Stop Camera</button>
-              <button type="button" 
-                      class="btn btn-success" 
-                      @click="onStart">Start Camera</button>
-          <h2>Captured Image</h2>
-          <figure class="figure">
-            <img :src="img" class="img-responsive" >
-          </figure>
+    <div>
+        <button v-if="deferredPrompt" @onClick="promptInstall">
+    Add to home screen
+  </button>
+        <qrcode-stream @decode="onDecode"></qrcode-stream>
+       
+        
     </div>
-  </template>
-  
-  <script>
-  import { WebCam } from "vue-web-cam";
-  import { find, head } from "lodash";
-  
-  export default {
-    name: "HelloWorld",
-    components: {
-      WebCam
-    },
-    data() {
-      return {
-        img: null,
-        camera: null,
-        deviceId: null,
-        devices: []
-      };
-    },
-    computed: {
-      device() {
-        return find(this.devices, n => n.deviceId == this.deviceId);
-      }
-    },
-     watch: {
-      camera: function(id) {
-        this.deviceId = id;
-      },
-      devices: function() {
-        // Once we have a list select the first one
-        let first = head(this.devices);
-        if (first) {
-          this.camera = first.deviceId;
-          this.deviceId = first.deviceId;
+    
+</template>
+
+<script>
+    import vPagination from 'vue-plain-pagination';
+    import moment from 'moment'
+    import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
+    import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+
+
+    export default {
+        created() {
+            this.getPosts();
+            this.getRol();
+            this.storeAudit();
+
+        },
+        methods: {
+            onSubmit() {
+                this.loading = true; //the loading begin
+                if(this.form.rut == '') {
+                    this.form.rut = null;
+                }
+
+                if(this.form.name == '') {
+                    this.form.name = null;
+                }
+
+                axios.post('/api/alliance/search/'+ this.form.rut +'/'+ this.form.name + '?page='+this.currentPage+'&api_token='+App.apiToken)
+                .then(response => {
+                    this.posts = response.data.data.data;
+                    this.total = response.data.data.last_page;
+                    this.currentPage = response.data.data.current_page;
+                    this.quantity = response.data.data.total;
+                    this.rowsQuantity = response.data.data.total;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
+            getPosts() {
+                this.loading = true;
+
+                if(this.form.rut == '') {
+                    this.form.rut = null;
+                }
+
+                if(this.form.name == '') {
+                    this.form.name = null;
+                }
+
+                if(this.form.rut != null 
+                || this.form.name != null
+                ) {
+                    axios.get('/api/alliance/search/'+this.form.rut+'/'+this.form.name+'?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                } else {
+                    axios.get('/api/alliance?page='+this.currentPage+'&api_token='+App.apiToken)
+                    .then(response => {
+                        this.posts = response.data.data.data;
+                        this.total = response.data.data.last_page;
+                        this.currentPage = response.data.data.current_page;
+                        this.rowsQuantity = response.data.data.total;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+                }
+            },
+            formatDate(value) {
+                if(value != '' && value != null && value != '0000-00-00') {
+                    return moment(value).format('DD-MM-YYYY');
+                } else {
+                    return '';
+                }
+            },
+            getRol() {
+                axios.get('/api/user?api_token='+App.apiToken)
+                .then(response => {
+                    this.rol_id = response.data.data.rol_id;
+                });
+            },
+            deletePost(id, index) {
+                if(confirm("¿Realmente usted quiere desactivar el registro?")) {
+                    this.loading = true; //the loading begin
+                    axios.get('/api/alliance/destroy/'+id+'?api_token='+App.apiToken).then(response => {
+                        this.posts.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.getPosts();
+                        this.$awn.success("El registro ha sido desactivado", {labels: {success: "Éxito"}});
+                    });
+
+                    let formData = new FormData();
+                    formData.append('page', 'DeleteAlliance - '+id);
+                
+                    axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                    .then(function (response) {
+                        currentObj.success = response.data.success;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            activatePost(id, index) {
+                if(confirm("¿Realmente usted quiere activar el registro?")) {
+                    this.loading = true; //the loading begin
+                    axios.get('/api/alliance/activate/'+id+'?api_token='+App.apiToken).then(response => {
+                        this.posts.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                        this.getPosts();
+                        this.$awn.success("El registro ha sido activado", {labels: {success: "Éxito"}});
+                    });
+
+                    let formData = new FormData();
+                    formData.append('page', 'ActivateAlliance - '+id);
+                
+                    axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                    .then(function (response) {
+                        currentObj.success = response.data.success;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            storeAudit() {
+                let formData = new FormData();
+                formData.append('page', 'Alliance');
+               
+                axios.post('/api/audit/store?api_token='+App.apiToken, formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            onDecode (decodedString) {
+                alert(decodedString);
+            }
+        },
+        components: { 
+            vPagination,
+            ClipLoader,
+            QrcodeStream,
+            QrcodeDropZone,
+            QrcodeCapture,
+            BeforeInstallPromptEvent 
+        },
+        data: function() {
+            return {
+                color: '#0A2787',
+                loading: false,
+                form: {
+                    rol_id: null,
+                    name: '',
+                    rut: ''
+                },
+                branch_office_posts: [],
+                supervisor_posts: [],
+                rol_id: this.rol_id,
+                postsSelected: "",
+                posts: [],
+                currentPage: 1,
+                total: 0,
+                rowsQuantity: '',
+                bootstrapPaginationClasses: {
+                    ul: 'pagination',
+                    li: 'page-item',
+                    liActive: 'active',
+                    liDisable: 'disabled',
+                    button: 'page-link'  
+                },
+                paginationAnchorTexts: {
+                    first: '',
+                    prev: '&laquo;',
+                    next: '&raquo;',
+                    last: ''
+                },
+                mobilepaginationAnchorTexts: {
+                    first: '',
+                    prev: '',
+                    next: '',
+                    last: ''
+                }
+            }
         }
-      }
-    },
-    methods: {
-      onCapture() {
-        this.img = this.$refs.webcam.capture();
-      },
-      onStarted(stream) {
-        console.log("On Started Event", stream);
-      },
-      onStopped(stream) {
-        console.log("On Stopped Event", stream);
-      },
-      onStop() {
-        this.$refs.webcam.stop();
-      },
-      onStart() {
-        this.$refs.webcam.start();
-      },
-      onError(error) {
-        console.log("On Error Event", error);
-      },
-      onCameras(cameras) {
-        this.devices = cameras;
-        console.log("On Cameras Event", cameras);
-      },
-      onCameraChange(deviceId) {
-        this.deviceId = deviceId;
-        this.camera = deviceId;
-        console.log("On Camera Change Event", deviceId);
-      }
     }
-  };
-  </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  h3 {
-    margin: 40px 0 0;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
-  </style>
-  
+</script>

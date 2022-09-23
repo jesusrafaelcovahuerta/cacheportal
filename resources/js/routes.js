@@ -34,6 +34,7 @@ import MetricResult from './components/MetricResult';
 import PollResult from './components/PollResult';
 import ShowSectionContent from './components/ShowSectionContent';
 import Qr from './components/Qr';
+import Cam from './components/Cam';
 
 export default{
     mode: 'history',
@@ -215,6 +216,11 @@ export default{
           path: '/qr',
           name: 'qr',
           component: Qr
+        },
+        {
+          path: '/cam',
+          name: 'cam',
+          component: Cam
         }
     ]
 }
