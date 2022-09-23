@@ -62,20 +62,6 @@
             <i class="fas fa-fw fa-users"></i>
             <span>Usuarios</span></router-link>
         </li>
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item" v-if="rol_id == 1 || rol_id == 3">
-            <router-link class="nav-link" to="/qr">
-            <i class="fas fa-solid fa-qrcode"></i>
-            <span>Qr</span></router-link>
-        </li>
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item" v-if="rol_id == 1 || rol_id == 3">
-            <router-link class="nav-link" to="/cam">
-            <i class="fas fa-solid fa-camera"></i>
-            <span>Cam</span></router-link>
-        </li>
         
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
