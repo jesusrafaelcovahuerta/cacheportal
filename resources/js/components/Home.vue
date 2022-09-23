@@ -28,9 +28,8 @@
         </div>
         <b-modal ref="my-modal" hide-footer title="Using Component Methods">
             <div class="d-block text-center">
-                <img style="height:55px;" :src="'/../frontend/images/mesa.jpg'" alt="">
+                <img style="height:120px;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
-            <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
         </b-modal>
     </div>
 </template>
