@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <vue-qr-reader v-on:code-scanned="codeArrived" vide-width="200" vide-height="200" />
+        <vue-qr-reader v-on:code-scanned="codeArrived" vide-width="20" vide-height="20" />
 
        
         
