@@ -72,11 +72,11 @@
                 const date = app.input.split("/");
 
                 console.log(date[2])
-                if(date != formatted_date) {
 
+                if(date[2] != formatted_date[2]) {
+                    this.$refs['my-modal'].show()
                 }
-                this.$refs['my-modal'].show()
-
+                
                 localStorage.setItem('storeDate', this.input)
             },
             hideModal() {
