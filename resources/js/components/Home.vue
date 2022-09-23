@@ -26,9 +26,9 @@
                 </div>
 		    </div>
         </div>
-        <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+        <b-modal ref="my-modal" hide-footer title="Nueva Noticia">
             <div class="d-block text-center">
-                <img style="height:120px;" :src="'/../frontend/images/mesa.jpg'" alt="">
+                <img style="height:250px;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
         </b-modal>
     </div>
