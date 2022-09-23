@@ -25,15 +25,12 @@
                     </button>
                 </div>
 		    </div>
-            <b-button id="show-btn" @click="showModal">Open Modal</b-button>
-            <b-button id="toggle-btn" @click="toggleModal">Toggle Modal</b-button>
         </div>
         <b-modal ref="my-modal" hide-footer title="Using Component Methods">
             <div class="d-block text-center">
-                <h3>Hello From My Modal!</h3>
+                <img style="height:55px;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
             <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-            <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
         </b-modal>
     </div>
 </template>
@@ -43,8 +40,21 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
+            this.showModal();
         },
         methods: {
+            catchUser() {
+                let formData = new FormData();
+                formData.append('page', 'Home');
+               
+                axios.post('/api/user/catch', formData)
+                .then(function (response) {
+                    currentObj.success = response.data.success;
+                })
+                .catch(function (error) {
+                        console.log(error);
+                });
+            },
             showModal() {
                 this.$refs['my-modal'].show()
             },
