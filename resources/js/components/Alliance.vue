@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div style="width: 10px; height: 10px;">
-        <vue-qr-reader v-on:code-scanned="codeArrived" vide-width="20" vide-height="20" />
-    </div>
+        <qrcode-stream @decode="onDecode"></qrcode-stream>
        
         
     </div>
@@ -13,7 +11,8 @@
     import vPagination from 'vue-plain-pagination';
     import moment from 'moment'
     import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
-    import VueQrReader from 'vue-qr-reader/dist/lib/vue-qr-reader.umd.js';
+    import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+
 
     export default {
         created() {
@@ -169,14 +168,16 @@
                     console.log(error);
                 });
             },
-            codeArrived (code) {
-                console.log(code);
+            onDecode (decodedString) {
+                console.log(decodedString);
             }
         },
         components: { 
             vPagination,
             ClipLoader,
-            VueQrReader
+            QrcodeStream,
+            QrcodeDropZone,
+            QrcodeCapture
         },
         data: function() {
             return {
