@@ -16,6 +16,12 @@ import VueGtag from "vue-gtag";
 // import vue-panzoom
 import panZoom from 'vue-panzoom'
 
+import { AndroidPreview, IphonePreview } from 'vue-push-notification-preview';
+import 'vue-push-notification-preview/src/assets/devices.scss';
+
+Vue.component('AndroidPreview', AndroidPreview);
+Vue.component('IphonePreview', IphonePreview);
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
