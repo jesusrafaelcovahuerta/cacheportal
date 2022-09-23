@@ -33,6 +33,7 @@ import EditPoll from './components/EditPoll';
 import MetricResult from './components/MetricResult';
 import PollResult from './components/PollResult';
 import ShowSectionContent from './components/ShowSectionContent';
+import Qr from './components/Qr';
 
 export default{
     mode: 'history',
@@ -209,6 +210,11 @@ export default{
           path: '/section/content/show/:id',
           name: 'show_section_content',
           component: ShowSectionContent
+        },
+        {
+          path: '/qr',
+          name: 'qr',
+          component: Qr
         }
     ]
 }
