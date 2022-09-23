@@ -1,13 +1,12 @@
 <template>
     <div>
-        <PhotoCapture v-model="imageBase64" />
-        <VideoCapture uploadUrl="<example-server-address.com>" v-model="videoUrl" />
+        <vue-web-cam />
     </div>
 </template>
 
 <script>
-import 'vue-media-recorder/src/assets/scss/main.scss'
-import {PhotoCapture, VideoCapture} from 'vue-media-recorder'
+import { WebCam } from "vue-web-cam";
+
 
 export default {
     data(){
@@ -16,9 +15,8 @@ export default {
             videoUrl: null,
         }
     },
-    components:{
-        PhotoCapture,
-        VideoCapture
+    components: {
+        WebCam
     }
 }
 </script>
