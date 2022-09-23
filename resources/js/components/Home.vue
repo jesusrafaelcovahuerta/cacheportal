@@ -64,10 +64,9 @@
                 console.log(formatted_date);
 
                 this.input = formatted_date;
-                if (isLocalStorage()) {
-                    localStorage.setItem('storeDate', this.input)
-                }
-
+                
+                localStorage.setItem('storeDate', this.input)
+                
                 app.input = localStorage.getItem('storeDate');
                 console.log(app.input)
                 this.$refs['my-modal'].show()
