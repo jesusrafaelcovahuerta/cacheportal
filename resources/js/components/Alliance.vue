@@ -169,7 +169,7 @@
                 });
             },
             onDecode (decodedString) {
-                console.log(decodedString);
+                alert(decodedString);
             }
         },
         components: { 
