@@ -51,6 +51,7 @@
         "vue-pdf-app": "^2.1.0",
         "vue-plain-pagination": "^0.3.0",
         "vue-push-notification-preview": "^2.3.0",
+        "vue-qr-reader": "^1.6.2",
         "vue-qrcode-reader": "^3.1.0",
         "vue-router": "^3.3.4",
         "vue-spinner": "^1.0.4",
