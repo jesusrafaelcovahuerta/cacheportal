@@ -28,7 +28,7 @@
         </div>
         <b-modal ref="my-modal" hide-footer title="Nueva Noticia">
             <div class="d-block text-center">
-                <img style="height:170px;" :src="'/../frontend/images/mesa.jpg'" alt="">
+                <img style="height:160px;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
         </b-modal>
     </div>
@@ -64,12 +64,20 @@
                 console.log(formatted_date);
 
                 this.input = formatted_date;
-                
-                localStorage.setItem('storeDate', this.input)
+
+                formatted_date = formatted_date.split("/")
                 
                 app.input = localStorage.getItem('storeDate');
-                console.log(app.input)
+
+                const date = app.input.split("/");
+
+                console.log(date[2])
+                if(date != formatted_date) {
+
+                }
                 this.$refs['my-modal'].show()
+
+                localStorage.setItem('storeDate', this.input)
             },
             hideModal() {
                 this.$refs['my-modal'].hide()
