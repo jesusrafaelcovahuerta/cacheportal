@@ -1,28 +1,25 @@
 <template>
-    <button v-if="deferredPrompt" @onClick="promptInstall">
-      Add to home screen
-    </button>
+    <button @click="install">install</button>
   </template>
   
-  <script lang="ts">
+  <script>
     export default {
-    name: "App",
-    data() {
-        return {
-        deferredPrompt: null
-        };
-    },
-    created() {
-        window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        this.deferredPrompt = e;
-        });
-    },
-    methods: {
-        async install() {
-        this.deferredPrompt.prompt();
+        data() {
+            return {
+            deferredPrompt: null
+            };
+        },
+        created() {
+            window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            this.deferredPrompt = e;
+            });
+        },
+        methods: {
+            async install() {
+            this.deferredPrompt.prompt();
+            }
         }
-    }
     };
   </script>
