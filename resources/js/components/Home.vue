@@ -40,6 +40,8 @@
             this.getPosts();
             this.catchUser();
             this.checkDate();
+        },
+        mounted() {
             this.showModal();
         },
         methods: {
