@@ -278,7 +278,7 @@ class ContentController extends ApiResponseController
     public function show(Request $request)
     {
         $id = $request->segment(4);
-        $contents = Content::where('category_id', $id)->where('status', 1)->get();
+        $contents = Content::where('category_id', $id)->where('status', 1)->orderBy('position', 'ASC')->get();
 
         return $this->successResponse($contents);
     }
