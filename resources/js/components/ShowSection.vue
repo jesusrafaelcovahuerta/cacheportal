@@ -50,7 +50,7 @@
                                     >
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success btn-icon-split">
+                            <button type="submit" class="btn btn-success btn-lg btn-icon-split">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-check"></i>
                                 </span>

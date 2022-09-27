@@ -28,7 +28,7 @@
         </div>
         <b-modal ref="my-modal" hide-footer title="Nueva Noticia">
             <div class="d-block text-center">
-                <img style="height:160px;" :src="'/../frontend/images/mesa.jpg'" alt="">
+                <img style="width: 100%;" :src="'/../frontend/images/mesa.jpg'" alt="">
             </div>
         </b-modal>
     </div>
