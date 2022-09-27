@@ -186,7 +186,7 @@ class SectionController extends ApiResponseController
         if($section_qty > 0) {
             return $this->successResponse($section->category_id);
         } else {
-            return $this->successResponse('');
+            return $this->successResponse('0');
         }
     }
 
