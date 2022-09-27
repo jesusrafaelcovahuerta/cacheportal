@@ -184,9 +184,13 @@ class SectionController extends ApiResponseController
         $section_qty = Poll::where('section_id', $id)->where('status', 1)->count();
         
         if($section_qty > 0) {
-            return $this->successResponse($section->category_id);
+            if($section->category_id != null) {
+                return $this->successResponse($section->category_id);
+            } else {
+                return $this->successResponse('0');
+            }
         } else {
-            return $this->successResponse('0');
+            return $this->successResponse('');
         }
     }
 
