@@ -67,18 +67,30 @@
 
                 formatted_date = formatted_date.split("/")
                 
-                app.input = localStorage.getItem('storeDate');
+                if(localStorage.getItem('storeDate') != null) {
+                    app.input = localStorage.getItem('storeDate');
 
-                const date = app.input.split("/");
+                    const date = app.input.split("/");
 
-                console.log(date[2])
-                /*
-                if(date[2] != formatted_date[2]) {
+                    console.log(date[2])
+                    /*
+                    if(date[2] != formatted_date[2]) {
+                        this.$refs['my-modal'].show()
+                    }
+                    */
                     this.$refs['my-modal'].show()
+                    localStorage.setItem('storeDate', this.input)
+                } else {
+
+                    /*
+                    if(date[2] != formatted_date[2]) {
+                        this.$refs['my-modal'].show()
+                    }
+                    */
+                    this.$refs['my-modal'].show()
+                    localStorage.setItem('storeDate', formatted_date)
                 }
-                */
-                this.$refs['my-modal'].show()
-                localStorage.setItem('storeDate', this.input)
+                
             },
             hideModal() {
                 this.$refs['my-modal'].hide()
