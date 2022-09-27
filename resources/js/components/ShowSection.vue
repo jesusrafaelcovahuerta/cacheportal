@@ -26,7 +26,6 @@
                         </router-link>
                     </div>
                 </div>
-                {{ poll_question_posts }}
                 <div class="row" v-if="poll_question_posts != ''">
                     <div v-if="poll_quantity == 1">
                         <form @submit.prevent="onSubmit" ref="createCollection" enctype="multipart/form-data">
