@@ -57,6 +57,7 @@
                 });
             },
             showModal() {
+                /*
                 var currentDate = new Date();
                 console.log(currentDate);
     
@@ -73,24 +74,24 @@
                     const date = app.input.split("/");
 
                     console.log(date[2])
-                    /*
+             
                     if(date[2] != formatted_date[2]) {
                         this.$refs['my-modal'].show()
                     }
-                    */
+                    
                     this.$refs['my-modal'].show()
                     localStorage.setItem('storeDate', this.input)
                 } else {
 
-                    /*
+                
                     if(date[2] != formatted_date[2]) {
                         this.$refs['my-modal'].show()
                     }
-                    */
+                   
                     this.$refs['my-modal'].show()
                     localStorage.setItem('storeDate', formatted_date)
                 }
-                
+                 */
             },
             hideModal() {
                 this.$refs['my-modal'].hide()
