@@ -36,7 +36,10 @@
                 });
             },
             onDecode (decodedString) {
-                alert(decodedString);
+                window.open(
+                    decodedString,
+                    '_blank'
+                );
             }
         },
         components: {
