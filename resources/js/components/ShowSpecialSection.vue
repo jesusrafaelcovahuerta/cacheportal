@@ -1,6 +1,6 @@
 <template>
     <div class="container pt-32">
-        <h1><center>Si necesita leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
+        <h1><center>Si necesitas leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
         <hr>
         <qrcode-stream @decode="onDecode"></qrcode-stream>
 
