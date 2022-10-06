@@ -1,5 +1,7 @@
 <template>
     <div class="container pt-32">
+        <h1><center>Si necesita leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
+        <hr>
         <qrcode-stream @decode="onDecode"></qrcode-stream>
 
         <!-- toolbar bottom -->
@@ -40,6 +42,12 @@
                     decodedString,
                     '_blank'
                 );
+            },
+            goHome() {
+                this.$router.push('/')
+            },
+            goBack() {
+                this.$router.go(-1)
             }
         },
         components: {
