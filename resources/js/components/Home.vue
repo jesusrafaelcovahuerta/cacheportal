@@ -11,7 +11,7 @@
         </form>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
-                <div v-if="post.link_question_id == 2">
+                <div v-if="post.section_id == 67">
                     <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
                         <font class="section_title">Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
                     </router-link>
