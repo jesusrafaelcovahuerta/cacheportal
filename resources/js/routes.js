@@ -35,6 +35,7 @@ import PollResult from './components/PollResult';
 import ShowSectionContent from './components/ShowSectionContent';
 import Qr from './components/Qr';
 import Cam from './components/Cam';
+import ShowSpecialSection from './components/ShowSpecialSection';
 
 export default{
     mode: 'history',
