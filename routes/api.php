@@ -108,3 +108,4 @@ Route::get('poll/result/{id}', 'api\PollController@result');
 Route::get('poll/excel/{id}', 'api\PollController@excel');
 Route::get('scraping/search', 'api\ScrapingController@search');
 Route::get('section_content/show/{id}', 'api\SectionContentController@show');
+Route::get('special_section/show/{id}', 'api\SpecialSectionController@show');
