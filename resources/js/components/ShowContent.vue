@@ -1,7 +1,7 @@
 <template>
     <div class="container pt-32">
         <div v-if="poll_question_posts == ''" class="row">
-		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2 || this.post.type_id == 4">
+		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2 || this.post.type_id == 4 || this.post.type_id == 5">
                 <h1><center>{{ this.post.title }}</center></h1>
                 <hr>
                 <div v-if="url !== null">
