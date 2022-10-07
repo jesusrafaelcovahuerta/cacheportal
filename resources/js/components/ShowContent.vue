@@ -35,6 +35,9 @@
                 <div v-if="this.post.type_id == 4">
                     <iframe :src="`https://docs.google.com/viewer?url=${pdf_url}&embedded=true`" width="100%" height="780" style="border: none;"></iframe>
                 </div>
+                <div v-if="this.post.type_id == 5">
+                    <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
                 <hr>	
                 <h3>{{ this.post.description }}</h3>	    
             </div>

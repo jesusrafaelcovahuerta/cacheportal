@@ -45,6 +45,7 @@
                                             <option :value="2">Audio</option>
                                             <option :value="3">Texto</option>
                                             <option :value="4">Pdf</option>
+                                            <option :value="5">Iframe</option>
                                         </select>
                                     </div>
                                     
@@ -110,6 +111,17 @@
                                     <div class="col-sm-12" v-if="form.type_id == 4">
                                         <label for="exampleInputEmail1">PDF</label>
                                         <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
+                                    </div>
+                                    <div class="col-sm-12" v-if="form.type_id == 5">
+                                        <div v-if="form.type_id == 5">
+                                            <label for="exampleInputEmail1">Url</label>
+                                            <input
+                                            type="text" 
+                                            v-model="form.iframe" 
+                                            class="form-control"
+                                            placeholder="Ingresa el src del iframe"
+                                            >
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -256,7 +268,8 @@
                     start_date: '',
                     end_date: '',
                     src: '',
-                    video_type_id: null
+                    video_type_id: null,
+                    iframe: ''
                 }
             }
         },
@@ -310,6 +323,7 @@
                     formData.append('src', this.form.src);
                     formData.append('file', this.file);
                     formData.append('pdf', this.pdf);
+                    formData.append('iframe', this.iframe);
                     formData.append('video_type_id', this.form.video_type_id);
 
                     axios.post('/api/content/store?api_token='+App.apiToken, formData, config)
