@@ -149,6 +149,7 @@ class ContentController extends ApiResponseController
         }
         $content->end_date = $request->end_date;
         $content->description = $request->description;
+        $content->iframe = $request->iframe;
         $content->position = $request->position;
         $content->pdf = $pdfName;
 
