@@ -112,7 +112,7 @@
                                         <label for="exampleInputEmail1">PDF</label>
                                         <input ref="pdf" accept=".pdf" type="file" class="form-control" v-on:change="onFileChangePdf">
                                     </div>
-                                    <div class="col-sm-12" v-if="form.type_id == 5">
+                                    <div class="col-sm-6" v-if="form.type_id == 5">
                                         <div v-if="form.type_id == 5">
                                             <label for="exampleInputEmail1">Url</label>
                                             <input
