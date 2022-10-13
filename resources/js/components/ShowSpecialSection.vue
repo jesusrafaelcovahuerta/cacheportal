@@ -10,7 +10,7 @@
         <div class="container pt-32" v-if="this.$route.params.id == 68">
             <h1><center>Noticias</center></h1>
             <hr>
-            <h2>Esto es un titulo de prueba</h2> - 09-10-2022
+            <h4>Esto es un titulo de prueba</h4>
             <p>Esto es un contenido de prueba</p>
         </div>
         <!-- toolbar bottom -->
