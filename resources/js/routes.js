@@ -224,7 +224,7 @@ export default{
           component: Cam
         },
         {
-          path: '/special_section/show',
+          path: '/special_section/show/:id',
           name: 'show_special_section',
           component: ShowSpecialSection
         }
