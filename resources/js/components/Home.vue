@@ -7,17 +7,19 @@
         </div>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
-                <div v-if="post.section_id == 67">
-                    <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
-                        <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
-                    </router-link>
+                <div v-if="post.special_section_id == 1">
+                    <div v-if="post.section_id == 67">
+                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
+                            <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
+                        </router-link>
+                    </div>
+                    <div v-if="post.section_id == 68">
+                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
+                            <font class="section_title">Noticias</font><br><i v-bind:class="'fa-solid fa-newspaper'"></i>
+                        </router-link>
+                    </div>
                 </div>
-                <div v-if="post.section_id == 68">
-                    <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
-                        <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
-                    </router-link>
-                </div>
-                <div v-if="post.section_id != 67 && post.section_id != 68">
+                <div v-else>
                     <div v-if="post.link_question_id == 2">
                         <router-link @click.native="Track(post.google_tag)" v-if="post.direct_content_question_id == 0 || post.direct_content_question_id == null" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
                             <font class="section_title">{{ post.section_title }}</font><br><i v-bind:class="post.icon"></i>
