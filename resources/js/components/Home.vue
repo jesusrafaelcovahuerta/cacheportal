@@ -12,6 +12,11 @@
                         <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
                     </router-link>
                 </div>
+                <div v-if="post.section_id == 68">
+                    <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
+                        <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
+                    </router-link>
+                </div>
                 <div v-else>
                     <div v-if="post.link_question_id == 2">
                         <router-link @click.native="Track(post.google_tag)" v-if="post.direct_content_question_id == 0 || post.direct_content_question_id == null" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
