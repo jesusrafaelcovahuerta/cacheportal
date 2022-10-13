@@ -5,10 +5,6 @@
             <hr>
             <h1><center><strong>Haz click en los botones para ver cada contenido</strong></center></h1>
         </div>
-        <form action="https://www.google.com/search" class="example">
-            <input type="text" @click="handleBlur" v-model="form.search" name="q" placeholder="Buscar en Google.com">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <div v-if="post.section_id == 67">
