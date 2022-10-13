@@ -1,25 +1,30 @@
 <template>
     <div class="container pt-32">
-        <h1><center>Si necesitas leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
-        <hr>
-        <qrcode-stream @decode="onDecode"></qrcode-stream>
+        <div class="container pt-32" v-if="this.$route.params.id == 67">
+            <h1><center>Si necesitas leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
+            <hr>
+            <qrcode-stream @decode="onDecode"></qrcode-stream>
 
-        <!-- toolbar bottom -->
-        <div class="toolbar">
-            <div class="container">
-                <ul class="toolbar-bottom toolbar-wrap">
-                    <li class="toolbar-item pt-10">
-                        <button class="toolbar-link" @click="goBack">
-                            <i class="icon ion-ios-arrow-back"></i> Regresar
-                        </button>
-                    </li>
-                    <li class="toolbar-item">
-                        <button class="toolbar-link" @click="goHome">
-                            <i class="icon ion-ios-home"></i> Inicio
-                        </button>
-                    </li>
-                </ul>
+            <!-- toolbar bottom -->
+            <div class="toolbar">
+                <div class="container">
+                    <ul class="toolbar-bottom toolbar-wrap">
+                        <li class="toolbar-item pt-10">
+                            <button class="toolbar-link" @click="goBack">
+                                <i class="icon ion-ios-arrow-back"></i> Regresar
+                            </button>
+                        </li>
+                        <li class="toolbar-item">
+                            <button class="toolbar-link" @click="goHome">
+                                <i class="icon ion-ios-home"></i> Inicio
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </div>
+        <div class="container pt-32" v-if="this.$route.params.id == 68">
+            <h1><center>Noticias</center></h1>
         </div>
     </div>
 	

@@ -9,12 +9,12 @@
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <div v-if="post.special_section_id == 1">
                     <div v-if="post.section_id == 67">
-                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
+                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show/67`" >
                             <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
                         </router-link>
                     </div>
                     <div v-if="post.section_id == 68">
-                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show`" >
+                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show/68`" >
                             <font class="section_title">Noticias</font><br><i v-bind:class="'fa-solid fa-newspaper'"></i>
                         </router-link>
                     </div>
