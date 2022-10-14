@@ -22,23 +22,6 @@
                             :labels="paginationAnchorTexts"
                             ></v-pagination>
         </div>
-        <!-- toolbar bottom -->
-        <div class="toolbar">
-            <div class="container">
-                <ul class="toolbar-bottom toolbar-wrap">
-                    <li class="toolbar-item pt-10">
-                        <button class="toolbar-link" @click="goBack">
-                            <i class="icon ion-ios-arrow-back"></i> Regresar
-                        </button>
-                    </li>
-                    <li class="toolbar-item">
-                        <button class="toolbar-link" @click="goHome">
-                            <i class="icon ion-ios-home"></i> Inicio
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 	
 </template>
