@@ -14,6 +14,13 @@
                 <h4>{{ post.title }} - <router-link :to="`/information/show/${post.datum_id}`">Ver Noticia Completa</router-link></h4>
                 <hr>
             </div>
+
+            <v-pagination v-model="currentPage" 
+                            :page-count="total"
+                            @input='getPosts'
+                            :classes="bootstrapPaginationClasses"
+                            :labels="paginationAnchorTexts"
+                            ></v-pagination>
         </div>
         <!-- toolbar bottom -->
         <div class="toolbar">
@@ -51,7 +58,7 @@
             getPosts() {
                 this.loading = true;
 
-                axios.get('/api/information')
+                axios.get('/api/information?page='+this.currentPage)
                 .then(response => {
                     this.posts = response.data.data.data;
                     this.total = response.data.data.last_page;
