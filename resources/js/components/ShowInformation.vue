@@ -2,7 +2,9 @@
     <div class="container pt-32">
         <h1><center>{{ post.title }}</center></h1>
         <hr>
-        <p>{{ post.description }}</p>
+        <p style="text-align: justify; font-size: 12px;" v-html="post.description">
+        
+        </p>
         <!-- toolbar bottom -->
         <div class="toolbar">
             <div class="container">
@@ -26,7 +28,7 @@
 <script>
     export default {
         created() {
-            this.getPosts();
+            this.getPost();
         },
         methods: {
             Track(google_tag) {
@@ -34,21 +36,13 @@
                     page_title: google_tag
                 });
             },
-            getPosts() {
-                this.loading = true;
-
-                axios.get('/api/information')
+            getPost() {
+                axios.get('/api/database/'+ this.$route.params.id +'/edit')
                 .then(response => {
-                    this.posts = response.data.data.data;
-                    this.total = response.data.data.last_page;
-                    this.currentPage = response.data.data.current_page;
-                    this.rowsQuantity = response.data.data.total;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
+                    this.post = response.data.data;
+
+                    this.$set(this.form, 'title', this.post.title);
+                    this.$set(this.form, 'description', this.post.description);
                 });
             },
             onDecode (decodedString) {
