@@ -10,7 +10,7 @@
                 <div v-if="post.special_section_id == 1">
                     <div v-if="post.section_id == 46">
                         <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb('http://api.whatsapp.com/send/?phone=56934136117&text=Hola&type=phone_number&app_absent=0',post.google_tag)" >
-                            <font class="section_title">Consulta tu saldo</font><br> <center><img style="width: 40px; height: 40px;" :src="'/../frontend/images/logo_entel.png'"></center>
+                            <font class="section_title">Consulta tu saldo</font><br> <center><img style="width: 30px; height: 30px;" :src="'/../frontend/images/logo_entel.png'"></center>
                         </button>
                     </div>
                     <div v-if="post.section_id == 67">
