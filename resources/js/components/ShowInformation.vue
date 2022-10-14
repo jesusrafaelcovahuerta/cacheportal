@@ -2,7 +2,7 @@
     <div class="container pt-32">
         <h1><center>{{ post.title }}</center></h1>
         <hr>
-        <p style="text-align: justify; font-size: 18px !important;" v-html="post.description">
+        <p style="text-align: justify; font-size: 22px !important;" v-html="post.description">
         
         </p>
         <!-- toolbar bottom -->
