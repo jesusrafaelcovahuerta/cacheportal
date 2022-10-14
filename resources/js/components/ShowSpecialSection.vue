@@ -12,7 +12,7 @@
             <hr>
             <div v-for="(post, index) in posts" v-bind:index="index">
                 <h4>{{ post.title }}</h4>
-                <p></p>
+                <hr>
             </div>
         </div>
         <!-- toolbar bottom -->
