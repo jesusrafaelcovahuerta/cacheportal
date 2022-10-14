@@ -37,7 +37,7 @@
                 });
             },
             getPost() {
-                axios.get('/api/special_section/show/'+ this.$route.params.id)
+                axios.get('/api/i/show/'+ this.$route.params.id)
                 .then(response => {
                     this.post = response.data.data;
 
