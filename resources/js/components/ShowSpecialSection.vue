@@ -51,7 +51,7 @@
             getPosts() {
                 this.loading = true;
 
-                axios.get('/api/information?page='+this.currentPage+'&api_token='+App.apiToken)
+                axios.get('/api/information')
                 .then(response => {
                     this.posts = response.data.data;
                 })
