@@ -1,8 +1,8 @@
 <template>
     <div class="container pt-32">
-        <h1><center>{{ post.title }}</center></h1>
+        <h1 style="font-size: 30px !important;"><center><strong>{{ post.title }}</strong></center></h1>
         <hr>
-        <p style="text-align: justify; font-size: 22px !important;" v-html="post.description">
+        <p style="text-align: justify; font-size: 30px !important;" v-html="post.description">
         
         </p>
         <!-- toolbar bottom -->
