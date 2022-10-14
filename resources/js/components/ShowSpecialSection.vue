@@ -144,7 +144,11 @@
     padding: 10px;
 }
 
-.page-link {
+li {
+    font-size: 20px !important;
+}
+
+.pagination-item {
     padding: 20px !important;
     font-size: 20px !important;
 }
