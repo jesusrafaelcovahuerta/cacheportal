@@ -3,7 +3,7 @@
         <h1 style="font-size: 30px !important;"><center><strong>{{ post.title }}</strong></center></h1>
         <hr>
         <p style="text-align: justify; font-size: 30px !important;" v-html="post.description">
-        
+        Fuente: {{ post.url }}
         </p>
         <!-- toolbar bottom -->
         <div class="toolbar">
