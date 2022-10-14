@@ -10,8 +10,10 @@
         <div class="container pt-32" v-if="this.$route.params.id == 68">
             <h1><center>Noticias</center></h1>
             <hr>
-            <h4>Esto es un titulo de prueba</h4>
-            <p>Esto es un contenido de prueba</p>
+            <div v-for="(post, index) in posts" v-bind:index="index">
+                <h4>{{ post.section_title }}</h4>
+                <p>{{ post.short_description }}</p>
+            </div>
         </div>
         <!-- toolbar bottom -->
         <div class="toolbar">
@@ -38,12 +40,26 @@
 
     export default {
         created() {
-
+            this.getPosts();
         },
         methods: {
             Track(google_tag) {
                 this.$gtag.event('page_view', {
                     page_title: google_tag
+                });
+            },
+            getPosts() {
+                this.loading = true;
+
+                axios.get('/api/information?page='+this.currentPage+'&api_token='+App.apiToken)
+                .then(response => {
+                    this.posts = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
                 });
             },
             onDecode (decodedString) {
