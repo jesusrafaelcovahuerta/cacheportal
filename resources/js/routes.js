@@ -36,6 +36,7 @@ import ShowSectionContent from './components/ShowSectionContent';
 import Qr from './components/Qr';
 import Cam from './components/Cam';
 import ShowSpecialSection from './components/ShowSpecialSection';
+import ShowInformation from './components/ShowInformation';
 
 export default{
     mode: 'history',
@@ -227,6 +228,11 @@ export default{
           path: '/special_section/show/:id',
           name: 'show_special_section',
           component: ShowSpecialSection
+        },
+        {
+          path: '/information/show/:id',
+          name: 'show_information',
+          component: ShowInformation
         }
     ]
 }
