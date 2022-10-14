@@ -5,7 +5,7 @@
         <p style="text-align: justify; font-size: 30px !important;" v-html="post.description">
         
         </p>
-        Fuente: {{ post.url }}
+        <strong>Fuente:</strong> {{ post.url }}
         <!-- toolbar bottom -->
         <div class="toolbar">
             <div class="container">
