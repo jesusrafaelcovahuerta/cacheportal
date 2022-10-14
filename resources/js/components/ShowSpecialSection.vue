@@ -44,6 +44,8 @@
 </template>
 <script>
     import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
+    import vPagination from 'vue-plain-pagination';
+    import { ClipLoader } from 'vue-spinner/dist/vue-spinner.min.js';
 
     export default {
         created() {
@@ -89,7 +91,9 @@
             QrcodeStream,
             QrcodeDropZone,
             QrcodeCapture,
-            BeforeInstallPromptEvent 
+            BeforeInstallPromptEvent,
+            vPagination,
+            ClipLoader
         },
         data: function() {
             return {
