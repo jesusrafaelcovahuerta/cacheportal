@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class InformationController extends ApiResponseController
 {
-    public function index()
+    public function index(Request $request)
     {
+        $page = $request->page;
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://scraping.conectamayor.cl/api/database?api_token=25f9e794323b453885f5181f1b624d0b'); 
+        curl_setopt($ch, CURLOPT_URL, 'http://scraping.conectamayor.cl/api/database?page='.$page.'&api_token=25f9e794323b453885f5181f1b624d0b'); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
         curl_setopt($ch, CURLOPT_HEADER, 0); 
         $data = curl_exec($ch); 
