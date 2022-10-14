@@ -11,8 +11,8 @@
             <h1><center>Noticias</center></h1>
             <hr>
             <div v-for="(post, index) in posts" v-bind:index="index">
-                <h4>{{ post.section_title }}</h4>
-                <p>{{ post.short_description }}</p>
+                <h4>{{ post.title }}</h4>
+                <p></p>
             </div>
         </div>
         <!-- toolbar bottom -->
@@ -53,7 +53,10 @@
 
                 axios.get('/api/information')
                 .then(response => {
-                    this.posts = response.data.data;
+                    this.posts = response.data.data.data;
+                    this.total = response.data.data.last_page;
+                    this.currentPage = response.data.data.current_page;
+                    this.rowsQuantity = response.data.data.total;
                 })
                 .catch(function (error) {
                     console.log(error);
