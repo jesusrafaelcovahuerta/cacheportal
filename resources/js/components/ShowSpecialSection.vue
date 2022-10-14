@@ -140,7 +140,12 @@
   font-size: 25px !important;
 }
 
-li {
+.page-item {
     padding: 10px;
+}
+
+.page-link {
+    padding: 20px !important;
+    font-size: 20px !important;
 }
 </style>
