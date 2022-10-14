@@ -140,16 +140,7 @@
   font-size: 25px !important;
 }
 
-.page-item {
-    padding: 10px;
-}
-
-li {
-    font-size: 20px !important;
-}
-
-.pagination-item {
-    padding: 20px !important;
-    font-size: 20px !important;
+.page-link {
+    font-size: 30px !important;
 }
 </style>
