@@ -1,20 +1,8 @@
 <template>
     <div class="container pt-32">
-        <div class="container pt-32" v-if="this.$route.params.id == 67">
-            <h1><center>Si necesitas leer algún Qr puede utilizar esta sección para hacerlo, solo debe colocar la camara sobre el mismo</center></h1>
-            <hr>
-            <qrcode-stream @decode="onDecode"></qrcode-stream>
-
-           
-        </div>
-        <div class="container pt-32" v-if="this.$route.params.id == 68">
-            <h1><center>Noticias</center></h1>
-            <hr>
-            <div v-for="(post, index) in posts" v-bind:index="index">
-                <h4><router-link :to="`/information/show/${post.datum_id}`">{{ post.title }}</router-link></h4>
-                <hr>
-            </div>
-        </div>
+        <h1><center>{{ post.title }}</center></h1>
+        <hr>
+        <p>{{ post.description }}</p>
         <!-- toolbar bottom -->
         <div class="toolbar">
             <div class="container">
@@ -36,8 +24,6 @@
 	
 </template>
 <script>
-    import { QrcodeStream, QrcodeDropZone, QrcodeCapture } from 'vue-qrcode-reader'
-
     export default {
         created() {
             this.getPosts();
@@ -79,10 +65,6 @@
             }
         },
         components: {
-            QrcodeStream,
-            QrcodeDropZone,
-            QrcodeCapture,
-            BeforeInstallPromptEvent 
         },
         data: function() {
             return {

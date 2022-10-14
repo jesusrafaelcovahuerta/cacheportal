@@ -139,8 +139,4 @@
 .boton2 {
   font-size: 25px !important;
 }
-
-.page-link {
-    font-size: 30px !important;
-}
 </style>
