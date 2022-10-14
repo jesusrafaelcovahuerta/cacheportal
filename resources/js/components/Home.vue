@@ -8,6 +8,11 @@
         <div class="row">
 		    <div class="col-6" v-for="(post, index) in posts" v-bind:index="index">
                 <div v-if="post.special_section_id == 1">
+                    <div v-if="post.section_id == 46">
+                        <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb('http://api.whatsapp.com/send/?phone=56934136117&text=Hola&type=phone_number&app_absent=0',post.google_tag)" >
+                            <font class="section_title">Consulta tu saldo</font><br> <i v-bind:class="post.icon"></i>
+                        </button>
+                    </div>
                     <div v-if="post.section_id == 67">
                         <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :to="`/special_section/show/67`" >
                             <font class="section_title">Leer Qr</font><br><i v-bind:class="'fa-solid fa-qrcode'"></i>
