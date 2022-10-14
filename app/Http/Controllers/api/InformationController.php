@@ -28,7 +28,7 @@ class InformationController extends ApiResponseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'http://scraping.conectamayor.cl/api/information/'.$id.'/edit'); 
