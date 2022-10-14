@@ -139,4 +139,8 @@
 .boton2 {
   font-size: 25px !important;
 }
+
+li {
+    padding: 10px;
+}
 </style>
