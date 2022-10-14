@@ -37,7 +37,7 @@
                 });
             },
             getPost() {
-                axios.get('/api/database/'+ this.$route.params.id +'/edit')
+                axios.get('/api/information/'+ this.$route.params.id +'/edit')
                 .then(response => {
                     this.post = response.data.data;
 

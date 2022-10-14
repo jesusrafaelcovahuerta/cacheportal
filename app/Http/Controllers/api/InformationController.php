@@ -22,4 +22,20 @@ class InformationController extends ApiResponseController
         print_r($data);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://scraping.conectamayor.cl/api/information/'.$id.'/edit'); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        curl_setopt($ch, CURLOPT_HEADER, 0); 
+        $data = curl_exec($ch); 
+        curl_close($ch); 
+        print_r($data);
+    }
 }
