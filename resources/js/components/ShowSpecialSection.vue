@@ -107,6 +107,30 @@
                     yes_no_answer: [],
                     text_answer: []
                 },
+                color: '#0A2787',
+                loading: false,
+                currentPage: 1,
+                total: 0,
+                rowsQuantity: '',
+                bootstrapPaginationClasses: {
+                    ul: 'pagination',
+                    li: 'page-item',
+                    liActive: 'active',
+                    liDisable: 'disabled',
+                    button: 'page-link'  
+                },
+                paginationAnchorTexts: {
+                    first: '',
+                    prev: '&laquo;',
+                    next: '&raquo;',
+                    last: ''
+                },
+                mobilepaginationAnchorTexts: {
+                    first: '',
+                    prev: '',
+                    next: '',
+                    last: ''
+                }
             }
         }
     }
