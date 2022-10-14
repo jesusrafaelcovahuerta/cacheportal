@@ -21,7 +21,7 @@
                 </div>
                 <div v-else>
                     <div v-if="post.link_question_id == 2">
-                        <router-link @click.native="Track(post.google_tag)" v-if="post.direct_content_question_id == 0 || post.direct_content_question_id == null" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
+                        <router-link @click.native="Track(post.google_tag)" v-if="post.direct_content_question_id == 2 || post.direct_content_question_id == null" class="boton2" :style="{ background: post.color}" :to="`/section/show/${post.section_id}`" >
                             <font class="section_title">{{ post.section_title }}</font><br><i v-bind:class="post.icon"></i>
                         </router-link>
                         <router-link @click.native="Track(post.google_tag)" v-if="post.direct_content_question_id == 1" class="boton2" :style="{ background: post.color}" :to="`/section/content/show/${post.section_id}`" >
