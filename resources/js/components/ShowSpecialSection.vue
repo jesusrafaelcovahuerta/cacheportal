@@ -11,7 +11,7 @@
             <h1><center>Noticias</center></h1>
             <hr>
             <div v-for="(post, index) in posts" v-bind:index="index">
-                <h4>{{ post.title }} - <router-link :to="`/information/show/${post.datum_id}`">Ver Noticia Completa</router-link></h4>
+                <h4>{{ post.title }} - <router-link :to="`/information/show/${post.datum_id}`">Toca aquí para leer la noticia</router-link></h4>
                 <hr>
             </div>
 
