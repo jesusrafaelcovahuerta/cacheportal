@@ -25,7 +25,7 @@
                     </div>
                     <div v-if="post.section_id == 69">
                         <a @click.native="Track(post.google_tag)" class="boton2" :style="{ background: post.color}" :href="`tel:${'+56935887241'}`" >
-                            <font class="section_title">Noticias</font><br><i v-bind:class="'fa-solid fa-newspaper'"></i>
+                            <font class="section_title">LLamar</font><br><i v-bind:class="'fa-solid fa-newspaper'"></i>
                         </a>
                     </div>
                 </div>
