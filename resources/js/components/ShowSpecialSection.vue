@@ -26,7 +26,10 @@
             <h1><center>Beneficios del Estado</center></h1>
             <hr>
             <button class="boton2" :style="{ background: '#0e385d'}" v-on:click="goWeb('https://www.reddeproteccion.cl/', 'Red de Protección')"> 
-                <i v-bind:class="post.icon"></i><br> Red de Protección
+                <i v-bind:class="'fa-solid fa-circle-info'"></i><br> Red de Protección
+            </button>
+            <button class="boton2" :style="{ background: '#0e385d'}" v-on:click="goWeb('https://persona.ipsenlinea.cl/IpsEnLinea/web/ingresoPersonas.jsf', 'IPS En Línea')"> 
+                <i v-bind:class="'fa-solid fa-hand-heart'"></i><br> IPS En Línea
             </button>
         </div>
     </div>
