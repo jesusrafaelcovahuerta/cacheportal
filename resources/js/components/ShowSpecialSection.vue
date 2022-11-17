@@ -55,7 +55,7 @@
                     page_title: google_tag
                 });
 
-                window.location.href = url;
+                window.open(url, '_blank');
             },
             getPosts() {
                 this.loading = true;
