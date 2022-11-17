@@ -22,6 +22,13 @@
                             :labels="paginationAnchorTexts"
                             ></v-pagination>
         </div>
+        <div class="container pt-32" v-if="this.$route.params.id == 70">
+            <h1><center>Beneficios del Estado</center></h1>
+            <hr>
+            <button class="boton2" :style="{ background: '#0e385d'}" v-on:click="goWeb('https://www.reddeproteccion.cl/', 'Red de Protección')"> 
+                <i v-bind:class="post.icon"></i><br> Red de Protección
+            </button>
+        </div>
     </div>
 	
 </template>
@@ -39,6 +46,13 @@
                 this.$gtag.event('page_view', {
                     page_title: google_tag
                 });
+            },
+            goWeb(url, google_tag) {
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
+                });
+
+                window.location.href = url;
             },
             getPosts() {
                 this.loading = true;

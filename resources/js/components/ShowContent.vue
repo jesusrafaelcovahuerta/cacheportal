@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-32">
+    <div class="container pt-32">11111
         <div v-if="poll_question_posts == ''" class="row">
 		    <div class="col-12" v-if="this.post.type_id == 1 || this.post.type_id == 2 || this.post.type_id == 4 || this.post.type_id == 5">
                 <h1><center>{{ this.post.title }}</center></h1>
