@@ -12,7 +12,7 @@
             <h1><center>{{ post.section_title }}</center></h1>
             <iframe width="600" height="600" :src="`${post.iframe}`" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div v-if="check_category_poll == 0">
+        <div v-if="check_category_poll == 0">7777777777777
             <div v-if="poll_question_posts == ''" class="row">
                 <div v-if="post.link_question_id == 1">222
                     <button class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
