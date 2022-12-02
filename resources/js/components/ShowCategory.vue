@@ -14,17 +14,10 @@
         </div>
         <div v-if="check_category_poll == 0">7777777777777
             <div v-if="poll_question_posts == ''" class="row">
-                <div v-if="post.link_question_id == 1">222
-                    <button class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
-                        <font class="section_title">{{ post.section_title }}</font><br> <i v-bind:class="post.icon"></i>
-                    </button>
-                </div>
-                <div v-else>232355555
-                    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.title }}
-                        </router-link>
-                    </div>
+                <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
+                    <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
+                        <i v-bind:class="post.icon"></i><br> {{ post.title }}
+                    </router-link>
                 </div>
             </div>
             <div v-if="poll_question_posts != ''" class="row">
@@ -102,13 +95,6 @@
                 this.$gtag.event('page_view', {
                     page_title: google_tag
                 });
-            },
-            goWeb(url, google_tag) {
-                this.$gtag.event('page_view', {
-                    page_title: google_tag
-                });
-
-                window.location.href = url;
             },
             onSubmit(e) {
                 this.loading = true;

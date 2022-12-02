@@ -17,13 +17,20 @@
             <div v-if="check_category_poll == 0">
                 <div v-if="poll_question_posts == ''" class="row">
                     <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                        <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
+                        <div v-if="post.link_question_id == 1">
+                            <button class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
+                                <font class="section_title">{{ post.section_title }}</font><br> <i v-bind:class="post.icon"></i>
+                            </button>
+                        </div>
+                        <div v-else>
+                            <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                                <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                            </router-link>
 
-                        <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                            <i v-bind:class="post.icon"></i><br> {{ post.name }}
-                        </router-link>
+                            <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
+                                <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                            </router-link>
+                        </div>
                     </div>
                 </div>
                 <div class="row" v-if="poll_question_posts != ''">
@@ -96,6 +103,13 @@
             this.checkDate();
         },
         methods: {
+            goWeb(url, google_tag) {
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
+                });
+
+                window.location.href = url;
+            },
             Track(google_tag) {
                 this.$gtag.event('page_view', {
                     page_title: google_tag
