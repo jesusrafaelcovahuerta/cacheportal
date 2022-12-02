@@ -19,7 +19,7 @@
                         <font class="section_title">{{ post.section_title }}</font><br> <i v-bind:class="post.icon"></i>
                     </button>
                 </div>
-                <div v-else>
+                <div v-else>232355555
                     <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
                         <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
                             <i v-bind:class="post.icon"></i><br> {{ post.title }}
