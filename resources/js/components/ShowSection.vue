@@ -24,7 +24,7 @@
                         </div>
                         <div v-else>
                             <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 0"  class="boton2" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
-                                <i v-bind:class="post.icon"></i><br> {{ post.name }}
+                                {{ post.name }}<br><i v-bind:class="post.icon"></i>
                             </router-link>
 
                             <router-link @click.native="Track(post.google_tag)" v-if="post.highlight_id == 1"  class="botonhighlight" :style="{ background: post.color}" :to="`/category/show/${post.category_id}`"> 
