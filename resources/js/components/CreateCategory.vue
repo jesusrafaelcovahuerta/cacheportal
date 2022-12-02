@@ -333,6 +333,7 @@
                     formData.append('iframe', this.form.iframe);
                     formData.append('subtitle', this.form.subtitle);
                     formData.append('link_question_id', this.form.link_question_id);
+                    formData.append('url', this.form.url);
                     if(this.form.icon_type_id == 1) {
                         formData.append('icon_image', this.icon_image);
                     } else {
