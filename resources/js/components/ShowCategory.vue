@@ -14,10 +14,17 @@
         </div>
         <div v-if="check_category_poll == 0">
             <div v-if="poll_question_posts == ''" class="row">
-                <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
-                    <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
-                        <i v-bind:class="post.icon"></i><br> {{ post.title }}
-                    </router-link>
+                <div v-if="post.link_question_id == ''">
+                    <div class="col-12" v-for="(post, index) in posts" v-bind:index="index">
+                        <router-link @click.native="Track(post.google_tag)" class="boton2" :style="{ background: '#0e385d'}" :to="`/content/show/${post.content_id}`"> 
+                            <i v-bind:class="post.icon"></i><br> {{ post.title }}
+                        </router-link>
+                    </div>
+                </div>
+                <div v-else>
+                    <button v-if="post.link_question_id == 1" class="boton2" :style="{ background: post.color}" v-on:click="goWeb(post.url,post.google_tag)" >
+                        <font class="section_title">{{ post.section_title }}</font><br> <i v-bind:class="post.icon"></i>
+                    </button>
                 </div>
             </div>
             <div v-if="poll_question_posts != ''" class="row">
@@ -96,6 +103,13 @@
                     page_title: google_tag
                 });
             },
+            goWeb(url, google_tag) {
+                this.$gtag.event('page_view', {
+                    page_title: google_tag
+                });
+
+                window.location.href = url;
+            },
             onSubmit(e) {
                 this.loading = true;
                 e.preventDefault();
@@ -109,6 +123,7 @@
             
                 formData.append('poll_id', this.$route.params.id);
                 formData.append('yes_no_answers', this.form.yes_no_answer);
+
                 formData.append('text_answers', this.form.text_answer);
 
                 axios.post('/api/poll/answer', formData, config)
