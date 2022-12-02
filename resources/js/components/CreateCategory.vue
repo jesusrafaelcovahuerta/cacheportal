@@ -255,7 +255,8 @@
                     highlight_id: 0,
                     iframe_question_id: 2,
                     iframe: '',
-                    subtitle: ''
+                    subtitle: '',
+                    link_question_id: null
                 }
             }
         },
