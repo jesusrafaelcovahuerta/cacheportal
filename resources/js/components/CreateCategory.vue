@@ -180,6 +180,7 @@
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.link_question_id"
                                         >
+                                            <option :value="null">Seleccionar</option>
                                             <option :value="1">Si</option>
                                             <option :value="2">No</option>
                                         </select>
