@@ -171,6 +171,7 @@ class CategoryController extends ApiResponseController
         $category->iframe = $request->iframe;
         $category->subtitle = $request->subtitle;
         $category->color = $request->color;
+        $category->link_question_id = $request->link_question_id;
         $category->google_tag = 'category_' . $request->google_tag;
         $category->position = $request->position;
 

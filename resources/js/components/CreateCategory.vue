@@ -174,6 +174,27 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">¿Es un enlace a una página externa? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.link_question_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6" v-if="form.link_question_id == 1">
+                                        <label for="exampleInputEmail1">Url o enlace</label>
+                                        <input
+                                            type="text" 
+                                            v-model="form.url" 
+                                            v-mask="'http://XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'"
+                                            class="form-control"
+                                            placeholder="Ingresa la url o enlace"
+                                        >
+                                    </div>
+                                </div>
                                 <button 
                                 type="submit"
                                 class="btn btn-success btn-icon-split">
@@ -309,6 +330,7 @@
                     formData.append('icon_type_id', this.form.icon_type_id);
                     formData.append('iframe', this.form.iframe);
                     formData.append('subtitle', this.form.subtitle);
+                    formData.append('link_question_id', this.form.link_question_id);
                     if(this.form.icon_type_id == 1) {
                         formData.append('icon_image', this.icon_image);
                     } else {
